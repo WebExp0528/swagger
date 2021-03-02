@@ -350,11 +350,65 @@
                             </uib-tab>
 
                             <uib-tab index="3" heading="Milestones">
-
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
-                                        Milestones page
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].milestone_name.$invalid && (!vm.Form.addAudit.milestones[0].milestone_name.$pristine || vm.Form.addAudit.milestones[0].milestone_name.$touched || vm.Form.addAudit.milestones[0].milestone_name.$submitted) }">
+                                            <label> Milestone Name </label>
+                                            <input type="text" name="milestone_name"
+                                                ng-model="vm.formdata.milestones[0].milestone_name"
+                                                placeholder="Milestone Name" class="form-control" required>
+                                        </div>
                                     </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].milestone_desc.$invalid && (!vm.Form.addAudit.milestones[0].milestone_desc.$pristine || vm.Form.addAudit.milestones[0].milestone_desc.$touched || vm.Form.addAudit.milestones[0].milestone_desc.$submitted) }">
+                                            <label> Milestone Description </label>
+                                            <input type="text" name="milestone_desc"
+                                                ng-model="vm.formdata.milestones[0].milestone_desc"
+                                                placeholder="Milestone Description" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].budget.$invalid && (!vm.Form.addAudit.milestones[0].budget.$pristine || vm.Form.addAudit.milestones[0].budget.$touched || vm.Form.addAudit.milestones[0].budget.$submitted) }">
+                                            <label> Budget </label>
+                                            <input type="text" name="budget" ng-model="vm.formdata.milestones[0].budget"
+                                                placeholder="Budget" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].relatedtoAuditPhase.$invalid && (!vm.Form.addAudit.milestones[0].relatedtoAuditPhase.$pristine || vm.Form.addAudit.milestones[0].relatedtoAuditPhase.$touched || vm.Form.addAudit.milestones[0].relatedtoAuditPhase.$submitted) }">
+                                            <label> Related Audit Phase </label>
+                                            <input type="text" name="relatedtoAuditPhase"
+                                                ng-model="vm.formdata.milestones[0].relatedtoAuditPhase"
+                                                placeholder="Related Audit Phase" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].control_Effective_Startdate.$invalid && (!vm.Form.addAudit.milestones[0].control_Effective_Startdate.$pristine || vm.Form.addAudit.milestones[0].control_Effective_Startdate.$touched || vm.Form.addAudit.milestones[0].control_Effective_Startdate.$submitted) }">
+                                            <label> Milestone Start Date </label>
+                                            <datepicker date-format="MM-dd-yyyy">
+                                                <input type="text" name="control_Effective_Startdate."
+                                                    ng-model="vm.formdata.milestones[0].control_Effective_Startdate"
+                                                    placeholder="Start Date" class="form-control" required>
+                                            </datepicker>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].control_Effective_Enddate.$invalid && (!vm.Form.addAudit.milestones[0].control_Effective_Enddate.$pristine || vm.Form.addAudit.milestones[0].control_Effective_Enddate.$touched || vm.Form.addAudit.milestones[0].control_Effective_Enddate.$submitted) }">
+                                            <label> Milestone End Date </label>
+                                            <datepicker date-format="MM-dd-yyyy">
+                                                <input type="text" name="control_Effective_Enddate."
+                                                    ng-model="vm.formdata.milestones[0].control_Effective_Enddate"
+                                                    placeholder="Start Date" class="form-control" required>
+                                            </datepicker>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </uib-tab>
