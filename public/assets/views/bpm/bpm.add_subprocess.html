@@ -1,0 +1,74 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{vm.mainTitle}}</h1>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="vm.Form.addSubprocess" ng-submit="vm.submitAction()" role="form" >
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : vm.Form.addSubprocess.subprocessName.$invalid && (!vm.Form.addSubprocess.subprocessName.$pristine || vm.Form.addSubprocess.subprocessName.$touched || vm.Form.addSubprocess.subprocessName.$submitted) }">
+                                    <label> Subprocess Name </label>
+                                    <input type="text"  name="subprocessName" ng-model="vm.formdata.subprocessName"  placeholder="Subprocess Name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Process Name </label>
+                                    <input type="text"  name="processName" ng-model="vm.processName" disabled  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : vm.Form.addSubprocess.subprocessDesc.$invalid && (!vm.Form.addSubprocess.subprocessDesc.$pristine || vm.Form.addSubprocess.subprocessDesc.$touched || vm.Form.addSubprocess.subprocessDesc.$submitted) }">
+                                    <label> Description </label>
+                                    <textarea type="text" name="subprocessDesc" ng-model="vm.formdata.subprocessDesc"  placeholder="Description" class="form-control" rows="3" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addSubprocess.subprocessResponse.$invalid && (!vm.Form.addSubprocess.subprocessResponse.$pristine || vm.Form.addSubprocess.subprocessResponse.$touched || vm.Form.addSubprocess.subprocessResponse.$submitted) }">
+                                    <label> Responsible Person </label>
+                                    <select type="text" name="subprocessResponse" ng-model="vm.formdata.subprocessResponse" class="form-control"
+                                            ng-options="op.name as op.name for op in app.Lookup.Users" required>
+                                        <!-- <option selected value>Select Person</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Files to upload </label>
+                                    <input type="file" file-model="vm.formdata.subprocessFileModel" class="form-control"/>
+                                    <ul class="file-list-group col-xs-12">
+                                        <li class="file-list-item" ng-repeat="file in vm.formdata.subprocessFileModel">
+                                            <a target="_parent" href="{{app.APIPrefix + 'bpmsubprocess/download/stream/'+file.id + '?token='+app.authToken}}"
+                                               download="{{file.fileName}}" ng-if="file.id!=1">
+                                                {{file.fileName}}
+                                            </a>
+                                            <span ng-if="file.id==1">{{file.fileName}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <hr class="hrule4" />
+                        <div class="col-xs-12 text-right">
+                            <button class="btn btn-squared btn-dark-blue" ng-disabled="vm.Form.addSubprocess.$invalid" type="submit"><i class="fa fa-save"></i> Save</button>
+                            <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i class="fa fa-times"></i>  Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

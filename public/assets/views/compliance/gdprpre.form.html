@@ -1,0 +1,194 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.PreAssessment" ng-submit="submitAction()" role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.PreAssessment.assessmentName.$invalid && (!Form.PreAssessment.assessmentName.$pristine || Form.PreAssessment.assessmentName.$touched || Form.PreAssessment.assessmentNamee.$submitted) }">
+                                    <label> Name </label>
+                                    <input type="text" name="assessmentName" ng-model="VM.assessmentName" placeholder="Name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : Form.PreAssessment.assessmentDescription.$invalid && (!Form.PreAssessment.assessmentDescription.$pristine || Form.PreAssessment.assessmentDescription.$touched || Form.PreAssessment.assessmentDescription.$submitted) }">
+                                    <label> Description </label>
+                                    <textarea type="text" name="assessmentDescription" ng-model="VM.assessmentDescription" ng-autosize placeholder="Description" class="form-control" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.PreAssessment.VM.assessmentBy.$invalid && (!Form.PreAssessment.VM.assessmentBy.$pristine || Form.PreAssessment.VM.assessmentBy.$touched || Form.PreAssessment.VM.assessmentBy.$submitted) }">
+                                    <label> Assessment By </label>
+                                    <select name="assessmentBy" ng-model="VM.assessmentBy"
+                                            ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control"
+                                            required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.PreAssessment.assessmentPeriod.$invalid && (!Form.PreAssessment.assessmentPeriod.$pristine || Form.PreAssessment.assessmentPeriod.$touched || Form.PreAssessment.assessmentPeriod.$submitted) }">
+                                    <label> Period </label>
+                                    <select type="text" name="assessmentPeriod" ng-model="VM.assessmentPeriod" class="form-control"
+                                            ng-options="per.key as per.val for per in app.Lookup.LIST002" required>
+                                        <!-- <option value>Select Period</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.PreAssessment.department.$invalid && (!Form.PreAssessment.department.$pristine || Form.PreAssessment.department.$touched || Form.PreAssessment.department.$submitted) }">
+                                    <label> Department </label>
+                                    <select type="text" name="department" ng-model="VM.department" class="form-control" ng-options="d.deptName as d.deptName for d in app.Lookup.Departments">
+                                    	<!-- <option selected value>Select Department</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.PreAssessment.completionDate.$invalid && (!Form.PreAssessment.completionDate.$pristine || Form.PreAssessment.completionDate.$touched || Form.PreAssessment.completionDate.$submitted) }">
+                                    <label> Completion Date </label>
+                                    <datepicker date-format="MM-dd-yyyy" date-set="{{completionDate}}">
+                                        <input type="text" name="completionDate" ng-model="VM.completionDate"
+                                               placeholder="Completion Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+                        </div>
+						<br/></br>
+						<div class="row" ng-show="!inProgress && !showResults" align="center">
+							<a class="btn btn-outline-primary" ng-click="startAssessment(0)"><i class="fa fa-pencil-square-o"></i> Start Assessment</a>
+						</div>
+						<div ng-show="inProgress && !assessmentOver">
+							<div class="assessment-area">
+								<div id="assessment">
+									<table style="width:40%">
+										<tr>
+											<th class="assessment-th">STATEMENT</th>
+											<th class="assessment-th">RESPONSES</th>
+											<th class="assessment-th">SKIPPED</th>
+											<th class="assessment-th">NOT APPLICABLE</th>
+										</tr>
+										<tr>
+											<th class="assessment-th">{{statement}} of {{total}}</th>
+											<th class="assessment-th">{{answered}}</th>
+											<th class="assessment-th">{{skipped}}</th>
+											<th class="assessment-th">{{notapplicable}}</th>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div>
+								<br><br>
+								<div>
+									<h4 id="controlName"><strong>{{statement}}. {{controlName}}</strong></h4>
+									<h4 id="controlStatement">{{controlStatement}}</h4>
+								</div>
+								<br><br>
+								<div>
+									<a type="button" class="btn btn-success optionBtns" ng-repeat="btn in buttons" ng-click="setButton(btn)">{{btn.name}}</a>
+									<br><br><br>
+									<div>
+										<a type="button" class="btn btn-primary" ng-disabled="prevOn" ng-click="prevQuestion()">PREVIOUS</a>
+										<a type="button" class="btn assessment-skip-button" ng-click="skipQuestion()">SKIP</a>
+										<a type="button" class="btn assessment-na-button" ng-click="naQuestion()">NOT APPLICABLE</a>
+										<a type="button" class="btn btn-primary" ng-disabled="nextOn" ng-click="nextQuestion()">NEXT</a>
+										<a type="button" class="btn btn-danger" ng-disabled="review" ng-click="reviewAssessment()" style="float: right;">REVIEW</a>
+									</div>
+								</div>
+							</div>
+						</div>
+              			<div class="row" ng-show="!inProgress && assessmentOver && showResults">
+							<div class="col-md-12">
+    							<div class="panel panel-white no-radius">
+							        <div class="panel-heading">
+							            <h5>Controls</h5>
+							        </div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+												<select id="PerPage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+											</div>
+											<div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+												<div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+													<span class="input-icon">
+													<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+													<i class="fa fa-search"></i>
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<table class="table table-striped table-responsive col-xs-12">
+												<thead>
+													<tr class="sortable-headers">
+														<th><input type="checkbox"></th>
+														<th><a ng-class="{'text-azure': CurrCol==='assessmentId' }" ng-click="Grid1.SortMe('assessmentId')"><i class="fa {{Grid1.GetIco('assessmentId')}}"></i> ID</a></th>
+														<th><a ng-class="{'text-azure': CurrCol==='categoryName' }" ng-click="Grid1.SortMe('categoryName')"><i class="fa {{Grid1.GetIco('categoryName')}}"></i> Category Name</a></th>
+														<!-- <th><a ng-class="{'text-azure': CurrCol==='categoryDescription' }" ng-click="Grid1.SortMe('categoryDescription')"><i class="fa {{Grid1.GetIco('categoryDescription')}}"></i> Category Description</a></th> -->
+														<th><a ng-class="{'text-azure': CurrCol==='controlName' }" ng-click="Grid1.SortMe('controlName')"><i class="fa {{Grid1.GetIco('controlName')}}"></i> Control Name</a></th>
+														<th><a ng-class="{'text-azure': CurrCol==='controlStatement' }" ng-click="Grid1.SortMe('controlStatement')"><i class="fa {{Grid1.GetIco('controlStatement')}}"></i> Control Statement</a></th>
+														<th><a ng-class="{'text-azure': CurrCol==='response' }" ng-click="Grid1.SortMe('response')"><i class="fa {{Grid1.GetIco('response')}}"></i> Response</a></th>
+														<th><a ng-class="{'text-azure': CurrCol==='responseDescription' }" ng-click="Grid1.SortMe('responseDescription')"><i class="fa {{Grid1.GetIco('responseDescription')}}"></i> Response Description</a></th>
+														<th><a ng-class="{'text-azure': CurrCol==='finding' }" ng-click="Grid1.SortMe('finding')"><i class="fa {{Grid1.GetIco('finding')}}"></i> Finding</a></th>
+														<th>Action</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="r in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+														<th><input type="checkbox"></th>
+														<td>{{r.assessmentId}}</td>
+														<td>{{r.categoryName}}</td>
+														<!-- <td>{{r.categoryDescription}}</td> -->
+														<td>{{r.controlName}}</td>
+														<td>{{r.controlStatement}}</td>
+														<td>{{r.response}}</td>
+														<td>{{r.responseDescription}}</td>
+														<td>{{r.finding}}</td>
+														<td>
+															<a type="button" class="btn btn-xs btn-danger" ng-click="reviseAssessment(r.assessmentId)">REVISE</a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="row margin-top-10">
+											<div class="col-xs-12 col-sm-5">
+												Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+											</div>
+											<div class="col-xs-12 col-sm-7 pagination-right">
+												<ul uib-pagination total-items="Grid1.Total" items-per-page="Grid1.PerPage" ng-model="Grid1.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+											</div>
+										</div>
+									</div>
+        						</div>
+    						</div>
+						</div>
+                        <br/></br>
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-right">
+                        	<a class="btn btn-squared btn-dark-blue" ng-click="downloadExcel()" ng-show="showResults"><i class="fa fa-download"></i> Download Pre-Assessment </a>
+                        	<button class="btn btn-squared btn-dark-blue" type="submit" ng-show="showResults"><i class="fa fa-save"></i> Save</button>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

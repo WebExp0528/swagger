@@ -1,0 +1,69 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{mainTitle}}</h1>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="panel panel-white col-md-6  col-md-offset-3">
+            <div class="panel-body">
+                <form name="ControlTestDataForm" ng-submit="submitAction()" role="form">
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.description.$invalid && (!ControlTestDataForm.description.$pristine || ControlTestDataForm.description.$touched || ControlTestDataForm.description.$submitted) }">
+                            <label> Description </label>
+                            <input type="text" name="username" ng-model="formdata.description" placeholder="Description" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.controlTypeLevel1.$invalid && (!ControlTestDataForm.controlTypeLevel1.$pristine || ControlTestDataForm.controlTypeLevel1.$touched || ControlTestDataForm.controlTypeLevel1.$submitted) }">
+                            <label> Control Type Level 1 </label>
+                            <input type="text" name="controlTypeLevel1" ng-model="formdata.controlTypeLevel1" placeholder="Control Type Level 1" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.controlTypeLevel2.$invalid && (!ControlTestDataForm.controlTypeLevel2.$pristine || ControlTestDataForm.controlTypeLevel2.$touched || ControlTestDataForm.controlTypeLevel2.$submitted) }">
+                            <label> Control Type Level 2 </label>
+                            <input type="text" name="controlTypeLevel2" ng-model="formdata.controlTypeLevel2" placeholder="Control Type Level 2" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.design.$invalid && (!ControlTestDataForm.design.$pristine || ControlTestDataForm.design.$touched || ControlTestDataForm.design.$submitted) }">
+                            <label> Design </label>
+                            <input type="text" name="design" ng-model="formdata.design" placeholder="Design" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.performance.$invalid && (!ControlTestDataForm.performance.$pristine || ControlTestDataForm.performance.$touched || ControlTestDataForm.performance.$submitted) }">
+                            <label> Performance </label>
+                            <input type="text" name="performance" ng-model="formdata.performance" placeholder="Performance" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.justification.$invalid && (!ControlTestDataForm.justification.$pristine || ControlTestDataForm.justification.$touched || ControlTestDataForm.justification.$submitted) }">
+                            <label> Justification </label>
+                            <input type="text" name="justification" ng-model="formdata.justification" placeholder="Justification" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : ControlTestDataForm.accountability.$invalid && (!ControlTestDataForm.accountability.$pristine || ControlTestDataForm.accountability.$touched || ControlTestDataForm.accountability.$submitted) }">
+                            <label> Accountability </label>
+                            <input type="text" name="accountability" ng-model="formdata.accountability" placeholder="Accountability" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>Save</button>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

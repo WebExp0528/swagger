@@ -1,0 +1,88 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{mainTitle}}</h1>
+			<!-- <span class="mainDescription">{{mainDesc}}</span> -->
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+	<div class="assessment-area" ng-show="inProgress">
+		<div id="assessment">
+			<table style="width:40%">
+				<tr>
+					<th class="assessment-th">STATEMENT</th>
+					<th class="assessment-th">RESPONSES</th>
+					<th class="assessment-th">SKIPPED</th>
+					<th class="assessment-th">NOT APPLICABLE</th>
+				</tr>
+				<tr>
+					<th class="assessment-th">{{statement}} of {{total}}</th>
+					<th class="assessment-th">{{responses}}</th>
+					<th class="assessment-th">{{skipped}}</th>
+					<th class="assessment-th">{{notapplicable}}</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div>
+		<br><br>
+		<div>
+			<h4 id="controlName"><strong>{{statement}}. {{controlName}}</strong></h4>
+			<h4 id="controlStatement">{{controlStatement}}</h4>
+		</div>
+		<br><br>
+		<div>
+			<button class="optionBtns" ng-repeat="btn in buttons" ng-click="setButton(btn)">{{btn.name}}</button>
+			<br><br>
+			<!-- <button class="assessment-button" ng-click="checkAnswer()" ng-show="answerMode">SUBMIT</button> -->
+			<br><br>
+			<div>
+				<button type="button" class="btn btn-primary" ng-disabled="prevOn" ng-click="prevQuestion()">PREVIOUS</button>
+				<button type="button" class="assessment-skip-button" ng-click="skipQuestion()">SKIP</button>
+				<button type="button" class="assessment-na-button" ng-click="naQuestion()">NOT APPLICABLE</button>
+				<button type="button" class="btn btn-primary" ng-disabled="nextOn" ng-click="nextQuestion()">NEXT</button>
+				<button type="button" class="btn btn-danger" ng-disabled="review" ng-click="reviewAssessment()" style="float: right;">REVIEW</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <div ng-show="assessmentOver && !answerMode && inProgress">
+		<br><br>
+		<h2>Assessment completed</h2>
+		<button class="assessment-new-button" ng-click="reset()">NEW ASSESSMENT</button>
+	</div> -->
+	
+	<!-- <div class="assessment-intro" ng-show="!inProgress">
+		<div>
+			<p class="assessment-heading"><strong>Getting Started</strong> <br><br>
+				<span class="assessment-message">The GDPR Assessment is a tool designed to provide a quick evaluation of an enterprise's functions, 
+				processes and procedures that indicate compliance with the European Union Global Data Protection Regulation.
+				Please respond to each statement as accurately as possible.</span>
+			</p>
+		</div>
+		<br>
+		<label class="assessment-block">ASSESSMENT</label>
+		<br><br>
+		<table style="width:60%">
+			<tr>
+				<th class="assessment-th">RESPONSES</th>
+				<th class="assessment-th">NOT APPLICABLE</th>
+				<th class="assessment-th">SKIPPED</th>
+				<th class="assessment-th">COMPLETED</th>
+			</tr>
+			<tr>
+				<th class="assessment-th">{{statement}} of {{total}}</th>
+				<th class="assessment-th">{{responses}}</th>
+				<th class="assessment-th">{{skipped}}</th>
+				<th class="assessment-th">{{completed}}</th>
+			</tr>
+		</table>
+		<br><br>
+		<button id="startAssessment" class="assessment-start-button" ng-click="start()">START</button>
+	</div> -->
+</div>

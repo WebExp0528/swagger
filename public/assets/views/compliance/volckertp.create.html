@@ -1,0 +1,146 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.VolckerTpAssess" ng-submit="submitAction()" role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.title.$invalid && (!Form.VolckerTpAssess.title.$pristine || Form.VolckerTpAssess.title.$touched || Form.VolckerTpAssess.title.$submitted) }">
+                                    <label> Assessment Name </label>
+                                    <input type="text" name="assessName" ng-model="VM.assessName" placeholder="Title"
+                                           class="form-control" required>
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.approval.$invalid && (!Form.VolckerTpAssess.approval.$pristine || Form.VolckerTpAssess.approval.$touched || Form.VolckerTpAssess.approval.$submitted) }">
+                                    <label> Status </label>
+                                    <select name="approval" ng-model="VM.approval"
+                                            ng-options="per.key as per.val for per in app.Lookup.LIST004"
+                                            class="form-control" required>
+                                        <option value="">Status</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.assessmentBy.$invalid && (!Form.VolckerTpAssess.assessmentBy.$pristine || Form.VolckerTpAssess.assessmentBy.$touched || Form.VolckerTpAssess.assessmentBy.$submitted) }">
+                                    <label> Assessment By </label>
+                                    <select name="assessmentBy" ng-model="VM.assessmentBy"
+                                            ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control"
+                                            required>
+                                        <option value=""> Assessment By</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!--Aggregated -->
+                            <!-- <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.approver.$invalid && (!Form.VolckerTpAssess.approver.$pristine || Form.VolckerTpAssess.approver.$touched || Form.VolckerTpAssess.approver.$submitted) }">
+                                    <label> Approver </label>
+                                    <select name="approver" ng-model="VM.approver"
+                                            ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control"
+                                            required>
+                                        <option value=""> Approver</option>
+                                    </select>
+                                </div>
+                            </div> -->
+
+                            <!-- <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.approvedDate.$invalid && (!Form.VolckerTpAssess.approvedDate.$pristine || Form.VolckerTpAssess.approvedDate.$touched || Form.VolckerTpAssess.approvedDate.$submitted) }">
+                                    <label> Approved Date </label>
+                                    <datepicker date-format="MM-dd-yyyy" date-set="{{approvedDate}}">
+                                        <input type="text" name="approvedDate" ng-model="VM.approvedDate"
+                                               placeholder="Approved Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.assessmentsDate.$invalid && (!Form.VolckerTpAssess.assessmentsDate.$pristine || Form.VolckerTpAssess.assessmentsDate.$touched || Form.VolckerTpAssess.assessmentsDate.$submitted) }">
+                                    <label> Assessment Date </label>
+                                    <datepicker date-format="MM-dd-yyyy" date-set="{{assessmentsDate}}">
+                                        <input type="text" name="assessmentsDate" ng-model="VM.assessmentsDate"
+                                               placeholder="Assessment Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <!--  <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.riskScore.$invalid && (!Form.VolckerTpAssess.riskScore.$pristine || Form.VolckerTpAssess.riskScore.$touched || Form.VolckerTpAssess.riskScore.$submitted) }">
+                                    <label> Overall Risk Score </label>
+                                    <input type="number" string-to-number name="riskScore" min="0" ng-model="VM.riskScore"
+                                           placeholder="Overall Risk Score " class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.riskType.$invalid && (!Form.VolckerTpAssess.vendorRiskType.$pristine || Form.VolckerTpAssess.vendorRiskType.$touched || Form.VolckerTpAssess.vendorRiskType.$submitted) }">
+                                    <label> VolckerTpAssess Type </label>
+                                    <select name="vendorRiskType"
+                                            class="vendorRiskType js-example-basic-single font-sans-serif form-control white_background_style"
+                                            ng-model="VM.vendorRiskType"
+                                            ng-options="item.riskType as item.riskType for item in riskTypeList"
+                                            required>
+                                        <option value>Select Vendor Risk Type</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.assessType.$invalid && (!Form.VolckerTpAssess.assessType.$pristine || Form.VolckerTpAssess.assessType.$touched || Form.VolckerTpAssess.assessType.$submitted) }">
+                                    <label> Assessment Type </label>
+                                    <input type="text" name="assessType" ng-model="VM.assessType" placeholder="Volcker" class="form-control">
+                                    <!-- <select name="docType"
+                                            class="docType js-example-basic-single font-sans-serif form-control white_background_style"
+                                            ng-model="VM.docType"
+                                            ng-options="item.docType as item.docType for item in riskTypeList" required>
+                                        <option value>Volcker</option>
+                                    </select> -->
+                                </div>
+                            </div>
+                            <!-- <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.VolckerTpAssess.vendorPeriodList.$invalid && (!Form.VolckerTpAssess.vendorPeriodList.$pristine || Form.VolckerTpAssess.vendorPeriodList.$touched || Form.VolckerTpAssess.vendorPeriodList.$submitted) }">
+                                    <label> Period </label>
+                                    <select type="text" name="period" ng-model="VM.period" class="form-control"
+                                            ng-options="per.key as per.val for per in app.Lookup.LIST002" required>
+                                        <option value>Select Period</option>
+                                    </select>
+                                </div>
+                            </div> -->
+
+                        </div>
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-right">
+                            <!--<a class="btn btn-squared btn-dark-blue" ng-click="sendMail()" ng-if="currPage=='update'">
+                                <i class="fa fa-envelope"></i> Send Mail</a>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="createAssessmentAction()" ng-if="currPage=='update'">
+                                <i class="fa fa-newspaper-o"></i> Create Assessment
+                            </a>-->
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>Create</button>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()" type="button">
+                                <i class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

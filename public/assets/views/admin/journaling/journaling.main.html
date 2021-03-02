@@ -1,0 +1,78 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{vm.mainTitle}}</h1>
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+	   <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading">
+                    <h5>Journaling Search</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+                            <select id="perpage" ng-model="Grid2.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+                            <div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid2.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-responsive col-xs-12">
+                            <thead>
+                            <tr class="sortable-headers">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <th><a ng-class="{'text-azure': CurrCol==='id' }" ng-click="Grid2.sortMe('id')"><i class="fa {{resSort('id')}}"></i> Id</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='name' }" ng-click="Grid2.sortMe('name')"><i class="fa {{resSort('name')}}"></i> Name</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='collection' }" ng-click="Grid2.sortMe('collection')"><i class="fa {{resSort('collection')}}"></i>Collection Name</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='field' }" ng-click="Grid2.sortMe('field')"><i class="fa {{resSort('field')}}"></i> Field Name</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='from' }" ng-click="Grid2.sortMe('from')"><i class="fa {{resSort('from')}}"></i> From </a></th>
+								<th><a ng-class="{'text-azure': CurrCol==='to' }" ng-click="Grid2.sortMe('to')"><i class="fa {{resSort('to')}}"></i> To</a></th>
+								<th><a ng-class="{'text-azure': CurrCol==='user' }" ng-click="Grid2.sortMe('user')"><i class="fa {{resSort('user')}}"></i> User</a></th>
+								<th><a ng-class="{'text-azure': CurrCol==='changeType' }" ng-click="Grid2.sortMe('changeType')"><i class="fa {{resSort('changeType')}}"></i> Action Type</a></th>
+								<th><a ng-class="{'text-azure': CurrCol==='modifyDate' }" ng-click="Grid2.sortMe('modifyDate')"><i class="fa {{resSort('modifyDate')}}"></i> Modify Date</a></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in Grid2.Data | orderBy: Grid2.Column:Grid2.IsAsc | filter: Grid2.Filter |  limitTo : Grid2.PerPage : (Grid2.CurrPage -1) * Grid2.PerPage"">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <td>{{p.id}}</td>
+                                <td>{{p.name}}</td>
+                                <td>{{p.collection}}</td>
+                                <td>{{p.field}}</td>
+                                <td>{{p.from}}</td>
+								<td>{{p.to}}</td>
+								<td>{{p.user}}</td>
+								<td>{{p.changeType}}</td>
+								<td>{{p.modifyDate}}</td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            Showing {{(Grid2.CurrPage -1) * Grid2.PerPage + 1}} to {{ ((Grid2.CurrPage * Grid2.PerPage) >  Grid2.Total) ?  Grid2.Total : (Grid2.CurrPage * Grid2.PerPage); }} of {{Grid2.Total}} entries
+                        </div>
+                        <div class="col-xs-12 col-sm-8 pagination-right">
+                            <ul uib-pagination total-items="Grid2.Total" items-per-page="Grid2.PerPage" ng-model="Grid2.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

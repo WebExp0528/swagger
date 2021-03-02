@@ -1,0 +1,107 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}} </span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+	<div class="row">
+		<div class="col-xs-12 col-md-6 col-lg-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="deptChart" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6 col-lg-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="processChart" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-md-6 col-lg-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="sourceChart" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading">
+                    <h5>Policies and Procedures</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+                            <select id="perpage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+                            <div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+                            </div>
+                        </div>
+                        <div class="panel-tools">
+                            <a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.polproc.policydocs.form">Create New Policy and Procedure</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-responsive col-xs-12">
+                            <thead>
+                            <tr class="sortable-headers">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <th><a ng-class="{'text-azure': CurrCol==='policyName' }" ng-click="sortMe('policyName')"><i class="fa {{resSort('policyName')}}"></i> Name</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='policyDesc' }" ng-click="sortMe('policyDesc')"><i class="fa {{resSort('policyDesc')}}"></i> Description</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='source' }" ng-click="sortMe('source')"><i class="fa {{resSort('source')}}"></i> Source </a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='businessProcess' }" ng-click="sortMe('businessProcess')"><i class="fa {{resSort('businessProcess')}}"></i> Business Process </a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='policyStatus' }" ng-click="sortMe('policyStatus')"><i class="fa {{resSort('policyStatus')}}"></i> Status</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='policyOwner' }" ng-click="sortMe('policyOwner')"><i class="fa {{resSort('policyOwner')}}"></i> Policy Owner </a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='effectiveDate' }" ng-click="sortMe('effectiveDate')"><i class="fa {{resSort('effectiveDate')}}"></i> Effective Date </a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='version' }" ng-click="sortMe('version')"><i class="fa {{resSort('version')}}"></i> Version </a></th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <td>{{p.policyName}}</td>
+                                <td>{{p.policyDesc}}</td>
+                                <td>{{p.source}}</td>
+                                <td>{{p.businessProcess}}</td>
+                                <td>{{p.policyStatus}}</td>
+                                <td>{{p.policyOwner}}</td>
+                                <td>{{p.effectiveDate}}</td>
+                                <td>{{p.version}}</td>
+                                <td>
+                                    <a ui-sref="app.polproc.policydocs.update({id: p.id})" class="btn btn-xs btn-squared btn-azure"><i class="ti-pencil"></i></a>
+                                    <a ng-click="deleteAction(p)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+                        </div>
+                        <div class="col-xs-12 col-sm-8 pagination-right">
+                            <ul uib-pagination total-items="Grid1.Total" items-per-page="Grid1.PerPage" ng-model="Grid1.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

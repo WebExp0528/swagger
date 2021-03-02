@@ -1,0 +1,86 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{mainTitle}}</h1>
+			<span class="mainDescription">{{mainDesc}} </span>
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white no-radius">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.control.testplan.form">Create New Control Test Plan</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+							<select id="perpage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+						</div>
+						<div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+							<div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-responsive col-xs-12">
+							<thead>
+							<tr class="sortable-headers">
+								<!-- <th><input type="checkbox" ng-model="all_check" ng-click="selectAll()"></th> -->
+								<th><a ng-class="{'text-azure': Grid1.Column==='riskName' }" ng-click="Grid1.SortMe('rcsa_name')"><i class="fa {{Grid1.GetIco('riskName')}}"></i> Test Plan </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='regionName' }" ng-click="Grid1.SortMe('regionName')"><i class="fa {{Grid1.GetIco('IDate')}}"></i> Region</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='deptName' }" ng-click="Grid1.SortMe('deptName')"><i class="fa {{Grid1.GetIco('deptName')}}"></i> Department</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='testPlanFile' }" ng-click="Grid1.SortMe('testPlanFile')"><i class="fa {{Grid1.GetIco('testPlanFile')}}"></i> File Name</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='riskCategory' }" ng-click="Grid1.SortMe('riskCategory')"><i class="fa {{Grid1.GetIco('riskCategory')}}"></i> Test Due Date</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='riskCategory' }" ng-click="Grid1.SortMe('riskCategory')"><i class="fa {{Grid1.GetIco('riskCategory')}}"></i> Controls Tested </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='controlMethod' }" ng-click="Grid1.SortMe('controlMethod')"><i class="fa {{Grid1.GetIco('controlMethod')}}"></i> Controls Method </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='controlPriority' }" ng-click="Grid1.SortMe('controlPriority')"><i class="fa {{Grid1.GetIco('controlPriority')}}"></i> Priority </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='controlStatus' }" ng-click="Grid1.SortMe('controlStatus')"><i class="fa {{Grid1.GetIco('controlStatus')}}"></i> Status </a></th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="tp in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+								<!-- <th><input type="checkbox"></th> -->
+								<td>{{tp.testPlanName}}</td>
+								<td>{{tp.regionName}}</td>
+								<td>{{tp.deptName || 'None'}}</td>
+								<td>{{tp.testPlanFile}}</td>
+								<td>{{tp.testDueDate}}</td>
+								<td>{{tp.controlTested || 0}}</td>
+								<td>{{tp.controlMethod}}</td>
+								<td>{{tp.controlPriority}}</td>
+								<td>{{tp.controlStatus}}</td>
+								<td>
+									<a ui-sref="app.control.testplan.update({id: tp.id})" class="btn btn-xs btn-squared btn-dark-azure"><i class="ti-pencil"></i></a>
+									<a ng-click="delete(tp)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+						</div>
+						<div class="col-xs-12 col-sm-8 pagination-right">
+							<ul uib-pagination total-items="Grid1.Total" items-per-page="Grid1.PerPage" ng-model="Grid1.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

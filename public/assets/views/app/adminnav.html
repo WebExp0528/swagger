@@ -1,0 +1,226 @@
+<!-- start: SEARCH FORM -->
+<div class="sidebar-spacer">
+</div>
+<!-- end: SEARCH FORM -->
+<!-- start: MAIN NAVIGATION MENU -->
+<ul class="main-navigation-menu">
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.dashboard">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-bar-chart"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Dashboard </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.tmpUplds.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-image"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Template Management </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.dept.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-id-badge"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Department </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.roles.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-id-badge"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Roles </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.users.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-user"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Users </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.owasp.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-alert"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> OWASP </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('app.admin.gdprpre')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-write"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> GDPR Pre-Assessment </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active': $state.includes('app.admin.gdprpre.preassessment') }">
+                <a ui-sref="app.admin.gdprpre.preassessment.main">
+                    <span class="title"> Pre-Assessments  </span>
+                </a>
+            </li>
+            <li ng-class="{'active': $state.includes('app.admin.gdprpre.category') }">
+                <a ui-sref="app.admin.gdprpre.category.main">
+                    <span class="title"> Pre-Assessment Category </span>
+                </a>
+            </li>
+            <li ng-class="{'active': $state.includes('app.admin.gdprpre.control') }">
+                <a ui-sref="app.admin.gdprpre.control.main">
+                    <span class="title"> Pre-Assessment Control </span>
+                </a>
+            </li>
+            <li ng-class="{'active': $state.includes('app.admin.gdprpre.response') }">
+                <a ui-sref="app.admin.gdprpre.response.main">
+                    <span class="title"> Pre-Assessment Response </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+    
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.riskscore.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-view-list-alt"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Risk Score </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.vendor.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-user"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Vendor </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+	<li ui-sref-active="active">
+        <a ui-sref="app.admin.vendorrisk.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-receipt"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Vendor Risk </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.approver.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-sharethis"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Approver Hierarchy </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="app.admin.journaling.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-search"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Journaling </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ng-class="{'active': $state.includes('app.admin.assessment')}">
+		<a ui-sref="app.admin.assessment.main">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-pencil-alt"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title"> Assessment Generator </span>
+				</div>
+			</div>
+		</a>
+	</li>
+
+    <li ng-class="{'active open':$state.includes('app.admin.misc')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-view-list-alt"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Misc </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active': $state.includes('app.admin.misc.dynlist') }">
+                <a ui-sref="app.admin.misc.dynlist.main">
+                    <span class="title"> Dynamic List Management  </span>
+                </a>
+            </li>
+            <!-- <li ng-class="{'active': $state.includes('app.admin.misc.artifact') }">
+                <a ui-sref="app.admin.misc.artifact.main">
+                    <span class="title"> Artifact Management </span>
+                </a>
+            </li> -->
+            <li ng-class="{'active': $state.includes('app.admin.misc.ctrlDataUpload') }">
+                <a ui-sref="app.admin.misc.ctrlDataUpload.main">
+                    <span class="title"> Control Data Upload </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<!-- end: MAIN NAVIGATION MENU -->

@@ -1,0 +1,144 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.PenTest" ng-submit="submitAction()" role="form" ng-init="IsSubmitted=false">
+                        <div class="row" ng-if="IsSubmitted && Form.PenTest.$invalid">
+                            <div class="col-xs-12 error text-red">
+                                <p ng-if="Form.PenTest.name.$invalid || Form.PenTest.name.$dirty"><i class="fa fa-times"></i> Penetration Testing Name invalid or empty </p>
+                                <p ng-if="Form.PenTest.department.$invalid || Form.PenTest.department.$dirty"><i class="fa fa-times"></i> Department invalid or empty </p>
+                                <p ng-if="Form.PenTest.description.$invalid || Form.PenTest.description.$dirty"><i class="fa fa-times"></i> Penetration Testing Description invalid or empty </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.name.$dirty && Form.PenTest.name.$invalid }">
+                                    <label> Name </label>
+                                    <input type="text" name="name" ng-model="VM.name" placeholder="Name" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"  ng-class="{'has-error': Form.PenTest.description.$dirty && Form.PenTest.description.$invalid }">
+                                    <label> Description </label>
+                                    <textarea type="text" name="description" ng-model="VM.description" ng-autozide placeholder="Description" class="form-control" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.region.$dirty && Form.PenTest.region.$invalid }">
+                                    <label> Region </label>
+                                    <select type="text" name="region" ng-model="VM.region" class="form-control" ng-options="r.key as r.val for r in app.Lookup.LIST001">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.department.$dirty && Form.PenTest.department.$invalid }">
+                                    <label> Department </label>
+                                    <select type="text" name="department" ng-model="VM.department" class="form-control" ng-options="d.deptName as d.deptName for d in app.Lookup.Departments">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.testDate.$dirty && Form.PenTest.testDate.$invalid}">
+                                    <label> Test Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="testDate" ng-model="VM.testDate" placeholder="Test Date" class="form-control">
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.startDate.$dirty && Form.PenTest.startDate.$invalid}">
+                                    <label> Start Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="startDate" ng-model="VM.startDate" placeholder="Start Date" class="form-control">
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.endDate.$dirty && Form.PenTest.endDate.$invalid}">
+                                    <label> End Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="endDate" ng-model="VM.endDate" placeholder="End Date" class="form-control">
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.owner.$dirty && Form.PenTest.owner.$invalid }">
+                                    <label> Owner </label>
+                                    <select type="text" name="owner" ng-model="VM.owner" class="form-control" ng-options="op.name as op.name for op in app.Lookup.Users">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PenTest.fileModel.$dirty && Form.PenTest.fileModel.$invalid }">
+                                    <label> Files to upload </label>
+                                    <input type="file" name="fileModel" file-model="VM.fileModel" multiple="multiple"/>
+                                    <ul class="file-list-group col-xs-12">
+                                        <li class="file-list-item" ng-repeat="file in VM.fileModel">
+                                            <a target="_parent" href="{{app.APIPrefix + 'pentest/download/stream/'+file.id + '?token='+app.authToken}}" download="{{file.fileName}}" ng-if="file.id!=1">
+                                                {{file.fileName}}
+                                            </a>
+                                            <span ng-if="file.id==1">{{file.fileName}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Associate Assets <a ng-click="addAssets()" class="btn btn-link"><i
+                                            class="fa fa-search"></i></a> </label>
+                                    <div class="col-xs-12">
+                                        <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                            <li class="list-item-container row"
+                                                ng-repeat="con in VM.assets">
+                                                <div class="list-item col-xs-12 padding-left-0">
+                                                    <span class="col-sm-10"> {{con.assetName}} </span>
+                                                    <span class="col-sm-2">
+														<a class="text-right delete"
+                                                           ng-click="removeItem('assets', $index)"> remove </a>
+													</span>
+                                                </div>
+                                            </li>
+                                            <li class="no-result padding-left-0"
+                                                ng-if="!VM.assets.length"><i
+                                                    class="fa fa-info-circle"></i> no assets selected
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="hrule4" />
+                            <div class="col-xs-12 text-right">
+                                <button type="submit" class="btn btn-squared btn-dark-blue"><i class="fa fa-save"></i> Save</button>
+                                <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                                <a type="button" class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i>  Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

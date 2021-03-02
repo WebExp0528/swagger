@@ -1,0 +1,115 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{vm.mainTitle}}</h1>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-white">
+                <div class="panel-body">
+                    <form name="vm.Form.addAttestation" ng-submit="vm.submitAction()" role="form" >
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : vm.Form.addAttestation.attestationName.$invalid && (!vm.Form.addAttestation.attestationName.$pristine || vm.Form.addAttestation.attestationName.$touched || vm.Form.addAttestation.attestationName.$submitted) }">
+                                    <label> Attestation Name </label>
+                                    <input type="text"  name="attestationName" ng-model="vm.formdata.attestationName"  placeholder="Attestation Name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : vm.Form.addAttestation.attestationDesc.$invalid && (!vm.Form.addAttestation.attestationDesc.$pristine || vm.Form.addAttestation.attestationDesc.$touched || vm.Form.addAttestation.attestationDesc.$submitted) }">
+                                    <label> Description </label>
+                                    <textarea type="text" name="attestationDesc" ng-model="vm.formdata.attestationDesc"  placeholder="Description" class="form-control" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Process Name </label>
+                                    <input type="text"  name="processName" ng-model="vm.processName" disabled  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Subprocess Name </label>
+                                    <input type="text"  name="subprocessName" ng-model="vm.subprocessName" disabled  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Activity Name </label>
+                                    <input type="text"  name="activityName" ng-model="vm.activityName" disabled  class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6"
+                                 ng-class="{ 'has-error' : vm.Form.addAttestation.department.$invalid && (!vm.Form.addAttestation.department.$pristine || vm.Form.addAttestation.department.$touched || vm.Form.addAttestation.department.$submitted) }">
+                                <div class="form-group">
+                                    <label> Department </label>
+                                    <select type="text" name="department" ng-model="vm.formdata.deptId" class="form-control"
+                                            ng-options="d.deptId as d.deptName for d in app.Lookup.Departments" required>
+                                        <!-- <option selected value>Select Department</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addAttestation.userName.$invalid && (!vm.Form.addAttestation.userName.$pristine || vm.Form.addAttestation.userName.$touched || vm.Form.addAttestation.userName.$submitted) }">
+                                    <label> Responsible Person </label>
+                                    <select type="text" name="username" ng-model="vm.formdata.username" class="form-control"
+                                            ng-options="op.name as op.name for op in app.Lookup.Users" required>
+                                        <!-- <option selected value>Select Person</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addAttestation.attestationStatus.$invalid && (!vm.Form.addAttestation.attestationStatus.$pristine || vm.Form.addAttestation.attestationStatus.$touched || vm.Form.addAttestation.attestationStatus.$submitted) }">
+                                    <label> Status</label>
+                                    <select type="text" name="attestationStatus" ng-model="vm.formdata.attestationStatus" class="form-control"
+                                            ng-options="st.key as st.val for st in app.Lookup.LIST004" required>
+                                        <!-- <option selected value>Select Status</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addAttestation.dueDate.$invalid && (!vm.Form.addAttestation.dueDate.$pristine || vm.Form.addAttestation.dueDate.$touched || vm.Form.addAttestation.dueDate.$submitted) }">
+                                    <label> Target End Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="dueDate" ng-model="vm.formdata.dueDate" placeholder="End Date"
+                                               class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Files to upload </label>
+                                    <input type="file" file-model="vm.formdata.attestationFileModel" class="form-control"/>
+                                    <ul class="file-list-group col-xs-12">
+	                                    <li class="file-list-item" ng-repeat="file in vm.formdata.attestationFileModel">
+		                                    <a target="_parent" href="{{app.APIPrefix + 'bpmattestation/download/stream/'+file.id + '?token='+app.authToken}}"
+			                                    download="{{file.fileName}}" ng-if="file.id!=1">
+			                                    {{file.fileName}}
+		                                    </a>
+		                                    <span ng-if="file.id==1">{{file.fileName}}</span>
+	                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr class="hrule4" />
+                            <div class="col-xs-12 text-right">
+                                <button class="btn btn-squared btn-dark-blue" ng-disabled="vm.Form.addAttestation.$invalid" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                                <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

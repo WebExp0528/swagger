@@ -1,0 +1,397 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.OpIncident" ng-submit="submitAction()" role="form" >
+                        <fieldset>
+                            <legend>Risk Event</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : Form.OpIncident.rcsa_name.$invalid && (!Form.OpIncident.rcsa_name.$pristine || Form.OpIncident.rcsa_name.$touched || Form.OpIncident.rcsa_name.$submitted) }">
+                                        <label> Name </label>
+                                        <input type="text" name="rcsa_name" ng-model="VM.rcsaName" placeholder="Name" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : Form.OpIncident.risk_description.$invalid && (!Form.OpIncident.risk_description.$pristine || Form.OpIncident.risk_description.$touched || Form.OpIncident.risk_description.$submitted) }">
+                                        <label> Description </label>
+                                        <textarea type="text" name="risk_description" ng-autosize ng-model="VM.riskDescription" required  placeholder="Description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Operational Loss </label>                                        
+                                        <input type="number" string-to-number name="operational_loss" ng-model="VM.operationalLoss"  placeholder="Operational Loss" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : Form.OpIncident.risk_severity.$invalid && (!Form.OpIncident.risk_severity.$pristine || Form.OpIncident.risk_severity.$touched || Form.OpIncident.risk_severity.$submitted) }">
+                                        <label> Severity </label>
+                                        <select type="text" name="risk_severity" ng-model="VM.riskSeverity" ng-options="op.key as op.val for op in app.Lookup.Severity" class="form-control" required>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : Form.OpIncident.identified_date.$invalid && (!Form.OpIncident.identified_date.$pristine || Form.OpIncident.identified_date.$touched || Form.OpIncident.identified_date.$submitted) }">
+                                        <label> Identified Date </label>
+                                        <datepicker date-format="MM-dd-yyyy" >
+                                            <input type="text" name="identified_date" ng-model="VM.identifiedDate" placeholder="Identified Date" class="form-control" required>
+                                        </datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group" ng-class="{ 'has-error' : Form.OpIncident.rcsaStatus.$invalid && (!Form.OpIncident.rcsaStatus.$pristine || Form.OpIncident.rcsaStatus.$touched || Form.OpIncident.rcsaStatus.$submitted) }">
+                                        <label> Status </label>
+                                        <select type="text" class="form-control" name="rcsaStatus" ng-model="VM.rcsaStatus" ng-options="st.key as st.val for st in app.Lookup.LIST004" required>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Measure</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Inherent Risk Rating </label>
+                                        <input type="text" name="inherentRiskRating" ng-model="VM.inherentRiskRating"  placeholder="Inherent Risk Rating" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Residual Risk </label>
+                                        <input type="text" name="residualRisk" ng-model="VM.residualRisk"  placeholder="Residual Risk" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Basel Level 1 </label>
+                                        <input type="text" name="baselLevel1" ng-model="VM.baselLevel1" placeholder="Basel Level 1" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Risk Direction </label>
+                                        <input type="text" name="riskDirection" ng-model="VM.riskDirection" placeholder="Risk Direction" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Basel Level 2 </label>
+                                        <input type="text" name="baselLevel2" ng-model="VM.baselLevel2" placeholder="Basel Level 2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Risk Accepted </label>
+                                        <input type="text" name="riskAccepted" ng-model="VM.riskAccepted" placeholder="Risk Accepted" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Issue Outstanding ? </label>
+                                        <input type="text" name="issueOutstanding" ng-model="VM.issueOutstanding" placeholder="Issue Outstanding" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Category</legend>
+                            <div class="row">
+                                <div class="col-xs-12 margin-bottom-10">
+                                    <span class="help-inline col-sm-8 text-primary"> <i class="ti-info-alt"></i> Please click an item to select </span>
+                                    <span class="text-right col-sm-4">
+										<a ng-click="setAll(true)" ng-disabled="RiskCategories.SelCount===RiskCategories.List.length" class="btn btn-xs btn-squared btn-dark-blue"> Select All </a>
+										<a ng-click="setAll(false)" ng-disabled="RiskCategories.SelCount===0" class="btn btn-xs btn-squared btn-dark-blue"> Unselect All </a>
+									</span>
+                                </div>
+                                <ul class="multi-select-list-group col-xs-12" ng-class="{'height-250': RiskCategories.List.length>3 }" ng-scrollbars>
+                                    <li class="list-item-container col-xs-12" ng-class="{'selected': li.Selected }" ng-repeat="li in RiskCategories.List">
+                                        <a ng-click="setOpt(li)" class="list-item col-xs-12">
+                                            <span class="col-xs-10">{{li.Label}}</span>
+                                            <span class="col-xs-2"><i class="fa fa-check-circle"></i></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Impact</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Secondary Risk Impact </label>
+                                        <select type="text" name="secondaryRiskImpact" ng-model="VM.secondaryRiskImpact" ng-options="op.key as op.val for op in app.Lookup.LIST006" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Potential Impact </label>
+                                        <input type="text" name="potentialImpact" ng-model="VM.potentialImpact" placeholder="Potential Impact" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Legal Entity Tier 1 Impact </label>
+                                        <input type="text" name="legalEntTier1Impact" ng-model="VM.legalEntTier1Impact" placeholder="Legal Entity Tier 1 Impact" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Legal Entity Tier 2 Impact </label>
+                                        <input type="text" name="legalEntTier2Impact" ng-model="VM.legalEntTier2Impact" placeholder="Legal Entity Tier 2 Impact" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Geographic Impact </label>
+                                        <select type="text" name="geographicImpact" ng-model="VM.geographicImpact" ng-model="GeoImpact" ng-options="op.key as op.val for op in app.Lookup.LIST001" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Inherent Impact </label>
+                                        <select type="text" name="inherentImpact" ng-model="VM.inherentImpact" ng-options="op.key as op.val for op in app.Lookup.LIST007" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Remediation</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Remediation Plan </label>
+                                        <input type="text" name="remePlan" ng-model="VM.remePlan"  placeholder="Remediation Plan" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Remediation Owner </label>
+                                        <select name="remeOwner" ng-model="VM.remeOwner"
+                                                ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Remediation Date </label>
+                                        <datepicker date-format="MM-dd-yyyy">
+                                            <input type="text" name="remeDate" ng-model="VM.remeDate" placeholder="Remediation Date" class="form-control">
+                                        </datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Remediation Status </label>
+                                        <input type="text" name="remeStatus" ng-model="VM.remeStatus" placeholder="Remediation Status" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="isAction">
+                                <a class="btn btn-squared btn-dark-blue margin-left-20" ng-click="addAction()"><i class="ti-plus"></i> Create New Action</a>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Control</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Control Name </label>
+                                        <input type="text" name="controlName" ng-model="VM.controlName" placeholder="Control Name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Control Description </label>
+                                        <input type="text" name="controlDescription" ng-model="VM.controlDescription" placeholder="Control Description" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Control Status </label>
+                                        <input type="text" name="controlStatus" ng-model="VM.controlStatus" placeholder="Control Status " class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Associate Control <a ng-click="addControls()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+                                        <div class="col-xs-12">
+                                            <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                                <li class="list-item-container row" ng-repeat="con in VM.controlDataModel">
+                                                    <div class="list-item col-xs-12 padding-left-0">
+                                                        <span class="col-sm-4"> {{con.controlName}} </span>
+                                                        <span class="col-sm-6"> {{con.modifiedOn | date}} </span>
+                                                        <span class="col-sm-2">
+                                                            <a class="text-right delete" ng-click="removeItem('controlDataModel', $index)"> remove </a>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="no-result padding-left-0" ng-if="!VM.controlDataModel.length"> <i class="fa fa-info-circle"></i> no controls selected</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Process Risk</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Impacted Process Name </label>
+                                        <input type="text" name="impactedProcName" ng-model="VM.impactedProcName" placeholder="Impacted Process Name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Process Description </label>
+                                        <input type="text" name="processDescription" ng-model="VM.processDescription" placeholder="Control Description" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Risk Monitor</legend>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Monitor </label>
+                                        <input type="text" name="riskMonitor" ng-model="VM.riskMonitor"  placeholder="Monitor" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Causal Category </label>
+                                        <input type="text" name="causalCategory" ng-model="VM.causalCategory"  placeholder="Causal Category" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Report Recipients </label>
+                                        <input type="text" name="reportRecipients" ng-model="VM.reportRecipients"  placeholder="Report Recipients " class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Report Frequency </label>
+                                        <input type="text" name="reportFrequency" ng-model="VM.reportFrequency"  placeholder="Report Frequency " class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Files to upload </label>
+                                        <input type="file" file-model="VM.auditFileModel"  multiple="multiple"/>
+                                        <ul class="file-list-group col-xs-12">
+                                            <li class="file-list-item" ng-repeat="file in VM.auditFileModel">
+                                                <a target="_parent" href="{{app.APIPrefix + 'policies/download/stream/'+file.id + '?token='+app.authToken}}" download="{{file.fileName}}" ng-if="file.id!=1">
+                                                    {{file.fileName}}
+                                                </a>
+                                                <span ng-if="file.id==1">{{file.fileName}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Associate Policies and Procedures <a ng-click="addPolicyDocs()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+                                        <div class="col-xs-12">
+                                            <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                                <li class="list-item-container row" ng-repeat="con in VM.policiesData">
+                                                    <div class="list-item col-xs-12 padding-left-0">
+                                                        <span class="col-sm-10"> {{con.policyName}} </span>
+                                                        <span class="col-sm-2">
+															<a class="text-right delete"
+                                                               ng-click="removeItem('policiesData', $index)"> remove </a>
+														</span>
+                                                    </div>
+                                                </li>
+                                                <li class="no-result padding-left-0" ng-if="!VM.policiesData.length"> <i class="fa fa-info-circle"></i> no policies and procedures selected</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <hr class="hrule4" />
+                        <div class="col-xs-12 text-right">
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i> Save</button>
+                            <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i>  Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="isAction">
+        <div class="col-md-12">
+            <div class="panel panel-white no-radius">
+                <div class="panel-heading">
+                    <h5>Actions</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+                            <select id="PerPage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+                            <div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-striped table-responsive col-xs-12">
+                            <thead>
+                            <tr class="sortable-headers">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <th><a ng-class="{'text-azure': CurrCol==='actionsName' }" ng-click="Grid1.SortMe('actionsName')"><i class="fa {{Grid1.GetIco('actionsName')}}"></i> Name</a></th>
+                                <th><a ng-class="{'text-azure': CurrCol==='actionsDesc' }" ng-click="Grid1.SortMe('actionsDesc')"><i class="fa {{Grid1.GetIco('actionsDesc')}}"></i> Desc</a></th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="r in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+                                <!-- <th><input type="checkbox"></th> -->
+                                <td>{{r.actionsName}}</td>
+                                <td>{{r.actionsDesc}}</td>
+                                <td>
+                                    <a ui-sref="app.oprisk.incident.updateaction({ id: r.id })" class="btn btn-xs btn-squared btn-dark-azure"><i class="ti-pencil"></i></a>
+                                    <a ng-click="deleteAction(r)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div class="col-xs-12 col-sm-5">
+                            Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+                        </div>
+                        <div class="col-xs-12 col-sm-7 pagination-right">
+                            <ul uib-pagination total-items="Grid1.Total" items-per-page="Grid1.PerPage" ng-model="Grid1.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

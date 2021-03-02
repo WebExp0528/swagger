@@ -1,0 +1,105 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{vm.mainTitle}}</h1>
+			<span class="mainDescription">{{vm.mainDesc}} </span>
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white no-radius">
+				<div class="panel-heading">
+					<h5> Asset Inventory Management </h5>
+					<div class="panel-tools">
+						<a class="btn btn-xs btn-dark-blue btn-squared" ng-click="vm.downloadAssets()"><i class="fa fa-download"></i> Download Assets </a>
+						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.datainventory.asset.add">Create New Asset</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+							<select id="perpage" ng-model="vm.Grid1.PerPage" ng-options="op as op for op in vm.OpList" class="form-control input-sm"> </select>
+						</div>
+						<div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+							<div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="vm.Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-responsive col-xs-12">
+							<thead>
+							<tr class="sortable-headers">
+								<th><input type="checkbox" ng-model="all_check" ng-click="selectAll()"></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='assetId' }" ng-click="vm.Grid1.SortMe('assetId')"><i class="fa {{vm.Grid1.GetIco('assetId')}}"></i> Asset ID </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='assetName' }" ng-click="vm.Grid1.SortMe('assetName')"><i class="fa {{vm.Grid1.GetIco('assetName')}}"></i> Asset Name </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='businessOwner' }" ng-click="vm.Grid1.SortMe('businessOwner')"><i class="fa {{vm.Grid1.GetIco('businessOwner')}}"></i> Business Owner </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='technologyOwner' }" ng-click="vm.Grid1.SortMe('technologyOwner')"><i class="fa {{vm.Grid1.GetIco('technologyOwner')}}"></i> Technology Owner </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='department' }" ng-click="vm.Grid1.SortMe('department')"><i class="fa {{vm.Grid1.GetIco('department')}}"></i> Department </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='region' }" ng-click="vm.Grid1.SortMe('region')"><i class="fa {{vm.Grid1.GetIco('region')}}"></i> Region </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='environment' }" ng-click="vm.Grid1.SortMe('environment')"><i class="fa {{vm.Grid1.GetIco('environment')}}"></i> Environment </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='operatingSystem' }" ng-click="vm.Grid1.SortMe('operatingSystem')"><i class="fa {{vm.Grid1.GetIco('operatingSystem')}}"></i> Operating System </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='riskRating' }" ng-click="vm.Grid1.SortMe('riskRating')"><i class="fa {{vm.Grid1.GetIco('riskRating')}}"></i> Risk Rating </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='vendorApp' }" ng-click="vm.Grid1.SortMe('vendorApp')"><i class="fa {{vm.Grid1.GetIco('vendorApp')}}"></i> Vendor App </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='assetClassification' }" ng-click="vm.Grid1.SortMe('assetClassification')"><i class="fa {{vm.Grid1.GetIco('assetClassification')}}"></i> Asset Classification </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='infrastructure' }" ng-click="vm.Grid1.SortMe('infrastructure')"><i class="fa {{vm.Grid1.GetIco('infrastructure')}}"></i> Infrastructure </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='sox' }" ng-click="vm.Grid1.SortMe('sox')"><i class="fa {{vm.Grid1.GetIco('sox')}}"></i> SOX </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='fdicia' }" ng-click="vm.Grid1.SortMe('fdicia')"><i class="fa {{vm.Grid1.GetIco('fdicia')}}"></i> FDICIA </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='gdpr' }" ng-click="vm.Grid1.SortMe('gdpr')"><i class="fa {{vm.Grid1.GetIco('gdpr')}}"></i> GDPR </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='iso27000' }" ng-click="vm.Grid1.SortMe('iso27000')"><i class="fa {{vm.Grid1.GetIco('iso27000')}}"></i> ISO 27000 </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='cobit' }" ng-click="vm.Grid1.SortMe('cobit')"><i class="fa {{vm.Grid1.GetIco('cobit')}}"></i> COBIT </a></th>
+								<th><a ng-class="{'text-azure': vm.Grid1.Column==='nist' }" ng-click="vm.Grid1.SortMe('nist')"><i class="fa {{vm.Grid1.GetIco('nist')}}"></i> NIST </a></th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+
+							<tr ng-repeat="r in vm.Grid1.Data | orderBy: vm.Grid1.Column:vm.Grid1.IsAsc | filter: vm.Grid1.Filter |  limitTo : vm.Grid1.PerPage : (vm.Grid1.CurrPage -1) * vm.Grid1.PerPage">
+								<th><input type="checkbox" ng-model="r.checked"></th>
+								<td>{{r.assetId}}</td>
+								<td>{{r.assetName}}</td>
+								<td>{{r.businessOwner}}</td>
+								<td>{{r.technologyOwner}}</td>
+								<td>{{r.department}}</td>
+								<td>{{r.region}}</td>
+								<td>{{r.environment}}</td>
+								<td>{{r.operatingSystem}}</td>
+								<td>{{r.riskRating}}</td>
+								<td>{{r.vendorApp}}</td>
+								<td>{{r.assetClassification}}</td>
+								<td>{{r.infrastructure}}</td>
+								<td>{{r.sox}}</td>
+								<td>{{r.fdicia}}</td>
+								<td>{{r.gdpr}}</td>
+								<td>{{r.iso27000}}</td>
+								<td>{{r.cobit}}</td>
+								<td>{{r.nist}}</td>
+								<td>
+									<a ui-sref="app.datainventory.asset.update({ assetId: r.id })"  class="btn btn-xs btn-squared btn-dark-azure"><i class="ti-pencil"></i></a>
+									<a ng-click="vm.deleteAction(r)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row margin-top-10">
+						<div class="col-xs-12 col-sm-5">
+							Showing {{(vm.Grid1.CurrPage -1) * vm.Grid1.PerPage + 1}} to {{ ((vm.Grid1.CurrPage * vm.Grid1.PerPage) >  vm.Grid1.Total) ?  vm.Grid1.Total : (vm.Grid1.CurrPage * vm.Grid1.PerPage); }} of {{vm.Grid1.Total}} entries
+						</div>
+						<div class="col-xs-12 col-sm-7 pagination-right">
+							<ul uib-pagination total-items="vm.Grid1.Total" ng-model="vm.Grid1.CurrPage" items-per-page="vm.Grid1.PerPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

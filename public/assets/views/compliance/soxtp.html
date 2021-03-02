@@ -1,0 +1,119 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{mainTitle}}</h1>
+			<span class="mainDescription">{{mainDesc}}</span>
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+	<div class="row">
+		<!-- <div class="col-xs-12 col-sm-6"> -->
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<!-- <div id="rcsaStatus" class="col-xs-12 col-md-offset-2 col-md-8"></div> -->
+					<div id="rcsaStatus" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-xs-12 col-sm-6">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="periodChart" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row"> -->
+		<!-- <div class="col-xs-12 col-sm-6"> -->
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="regionstacked" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-xs-12 col-sm-6"> -->
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="panel panel-white">
+				<div class="panel-body">
+					<div id="deptstacked" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white no-radius">
+				<div class="panel-heading">
+					<h5> SOX Test Plans </h5>
+					<div class="panel-tools">
+						<a class="btn btn-xs btn-dark-blue btn-squared" ng-click="downloadTestPlan()">Create Test Plan</a>
+						<a class="btn btn-xs btn-dark-blue btn-squared" ng-click="downloadTemp()">Download Templates</a>
+						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.compliance.soxtp.form">Upload SOX Test Plan</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+							<select id="perpage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+						</div>
+						<div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+							<div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-responsive col-xs-12">
+							<thead>
+							<tr class="sortable-headers">
+								<th><input type="checkbox"></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='assessName' }" ng-click="Grid1.SortMe('assessName')"><i class="fa {{Grid1.GetIco('assessName')}}"></i> Name</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='region' }" ng-click="Grid1.SortMe('region')"><i class="fa {{Grid1.GetIco('region')}}"></i> Region</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='business' }" ng-click="Grid1.SortMe('business')"><i class="fa {{Grid1.GetIco('business')}}"></i> Business</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='period' }" ng-click="Grid1.SortMe('period')"><i class="fa {{Grid1.GetIco('period')}}"></i> Period</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='frequency' }" ng-click="Grid1.SortMe('frequency')"><i class="fa {{Grid1.GetIco('frequency')}}"></i> Frequency</a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='approval' }" ng-click="Grid1.SortMe('approval')"><i class="fa {{Grid1.GetIco('approval')}}"></i> Approval State</a></th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr ng-repeat="r in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+								<th><input type="checkbox"></th>
+								<td>{{r.assessName}}</td>
+								<td>{{r.region}}</td>
+								<td>{{r.business}}</td>
+								<td>{{r.period}}</td>
+								<td>{{r.frequency}}</td>
+								<td>{{r.approval}}</td>
+								<th>
+									<a ui-sref="app.compliance.soxtp.update({ id: r.id })"  class="btn btn-xs btn-squared btn-dark-azure"><i class="ti-pencil"></i></a>
+									<a ng-click="deleteAction(r)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+								</th>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+						</div>
+						<div class="col-xs-12 col-sm-8 pagination-right">
+							<ul uib-pagination total-items="Grid1.Total" items-per-page="Grid1.PerPage" ng-model="Grid1.CurrPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

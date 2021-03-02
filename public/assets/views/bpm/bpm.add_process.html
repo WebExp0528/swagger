@@ -1,0 +1,187 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{vm.mainTitle}}</h1>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="vm.Form.addProcess" ng-submit="vm.submitAction()" role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : vm.Form.addProcess.processName.$invalid && (!vm.Form.addProcess.processName.$pristine || vm.Form.addProcess.processName.$touched || vm.Form.addProcess.processName.$submitted) }">
+                                    <label> Process Name </label>
+                                    <input type="text" name="processName" ng-model="vm.formdata.processName" placeholder="Process Name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.processDesc.$invalid && (!vm.Form.addProcess.processDesc.$pristine || vm.Form.addProcess.processDesc.$touched || vm.Form.addProcess.processDesc.$submitted) }">
+                                    <label> Process Description </label>
+                                    <textarea type="text" name="processDesc" ng-autosize ng-model="vm.formdata.processDesc"
+                                              placeholder="Process Description" class="form-control" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.region.$invalid && (!vm.Form.addProcess.region.$pristine || vm.Form.addProcess.region.$touched || vm.Form.addProcess.region.$submitted) }">
+                                    <label> Region </label>
+                                    <select type="text" name="region" ng-model="vm.formdata.region" class="form-control"
+                                            ng-options="r.val as r.val for r in app.Lookup.LIST001" required>
+                                        <!-- <option selected value>Select Region</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6"
+                                 ng-class="{ 'has-error' : vm.Form.addProcess.department.$invalid && (!vm.Form.addProcess.department.$pristine || vm.Form.addProcess.department.$touched || vm.Form.addProcess.department.$submitted) }">
+                                <div class="form-group">
+                                    <label> Department </label>
+                                    <select type="text" name="department" ng-model="vm.formdata.department" class="form-control"
+                                            ng-options="d.deptName as d.deptName for d in app.Lookup.Departments" required>
+                                        <!-- <option selected value>Select Department</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Status</label>
+                                    <!-- <input type="text" ng-model="vm.formdata.processStatus" readonly class="form-control"/> -->
+                                    <select type="text" name="processStatus" ng-model="vm.formdata.processStatus" class="form-control"
+                                            ng-options="st.key as st.val for st in app.Lookup.LIST016" required>
+                                        <!-- <option selected value>Select Status</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.processControlValidated.$invalid && (!vm.Form.addProcess.processControlValidated.$pristine || vm.Form.addProcess.processControlValidated.$touched || vm.Form.addProcess.processControlValidated.$submitted) }">
+                                    <label> Related To Control(s) </label>
+                                    <select type="text" name="processControlValidated" ng-model="vm.formdata.processControlValidated"
+                                            class="form-control" required>
+                                        <!-- <option selected value>Select Status</option> -->
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.dateOccurance.$invalid && (!vm.Form.addProcess.dateOccurance.$pristine || vm.Form.addProcess.dateOccurance.$touched || vm.Form.addProcess.dateOccurance.$submitted) }">
+                                    <label> Process Start Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="dateOccurance" ng-model="vm.formdata.dateOccurance"
+                                               placeholder="Start Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.dueDate.$invalid && (!vm.Form.addProcess.dueDate.$pristine || vm.Form.addProcess.dueDate.$touched || vm.Form.addProcess.dueDate.$submitted) }">
+                                    <label> Target End Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="dueDate" ng-model="vm.formdata.dueDate" placeholder="End Date"
+                                               class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.resUserName.$invalid && (!vm.Form.addProcess.resUserName.$pristine || vm.Form.addProcess.resUserName.$touched || vm.Form.addProcess.resUserName.$submitted) }">
+                                    <label> Responsible Person </label>
+                                    <select type="text" name="resUsername" ng-model="vm.formdata.resUsername" class="form-control"
+                                            ng-options="op.name as op.name for op in app.Lookup.Users" required>
+                                        <!-- <option selected value>Select Person</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : vm.Form.addProcess.priority.$invalid && (!vm.Form.addProcess.priority.$pristine || vm.Form.addProcess.priority.$touched || vm.Form.addProcess.priority.$submitted) }">
+                                    <label> Priority </label>
+                                    <select type="text" name="priority" ng-model="vm.formdata.priority" class="form-control"
+                                            ng-options="p.key as p.val for p in app.Lookup.LIST005" required>
+                                        <!-- <option selected value>Select Priority</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Files to upload </label>
+                                    <input type="file" file-model="vm.formdata.processFileModel" class="form-control"/>
+                                    <ul class="file-list-group col-xs-12">
+                                        <li class="file-list-item" ng-repeat="file in vm.formdata.processFileModel">
+                                            <a target="_parent" href="{{app.APIPrefix + 'bpmprocess/download/stream/'+file.id + '?token='+app.authToken}}"
+                                               download="{{file.fileName}}" ng-if="file.id!=1">
+                                                {{file.fileName}}
+                                            </a>
+                                            <span ng-if="file.id==1">{{file.fileName}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Associate Policies and Procedures <a ng-click="vm.addPolicyDocs()" class="btn btn-link"><i class="fa fa-search"></i></a> </label>
+                                    <div class="col-xs-12">
+                                        <ul class="multi-select-list-group col-xs-12 no-padding">
+                                            <li class="list-item-container row" ng-repeat="p in vm.formdata.policies">
+                                                <div class="list-item col-xs-12 padding-left-0">
+                                                    <span class="col-xs-10">{{p.policyName}}</span>
+                                                    <span class="col-xs-2">
+                                                            <a class="pull-right delete" ng-click="vm.removeItem('policies', $index)"> remove </a>
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li class="no-result padding-left-0" ng-if="!vm.formdata.policies.length"> <i class="fa fa-info-circle"></i> no policies and procedures selected</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Associate Control <a ng-click="vm.addControls()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+                                    <div class="col-xs-12">
+                                        <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                            <li class="list-item-container row" ng-repeat="con in vm.formdata.controlDataModel">
+                                                <div class="list-item col-xs-12 padding-left-0">
+                                                    <span class="col-sm-10"> {{con.controlName}} </span>
+                                                    <span class="col-sm-2">
+														<a class="text-right delete" ng-click="vm.removeItem('controlDataModel', $index)"> remove </a>
+													</span>
+                                                </div>
+                                            </li>
+                                            <li class="no-result padding-left-0" ng-if="!vm.formdata.controlDataModel.length"> <i class="fa fa-info-circle"></i> no test plan selected</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>
+                                Save
+                            </button>
+                            <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i
+                                    class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

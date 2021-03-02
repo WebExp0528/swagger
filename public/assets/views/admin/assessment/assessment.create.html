@@ -1,0 +1,78 @@
+<!-- Page Header -->
+<section id="page-title" class="vendor_create_title padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle text-center font-sans-serif" >{{vm.mainTitle}}</h1>
+            <!--<span class="mainDescription">{{mainDesc}} </span>-->
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<section class="vendor_create_body">
+    <div class="vendor_assessment_data note-editor heading_title_panel">
+        <div>
+            <h4 class="inline-block">
+                Assessment Date: <i>{{vm.formData.assessmentsDate}}</i>
+            </h4>
+            <h4 class="inline-block margin-left-20">
+                Assessment By: <i>{{vm.formData.assessmentBy}}</i>
+            </h4>
+        </div>
+        <div>
+            <h4 class="inline-block">
+                Doc Title: <i>{{vm.formData.title}}</i>
+            </h4>
+            <h4 class="inline-block margin-left-20">
+                Doc Type: <i>{{vm.formData.docType}}</i>
+            </h4>
+        </div>
+
+        <div>
+            <a class="btn btn-success text-bold" ng-click="vm.saveVendorData()" ng-if="vm.page == 'email'" style="width: 150px;"><i class="fa fa-save"></i> Save</a>
+            <a class="btn btn-primary text-bold" ng-click="vm.goBack()" ng-if="vm.page != 'email'" style="width: 150px;"><i class="fa fa-backward"></i> Back</a>
+            <a class="btn btn-info text-bold" ng-click="vm.downloadExcel()" style="width: 150px;"><i class="fa fa-download"></i> Download Excel</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <table class="VendorAssessment table table-hover table-bordered">
+        <thead>
+        <tr class="blue_header">
+            <th>Category</th>
+            <th>Assessment</th>
+            <th>Yes</th>
+            <th>No</th>
+            <th>Findings</th>
+            <th>Comments</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="white_blue_header" ng-repeat="r in vm.gridData track by $index">
+            <td>{{ (vm.data_flag == 'new') ? r.category : r.controlCategory }}</td>
+            <td>{{ (vm.data_flag == 'new') ? r.name : r.controlName }}</td>
+            <td class="res">
+                <input type="radio" name="raBtn{{$index}}" ng-model="r.response" value="Y">
+            </td>
+            <td class="res">
+                <input type="radio" name="raBtn{{$index}}" ng-model="r.response" value="N">
+            </td>
+            <td style="">
+                <input type="number" string-to-number min="0" ng-model="r.finding">
+            </td>
+            <td>
+                <textarea ng-model="r.comments"></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+<div class="view-mask ng-scope" ng-if="app.Mask && vm.page=='email'">
+    <div class="view-mask-backdrop"></div>
+    <div class="view-mask-dialogue col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-6 col-lg-4 col-lg-offset-4 padding-top-15">
+        <div style="margin-left:40%;">
+            <img src="assets/img/loader.svg">
+        </div>
+        <h5 class="ng-binding"> </h5>
+    </div>
+</div>

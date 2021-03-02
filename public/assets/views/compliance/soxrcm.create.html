@@ -1,0 +1,151 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.SoxRcm" ng-submit="submitAction()" role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Ref# </label>
+                                    <input type="text" name="assessName" ng-model="VM.assessName" placeholder="Name"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Design Effective/Remediate </label>
+                                    <input type="text" name="assessDesc" ng-model="VM.assessDesc"
+                                           placeholder="Description" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Assertion </label>
+                                    <input type="text" name="assertion" ng-model="VM.assertion" placeholder="Assertion"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Risk </label>
+                                    <input type="text" name="Risk" ng-model="VM.Risk" placeholder="Risk"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Activity Short Description </label>
+                                    <input type="text" name="shortdesk" ng-model="VM.shortdesk" placeholder="Short Description"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Name of IT Applications</label>
+                                    <input type="text" name="itAppname" ng-model="VM.itAppname" placeholder="Name of IT Applications"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Type of Control </label>
+                                    <input type="text" name="ctrlType" ng-model="VM.ctrlType" placeholder="Type of Control"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Level </label>
+                                    <input type="text" name="ctrlLabel" ng-model="VM.ctrlLabel" placeholder="Control Level"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Effective Date </label>
+                                    <datepicker date-format="MM-dd-yyyy">
+                                        <input type="text" name="effective_date" ng-model="VM.effective_date" placeholder="Effective Date"
+                                               class="form-control">
+                                    </datepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Frequency </label>
+                                    <input type="text" name="ctrlFrequency" ng-model="VM.ctrlFrequency" placeholder="Control Frequency"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Method </label>
+
+                                    <input type="text" name="ctrlMethod" ng-model="VM.ctrlMethod" placeholder="Control Method"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Testing Size </label>
+                                    <input type="text" name="testSize" ng-model="VM.testSize" placeholder="Testing Size"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Control Type </label>
+                                    <input type="text" name="ctrlType" ng-model="VM.ctrlType" placeholder="Control Type"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Est Annual Vol Control Occurrences </label>
+                                    <input type="text" name="ctrlOccur" ng-model="VM.ctrlOccur" placeholder="Est Annual Vol Control Occurrences"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Files to upload </label>
+                                    <input type="file" file-model="VM.filemodel"  multiple="multiple" class="form-control"/>
+                                    <!--<ul class="file-list-group col-xs-12">
+                                        <li class="file-list-item" ng-repeat="file in VM.filemodel"><i
+                                                class="fa fa-file"></i> {{file.name}}
+                                        </li>
+                                    </ul>-->
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-right">
+                            <a type="button" ng-click="downloadExcel()" class="btn btn-squared btn-dark-blue" >
+                                <i class="fa fa-download"></i> Download Risk Control Matrix
+                            </a>
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>
+                                Save
+                            </button>
+                            <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i
+                                    class="fa fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

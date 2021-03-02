@@ -1,0 +1,66 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle" >{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.PolicyApprover" ng-submit="submitAction()" role="form" ng-init="IsSubmitted=false">
+                        <div class="row" ng-if="IsSubmitted && Form.PolicyApprover.$invalid">
+                            <div class="col-xs-12 error text-red">
+                                <p ng-if="Form.PolicyApprover.firstName.$invalid || Form.PolicyApprover.firstName.$dirty"><i class="fa fa-times"></i> Please select a first name </p>
+                                <p ng-if="Form.PolicyApprover.lastName.$invalid || Form.PolicyApprover.lastName.$dirty"><i class="fa fa-times"></i> Please select a last name </p>
+                                <p ng-if="Form.PolicyApprover.email.$invalid || Form.PolicyApprover.email.$dirty"><i class="fa fa-times"></i> Please select email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"  ng-class="{'has-error': Form.PolicyApprover.firstName.$dirty && Form.PolicyApprover.firstName.$invalid }">
+                                    <label> First Name </label>
+                                    <input type="text" name="policfirstNameyName" ng-model="VM.firstName" placeholder="First Name" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"  ng-class="{'has-error': Form.PolicyApprover.lastName.$dirty && Form.PolicyApprover.lastName.$invalid }">
+                                    <label> Last Name </label>
+                                    <input type="text" name="lastName" ng-model="VM.lastName" placeholder="Last Name" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"  ng-class="{'has-error': Form.PolicyApprover.email.$dirty && Form.PolicyApprover.email.$invalid }">
+                                    <label> Email </label>
+                                    <input type="text" name="email" ng-model="VM.email" placeholder="email" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{'has-error': Form.PolicyApprover.description.$dirty && Form.PolicyApprover.description.$invalid }">
+                                    <label> Description </label>
+                                    <textarea type="text"  name="description" ng-model="VM.description" ng_autosize placeholder="Description" class="form-control" required></textarea>
+                                </div>
+                            </div>
+
+                            <hr class="hrule4" />
+                            <div class="col-xs-12 text-right">
+                                <button type="submit" class="btn btn-squared btn-dark-blue"><i class="fa fa-save"></i> Save</button>
+                                <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                                <a type="button" class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i>  Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

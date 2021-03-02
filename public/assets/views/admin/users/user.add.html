@@ -1,0 +1,77 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{vm.mainTitle}}</h1>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+    <div class="row">
+        <div class="panel panel-white col-md-6  col-md-offset-3">
+            <div class="panel-body">
+                <form name="vm.UsersForm" ng-submit="vm.submitAction()" role="form">
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.username.$invalid && (!vm.UsersForm.username.$pristine || vm.UsersForm.username.$touched || vm.UsersForm.username.$submitted) }">
+                            <label> User Name </label>
+                            <input type="text" name="username" ng-model="vm.formdata.username" placeholder="User Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.password.$invalid && (!vm.UsersForm.password.$pristine || vm.UsersForm.password.$touched || vm.UsersForm.password.$submitted) }">
+                            <label> Password </label>
+                            <input type="password" name="password" ng-model="vm.formdata.password" placeholder="Password" class="form-control"
+                            ng-pattern="/^(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[$@!%*#?&^])[A-Za-z0-9$@!%*#?&^]{8,}$/" required>
+                            <p ng-show="vm.UsersForm.password.$invalid && !vm.UsersForm.password.$pristine"
+                            	class="help-block">Password should contain one special character from $@!%*#?&^ and at least one letter and number.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.email.$invalid && (!vm.UsersForm.email.$pristine || vm.UsersForm.email.$touched || vm.UsersForm.email.$submitted) }">
+                            <label> Email </label>
+                            <input type="email" name="email" ng-model="vm.formdata.email" placeholder="Email" class="form-control"
+                            ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                            <p ng-show="vm.UsersForm.email.$invalid && !vm.UsersForm.email.$pristine"
+                            	class="help-block">Email should look like: abc@xyc.com.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.pincode.$invalid && (!vm.UsersForm.pincode.$pristine || vm.UsersForm.pincode.$touched || vm.UsersForm.pincode.$submitted) }">
+                            <label> Pin Code </label>
+                            <input type="password" name="pincode" ng-model="vm.formdata.pincode" placeholder="Pin Code" class="form-control" ng-pattern="/^[1-9]{1}[0-9]{5}$/" required>
+                            <p ng-show="vm.UsersForm.pincode.$invalid && !vm.UsersForm.pincode.$pristine"
+								class="help-block">The pincode must be 6 digits (numeric).</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.department.$invalid && (!vm.UsersForm.department.$pristine || vm.UsersForm.department.$touched || vm.UsersForm.department.$submitted) }">
+                            <label> Department </label>
+                            <select type="text" name="department" ng-model="vm.tmp_deptId" class="form-control"
+                                    ng-options="d.id as d.deptName for d in app.Lookup.Departments" required>
+                                <!-- <option selected value>Select Department</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group" ng-class="{ 'has-error' : vm.UsersForm.role.$invalid && (!vm.UsersForm.role.$pristine || vm.UsersForm.role.$touched || vm.UsersForm.role.$submitted) }">
+                            <label> Role </label>
+                            <select type="text" name="role" ng-model="vm.tmp_roleId" class="form-control"
+                                    ng-options="r.id as r.roleDesc for r in vm.roles" required>
+                                <!-- <option selected value>Select Role</option> -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-center">
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>Save</button>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

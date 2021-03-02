@@ -1,0 +1,87 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 class="mainTitle" >{{mainTitle}}</h1>
+			<span class="mainDescription">{{mainDesc}} </span>
+		</div>
+	</div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-white no-radius">
+				<div class="panel-heading">
+					<h5> GDPR Pre-Assessments </h5>
+					<div class="panel-tools">
+						<!-- <a class="btn btn-xs btn-dark-blue btn-squared" ng-click="downloadExcel()"><i class="ti-download"></i> Download Pre-Assessments</a> -->
+						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.compliance.gdprpre.form">Create New GDPR Pre-Assessment</a>
+					</div>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="form-group col-xs-4 col-sm-3 col-md-2 col-lg-1">
+							<select id="perpage" ng-model="Grid1.PerPage" ng-options="op as op for op in OpList" class="form-control input-sm"> </select>
+						</div>
+						<div class="col-xs-4 col-sm-3 col-md-10 col-lg-11">
+							<div class="form-group pull-right col-xs-12 col-sm-4 col-md-3">
+								<span class="input-icon">
+									<input type="text" ng-model="Grid1.Filter" placeholder="Search" class="form-control input-sm" />
+									<i class="fa fa-search"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<table class="table table-striped table-responsive col-xs-12">
+							<thead>
+							<tr class="sortable-headers">
+								<th><input type="checkbox" ng-model="all_check" ng-click="selectAll()"></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='assessmentName' }" ng-click="Grid1.SortMe('assessmentName')"><i class="fa {{Grid1.GetIco('assessmentName')}}"></i> Name </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='answered' }" ng-click="Grid1.SortMe('answered')"><i class="fa {{Grid1.GetIco('answered')}}"></i> Responses </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='skipped' }" ng-click="Grid1.SortMe('skipped')"><i class="fa {{Grid1.GetIco('skipped')}}"></i> Skipped </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='notApplicable' }" ng-click="Grid1.SortMe('notApplicable')"><i class="fa {{Grid1.GetIco('notApplicable')}}"></i> Not Applicable </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='inGoodCondition' }" ng-click="Grid1.SortMe('inGoodCondition')"><i class="fa {{Grid1.GetIco('inGoodCondition')}}"></i> In Good Condition </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='someAreasToImprove' }" ng-click="Grid1.SortMe('someAreasToImprove')"><i class="fa {{Grid1.GetIco('someAreasToImprove')}}"></i> Some Areas To Improve </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='manyAreasToImprove' }" ng-click="Grid1.SortMe('manyAreasToImprove')"><i class="fa {{Grid1.GetIco('manyAreasToImprove')}}"></i> Many Areas To Improve </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='needsASeriousLook' }" ng-click="Grid1.SortMe('needsASeriousLook')"><i class="fa {{Grid1.GetIco('needsASeriousLook')}}"></i> Needs A Serious Look </a></th>
+								<th><a ng-class="{'text-azure': Grid1.Column==='completionDate' }" ng-click="Grid1.SortMe('completionDate')"><i class="fa {{Grid1.GetIco('completionDate')}}"></i> Completed </a></th>
+								<th>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+
+							<tr align="center" ng-repeat="r in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage">
+								<th><input type="checkbox" ng-model="r.checked"></th>
+								<td>{{r.assessmentName}}</td>
+								<td>{{r.answered}}</td>
+								<td>{{r.skipped}}</td>
+								<td>{{r.notApplicable}}</td>
+								<td><span class="badge badge-success">{{r.inGoodCondition}}</span></td>
+								<td><span class="badge badge-warning">{{r.someAreasToImprove}}</span></td>
+								<td><span class="badge badge-info">{{r.manyAreasToImprove}}</span></td>
+								<td><span class="badge badge-danger">{{r.needsASeriousLook}}</span></td>
+								<td>{{r.completionDate}}</td>
+								<td>
+									<a ui-sref="app.compliance.gdprpre.update({ id: r.id })"  class="btn btn-xs btn-squared btn-dark-azure"><i class="ti-pencil"></i></a>
+									<a ng-click="deleteAction(r)" class="btn btn-xs btn-squared btn-red"><i class="ti-trash"></i></a>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="row margin-top-10">
+						<div class="col-xs-12 col-sm-5">
+							Showing {{(Grid1.CurrPage -1) * Grid1.PerPage + 1}} to {{ ((Grid1.CurrPage * Grid1.PerPage) >  Grid1.Total) ?  Grid1.Total : (Grid1.CurrPage * Grid1.PerPage); }} of {{Grid1.Total}} entries
+						</div>
+						<div class="col-xs-12 col-sm-7 pagination-right">
+							<ul uib-pagination total-items="Grid1.Total" ng-model="Grid1.CurrPage" items-per-page="Grid1.PerPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

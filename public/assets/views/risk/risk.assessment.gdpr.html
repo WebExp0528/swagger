@@ -1,0 +1,254 @@
+<!-- Page Header -->
+<section id="page-title" class="padding-top-15 padding-bottom-15">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="mainTitle">{{mainTitle}}</h1>
+            <span class="mainDescription">{{mainDesc}}</span>
+        </div>
+    </div>
+</section>
+<!-- End: Page Header -->
+
+<div class="container-fluid container-fullw bg-white">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-transparent">
+                <div class="panel-body">
+                    <form name="Form.Assessment" ng-submit="submitAction()" role="form">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.assessName.$invalid && (!Form.Assessment.assessName.$pristine || Form.Assessment.assessName.$touched || Form.Assessment.assessNamee.$submitted) }">
+                                    <label> Name </label>
+                                    <input type="text" name="assessName" ng-model="VM.assessName" placeholder="Name" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group" ng-class="{ 'has-error' : Form.Assessment.assessDesc.$invalid && (!Form.Assessment.assessDesc.$pristine || Form.Assessment.assessDesc.$touched || Form.Assessment.assessDesc.$submitted) }">
+                                    <label> Description </label>
+                                    <input type="text" name="assessDesc" ng-model="VM.assessDesc" placeholder="Description" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.approval.$invalid && (!Form.Assessment.approval.$pristine || Form.Assessment.approval.$touched || Form.Assessment.approval.$submitted) }">
+                                    <label> Risk Status </label>
+                                    <select name="approval" ng-model="VM.approval"
+                                            ng-options="per.key as per.val for per in app.Lookup.LIST004"
+                                            class="form-control" required>
+                                        <!-- <option value=""> Risk Status</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.Assessment.region.$invalid && (!Form.Assessment.region.$pristine || Form.Assessment.region.$touched || Form.Assessment.region.$submitted) }">
+                                    <label> Region </label>
+                                    <select type="text" name="region" ng-model="VM.region" class="form-control" ng-options="r.key as r.val for r in app.Lookup.LIST001">
+                                        <!-- <option selected value>Select Region</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.Assessment.department.$invalid && (!Form.Assessment.department.$pristine || Form.Assessment.department.$touched || Form.Assessment.department.$submitted) }">
+                                    <label> Department </label>
+                                    <select type="text" name="department" ng-model="VM.business" class="form-control" ng-options="d.deptName as d.deptName for d in app.Lookup.Departments">
+                                    	<!-- <option selected value>Select Department</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.Assessment.VM.assessmentBy.$invalid && (!Form.Assessment.VM.assessmentBy.$pristine || Form.Assessment.VM.assessmentBy.$touched || Form.Assessment.VM.assessmentBy.$submitted) }">
+                                    <label> Assessment By </label>
+                                    <select name="assessmentBy" ng-model="VM.assessmentBy"
+                                            ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control"
+                                            required>
+                                        <option value=""> Assessment By</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                	ng-class="{ 'has-error' : Form.Assessment.VM.approver.$invalid && (!Form.Assessment.VM.approver.$pristine || Form.Assessment.VM.approver.$touched || Form.Assessment.VM.approver.$submitted) }">
+                                    <label> Approver </label>
+                                    <select name="approver" ng-model="VM.approver"
+                                            ng-options="u.name as u.name for u in app.Lookup.Users" class="form-control"
+                                            required>
+                                        <option value=""> Approver</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Frequency </label>
+                                    <select type="text" name="frequency" ng-model="VM.frequency" class="form-control" ng-options="op.key as op.val for op in app.Lookup.LIST003">
+                                        <!-- <option selected value>Select Frequency</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.approvedDate.$invalid && (!Form.Assessment.approvedDate.$pristine || Form.Assessment.approvedDate.$touched || Form.Assessment.approvedDate.$submitted) }">
+                                    <label> Approved Date </label>
+                                    <datepicker date-format="MM-dd-yyyy" date-set="{{approvedDate}}">
+                                        <input type="text" name="approvedDate" ng-model="VM.approvedDate"
+                                               placeholder="Approved Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.due_date.$invalid && (!Form.Assessment.due_date.$pristine || Form.Assessment.due_date.$touched || Form.Assessment.due_date.$submitted) }">
+                                    <label> Assessment Date </label>
+                                    <datepicker date-format="MM-dd-yyyy" date-set="{{due_date}}">
+                                        <input type="text" name="due_date" ng-model="VM.due_date"
+                                               placeholder="Assessment Date" class="form-control" required>
+                                    </datepicker>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.riskType.$invalid && (!Form.Assessment.riskType.$pristine || Form.Assessment.riskType.$touched || Form.Assessment.riskType.$submitted) }">
+                                    <label> Risk Type </label>
+                                    <select name="riskType"
+                                            class="riskType js-example-basic-single font-sans-serif form-control white_background_style"
+                                            ng-model="VM.riskType"
+                                            ng-options="item.key as item.val for item in app.Lookup.LIST009"
+                                            required>
+                                        <!-- <option value>Select Risk Type</option>  -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+		                        <div class="form-group" ng-class="{ 'has-error' : Form.Assessment.classification.$invalid && (!Form.Assessment.classification.$pristine || Form.Assessment.classification.$touched || Form.Assessment.classification.$submitted) }">
+		                            <label> GDPR Classification </label>
+		                            <select  name="classification" ng-model="VM.classification" class="form-control" required>
+		                            	<!-- <option value="" selected="selected">Choose one</option> -->
+										<option value="Data Breach">Data Breach</option>
+										<option value="Data Leak">Data Leak</option>
+										<option value="Data Storage">Data Storage</option>
+										<option value="Data Intransit">Data Intransit</option>
+										<option value="Data Collection">Data Collection</option>
+										<option value="Data Security">Data Security</option>
+										<option value="Data Tracking">Data Tracking</option>
+										<option value="Data Portability">Data Portability</option>
+										<option value="Third Party Data Management">Third Party Data Management</option>
+										<option value="Personal Data Management">Personal Data Management</option>
+										<option value="Cloud Data Management">Cloud Data Management</option>
+									</select>
+		                        </div>
+		                    </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group"
+                                     ng-class="{ 'has-error' : Form.Assessment.periodList.$invalid && (!Form.Assessment.periodList.$pristine || Form.Assessment.periodList.$touched || Form.Assessment.periodList.$submitted) }">
+                                    <label> Period </label>
+                                    <select type="text" name="period" ng-model="VM.period" class="form-control"
+                                            ng-options="per.key as per.val for per in app.Lookup.LIST002" required>
+                                        <!-- <option value>Select Period</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label> Files to upload </label>
+                                    <input type="file" file-model="VM.filemodel" class="form-control"/>
+                                    <ul class="file-list-group col-xs-12">
+                                        <li class="file-list-item" ng-repeat="file in VM.filemodel">
+                                            <a target="_parent" href="{{app.APIPrefix + 'policies/download/stream/'+file.id + '?token='+app.authToken}}" download="{{file.fileName}}" ng-if="file.id!=1">
+                                                {{file.fileName}}
+                                            </a>
+                                            <span ng-if="file.id==1">{{file.fileName}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+								<div class="form-group">
+									<label> Associate Control <a ng-click="addControls()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+									<div class="col-xs-12">
+										<ul class="multi-select-list-group col-xs-12 padding-left-0">
+											<li class="list-item-container row" ng-repeat="con in VM.controlDataModel">
+												<div class="list-item col-xs-12 padding-left-0">
+													<span class="col-sm-10"> {{con.controlName}} </span>
+													<span class="col-sm-2">
+													<a class="text-right delete" ng-click="removeItem('controlDataModel', $index)"> remove </a>
+												</span>
+												</div>
+											</li>
+											<li class="no-result padding-left-0" ng-if="!VM.controlDataModel.length"> <i class="fa fa-info-circle"></i> no controls selected</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="form-group">
+									<label> Associate Risk Profile <a ng-click="addRiskProfiles()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+									<div class="col-xs-12">
+										<ul class="multi-select-list-group col-xs-12 padding-left-0">
+											<li class="list-item-container row" ng-repeat="con in VM.riskProfileModel">
+												<div class="list-item col-xs-12 padding-left-0">
+													<span class="col-sm-10"> {{con.riskDescription}} </span>
+													<span class="col-sm-2">
+													<a class="text-right delete" ng-click="removeItem('riskProfileModel', $index)"> remove </a>
+												</span>
+												</div>
+											</li>
+											<li class="no-result padding-left-0" ng-if="!VM.riskProfileModel.length"> <i class="fa fa-info-circle"></i> no risk profiles selected</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="form-group">
+									<label> Associate Control Test Plans <a ng-click="addControlTestPlans()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+									<div class="col-xs-12">
+										<ul class="multi-select-list-group col-xs-12 padding-left-0">
+											<li class="list-item-container row" ng-repeat="con in VM.controlTestPlanModel">
+												<div class="list-item col-xs-12 padding-left-0">
+													<span class="col-sm-10"> {{con.testPlanName}} </span>
+													<span class="col-sm-2">
+													<a class="text-right delete" ng-click="removeItem('controlTestPlanModel', $index)"> remove </a>
+												</span>
+												</div>
+											</li>
+											<li class="no-result padding-left-0" ng-if="!VM.controlTestPlanModel.length"> <i class="fa fa-info-circle"></i> no control test plans selected</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<div class="form-group">
+									<label> Associate Control Test Data <a ng-click="addControlTestData()" class="btn btn-link"><i class="fa fa-search"></i></a>  </label>
+									<div class="col-xs-12">
+										<ul class="multi-select-list-group col-xs-12 padding-left-0">
+											<li class="list-item-container row" ng-repeat="con in VM.controlTestDataModel">
+												<div class="list-item col-xs-12 padding-left-0">
+													<span class="col-sm-10"> {{con.description}} </span>
+													<span class="col-sm-2">
+													<a class="text-right delete" ng-click="removeItem('controlTestDataModel', $index)"> remove </a>
+												</span>
+												</div>
+											</li>
+											<li class="no-result padding-left-0" ng-if="!VM.controlTestDataModel.length"> <i class="fa fa-info-circle"></i> no control test data selected</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                        </div>
+                        <hr class="hrule4"/>
+                        <div class="col-xs-12 text-right">
+                        	<button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i> Save</button>
+                            <!-- <a class="btn btn-squared btn-dark-blue" ui-sref="app.risk.assessment.gdpr.create(VM)">
+                                <i class="fa fa-newspaper-o"></i> Create Assessment
+                            </a> -->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

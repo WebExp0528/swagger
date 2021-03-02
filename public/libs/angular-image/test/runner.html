@@ -1,0 +1,19 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>angular-image</title>
+  <link rel="stylesheet" href="/bower_components/mocha/mocha.css">
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/node-assert/assert.js"></script>
+  <script src="/bower_components/mocha/mocha.js"></script>
+  <script src="/angular-image.js"></script>
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script>mocha.setup('bdd')</script>
+  <script src="/test/angular-image.spec.js"></script>
+  <script>$(mocha.run)</script>
+  </body>
+</html>

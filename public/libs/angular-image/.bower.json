@@ -1,0 +1,29 @@
+{
+  "name": "angular-image",
+  "version": "0.0.4",
+  "license": "MIT",
+  "main": "angular-image.js",
+  "keywords": [
+    "angular",
+    "image",
+    "img",
+    "error",
+    "onerror"
+  ],
+  "devDependencies": {
+    "angular": "~1.3.0",
+    "mocha": "~1.21.5",
+    "node-assert": "Jxck/assert",
+    "jquery": "~2.1.1"
+  },
+  "homepage": "https://github.com/aj0strow/angular-image",
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "7b5601158c3622f5db92436d43973f6cfec1b86d"
+  },
+  "_source": "https://github.com/aj0strow/angular-image.git",
+  "_target": "^0.0.4",
+  "_originalSource": "angular-image"
+}
