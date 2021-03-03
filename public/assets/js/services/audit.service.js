@@ -196,6 +196,10 @@ app.service('AuditService', function (APIHandler) {
     return APIHandler.Get('crtldata');
   };
 
+  this.GetRCSA = function () {
+    return APIHandler.Get('rcsa');
+  };
+
   this.FileUpload = function (idd, fileModel) {
     if (fileModel.length < 1) {
       return APIHandler.NullPromise();

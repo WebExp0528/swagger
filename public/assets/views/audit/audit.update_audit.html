@@ -148,10 +148,15 @@
 
                             <uib-tab index="1" heading="Artifacts" ng-click="changeTab('artifacts')">
                                 <div class="row">
+                                    <!-- ------------------ Associate Policies and Procedures ------------------ -->
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
-                                            <label> Associate Policies and Procedures <a ng-click="vm.addPolicyDocs()"
-                                                    class="btn btn-link"><i class="fa fa-search"></i></a> </label>
+                                            <label>
+                                                Associate Policies and Procedures
+                                                <a ng-click="vm.addPolicyDocs()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
                                             <div class="col-xs-12">
                                                 <ul class="multi-select-list-group col-xs-12 no-padding">
                                                     <li class="list-item-container row"
@@ -159,7 +164,8 @@
                                                         <div class="list-item col-xs-12 padding-left-0">
                                                             <span class="col-xs-10">
                                                                 <a ng-click="vm.showDesc(p.policyDesc)">
-                                                                    {{p.policyName}} </a>
+                                                                    {{p.policyName}}
+                                                                </a>
                                                             </span>
                                                             <span class="col-xs-2">
                                                                 <a class="pull-right delete"
@@ -169,18 +175,23 @@
                                                         </div>
                                                     </li>
                                                     <li class="no-result no-padding"
-                                                        ng-if="!vm.formdata.policies.length"> <i
-                                                            class="fa fa-info-circle"></i> no policies and procedures
-                                                        selected</li>
+                                                        ng-if="!vm.formdata.policies.length">
+                                                        <i class="fa fa-info-circle"></i>
+                                                        no policies and procedure selected
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- -------------------------- Associate Control -------------------------- -->
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
-                                            <label> Associate Control <a ng-click="vm.addControls()"
-                                                    class="btn btn-link"><i class="fa fa-search"></i></a> </label>
+                                            <label>
+                                                Associate Control
+                                                <a ng-click="vm.addControls()" class="btn btn-link"><i
+                                                        class="fa fa-search"></i>
+                                                </a>
+                                            </label>
                                             <div class="col-xs-12">
                                                 <ul class="multi-select-list-group col-xs-12 padding-left-0">
                                                     <li class="list-item-container row"
@@ -201,7 +212,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- ----------------------- Associate Risk Profile ------------------------ -->
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label> Associate Risk Profile <a ng-click="addRiskProfiles()"
@@ -227,11 +238,15 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- -------------------- Associate Control Test Plans --------------------- -->
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
-                                            <label> Associate Control Test Plans <a ng-click="addControlTestPlans()"
-                                                    class="btn btn-link"><i class="fa fa-search"></i></a> </label>
+                                            <label>
+                                                Associate Control Test Plans
+                                                <a ng-click="addControlTestPlans()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
                                             <div class="col-xs-12">
                                                 <ul class="multi-select-list-group col-xs-12 padding-left-0">
                                                     <li class="list-item-container row"
@@ -241,7 +256,8 @@
                                                             <span class="col-sm-2">
                                                                 <a class="text-right delete"
                                                                     ng-click="removeItem('controlTestPlanModel', $index)">
-                                                                    remove </a>
+                                                                    remove
+                                                                </a>
                                                             </span>
                                                         </div>
                                                     </li>
@@ -253,7 +269,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <!-- ---------------------------- Stakeholders ----------------------------- -->
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label> Stakeholders <a ng-click="editStakeholders()"
@@ -273,8 +289,41 @@
                                                         </div>
                                                     </li>
                                                     <li class="no-result padding-left-0"
-                                                        ng-if="!vm.formdata.stakeholdersVM.length"> <i
-                                                            class="fa fa-info-circle"></i> no stakeholders selected</li>
+                                                        ng-if="!vm.formdata.stakeholdersVM.length">
+                                                        <i class="fa fa-info-circle"></i>
+                                                        no stakeholders selected
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- -------------------------- Risk Control Self Assessments-------------------------- -->
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Risk Control Self Assessments
+                                                <a ng-click="vm.addRiskControlSelfAssessments()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
+                                            <div class="col-xs-12">
+                                                <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                                    <li class="list-item-container row"
+                                                        ng-repeat="con in vm.formdata.rcsaid">
+                                                        <div class="list-item col-xs-12 padding-left-0">
+                                                            <span class="col-sm-10"> {{con.assessName}} </span>
+                                                            <span class="col-sm-2">
+                                                                <a class="text-right delete"
+                                                                    ng-click="vm.removeItem('rcsaid', $index)">
+                                                                    remove </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="no-result padding-left-0"
+                                                        ng-if="!vm.formdata.rcsaid.length">
+                                                        <i class="fa fa-info-circle"></i>
+                                                        no risk control self assessments plan selected
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -428,8 +477,8 @@
                             </uib-tab>
 
                         </uib-tabset>
-                        <hr ng-show="addNewMilestone==true || tab!='milestone'" class="hrule4" />
-                        <div ng-show="addNewMilestone==true || tab!='milestone'" class="col-xs-12 text-center">
+                        <hr ng-show="tab!='milestone'" class="hrule4" />
+                        <div ng-show=" tab!='milestone'" class="col-xs-12 text-center">
                             <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -535,6 +584,19 @@
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <br /><br /><br />
+                        <hr ng-show="tab=='milestone'" class="hrule4" />
+                        <div ng-show=" tab=='milestone'" class="col-xs-12 text-center">
+                            <button class="btn btn-squared btn-dark-blue" ng-click="vm.submitAction()">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
+                            <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
+                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()">
+                                <i class="fa fa-times"> </i>
+                                Cancel
+                            </a>
                         </div>
                     </div>
                     <br /><br /><br />

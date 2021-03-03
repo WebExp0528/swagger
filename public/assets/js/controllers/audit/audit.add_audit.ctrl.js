@@ -46,6 +46,7 @@
       riskProfileModel: [],
       controlTestPlanModel: [],
       milestones: [{}],
+      rcsaid: [],
     };
 
     $rootScope.app.Mask = false;
@@ -331,6 +332,87 @@
         return false;
       }
       $state.go('app.audit.main');
+    };
+
+    vm.cloneAudit = function () {
+      //$rootScope.app.Mask = true;
+      var headers = [
+          'Name',
+          'Region',
+          'Department',
+          'Occur Date',
+          'Responsible',
+          'Priority',
+          'Status',
+        ],
+        cols = [
+          'auditName',
+          'region',
+          'department',
+          'dateOccurance',
+          'resUserName',
+          'priority',
+          'auditStatus',
+        ];
+
+      AuditService.GetAudits(10, 1).then(function (data) {
+        data.forEach(function (c, i) {
+          c.Selected = false;
+        });
+        var cloneModal = Utils.CreateSingleSelectListView(
+          'Select Audit to Clone',
+          data,
+          headers,
+          cols
+        );
+        cloneModal.result.then(function (list) {
+          vm.isEdit = true;
+          console.log('~~~~ selected clone', data, list);
+          // vm.formdata = vm.formdata.policies.concat(list);
+        });
+        //$rootScope.app.Mask = false;
+      });
+    };
+
+    vm.addRiskControlSelfAssessments = function () {
+      $rootScope.app.Mask = true;
+      var headers = [
+          'Name',
+          'Region',
+          'Business',
+          'Period',
+          'Frequency',
+          'Approval State',
+          'Classification',
+        ],
+        cols = [
+          'assessName',
+          'region',
+          'business',
+          'period',
+          'frequency',
+          'approval',
+          'classification',
+        ];
+
+      AuditService.GetRCSA().then(function (data) {
+        data.forEach(function (c, i) {
+          c.Selected = false;
+          c.modifiedOn = Utils.createDate(c.modifiedOn);
+        });
+        var controlModal = Utils.CreateSelectListView(
+          'Select RCSA',
+          data,
+          headers,
+          cols
+        );
+
+        controlModal.result.then(function (list) {
+          vm.isEdit = true;
+          vm.formdata['rcsaid'] = vm.formdata.rcsaid.concat(list);
+        });
+        $rootScope.app.Mask = false;
+      });
     };
   }
 })();

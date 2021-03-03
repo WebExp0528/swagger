@@ -72,7 +72,7 @@
             stakeholdersVM.push({ name: data });
           });
         }
-        console.log('~~~~~ response audit', res);
+
         vm.formdata = res;
         vm.formdata.riskProfileModel =
           vm.formdata.riskProfileModel == null
@@ -83,6 +83,10 @@
             ? []
             : vm.formdata.controlTestPlanModel;
         vm.formdata.stakeholdersVM = stakeholdersVM;
+        vm.formdata.milestones = vm.formdata.milestones
+          ? vm.formdata.milestones
+          : [];
+        vm.formdata.rcsaid = vm.formdata.rcsaid ? vm.formdata.rcsaid : [];
 
         return AuditService.GetTopicByAudit(audit_id);
       })
@@ -189,7 +193,7 @@
       var d2 = moment(vm.formdata.dueDate);
       vm.formdata.dateOccurance = d1.isValid() ? d1.format(dtype) : '';
       vm.formdata.dueDate = d2.isValid() ? d2.format(dtype) : '';
-      console.log('~~~ formdata', vm.formdata);
+
       vm.formdata.milestones = vm.formdata.milestones.map((milestone) => {
         var milestoneStartDate = moment(milestone.control_Effective_Startdate);
         var milestoneEndDate = moment(milestone.control_Effective_Enddate);
@@ -215,8 +219,6 @@
       var fileModel = vm.formdata.auditFileModel;
       var d = new Date();
       var idd = 'Aud' + d.getTime();
-
-      console.log('`~~~ submitting', vm.formdata);
 
       AuditService.FileUpload(idd, fileModel)
         .then(function (res) {
@@ -362,6 +364,47 @@
       });
     };
 
+    vm.addRiskControlSelfAssessments = function () {
+      $rootScope.app.Mask = true;
+      var headers = [
+          'Name',
+          'Region',
+          'Business',
+          'Period',
+          'Frequency',
+          'Approval State',
+          'Classification',
+        ],
+        cols = [
+          'assessName',
+          'region',
+          'business',
+          'period',
+          'frequency',
+          'approval',
+          'classification',
+        ];
+
+      AuditService.GetRCSA().then(function (data) {
+        data.forEach(function (c, i) {
+          c.Selected = false;
+          c.modifiedOn = Utils.createDate(c.modifiedOn);
+        });
+        var controlModal = Utils.CreateSelectListView(
+          'Select RCSA',
+          data,
+          headers,
+          cols
+        );
+
+        controlModal.result.then(function (list) {
+          vm.isEdit = true;
+          vm.formdata['rcsaid'] = vm.formdata.rcsaid.concat(list);
+        });
+        $rootScope.app.Mask = false;
+      });
+    };
+
     vm.addPolicyDocs = function () {
       $rootScope.app.Mask = true;
       var headers = ['Policy Name', 'Description', 'Owner', 'Business Process'],
@@ -400,6 +443,10 @@
       // angular.extend(data, {id: id});
       // return $http.post('/saveUser', data);
       console.log('~~~ saving milestone', data);
+      var index = vm.formdata.milestones.indexOf(
+        vm.formdata.milestones.find((el) => el.id == id)
+      );
+      vm.formdata.milestones[index] = data;
     };
 
     /**
@@ -407,7 +454,6 @@
      * @param {*} index
      */
     $scope.removeMilestone = function (index) {
-      console.log('~~~ removing milestone', index);
       vm.formdata.milestones.splice(index, 1);
     };
 
@@ -417,7 +463,6 @@
      */
     $scope.changeTab = function (index) {
       $scope.tab = index;
-      console.log('~~~ changed tab', index);
     };
 
     // add user

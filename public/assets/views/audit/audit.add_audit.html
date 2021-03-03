@@ -273,6 +273,38 @@
                                         </div>
                                     </div>
 
+                                    <!-- -------------------------- Risk Control Self Assessments-------------------------- -->
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Risk Control Self Assessments
+                                                <a ng-click="vm.addRiskControlSelfAssessments()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
+                                            <div class="col-xs-12">
+                                                <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                                    <li class="list-item-container row"
+                                                        ng-repeat="con in vm.formdata.rcsaid">
+                                                        <div class="list-item col-xs-12 padding-left-0">
+                                                            <span class="col-sm-10"> {{con.assessName}} </span>
+                                                            <span class="col-sm-2">
+                                                                <a class="text-right delete"
+                                                                    ng-click="vm.removeItem('rcsaid', $index)">
+                                                                    remove </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="no-result padding-left-0"
+                                                        ng-if="!vm.formdata.rcsaid.length">
+                                                        <i class="fa fa-info-circle"></i>
+                                                        no risk control self assessments plan selected
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group">
                                             <label> Files to upload </label>
@@ -350,6 +382,52 @@
                             </uib-tab>
 
                             <uib-tab index="3" heading="Plan Audit">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Load Prior Year Findings
+                                                <a ng-click="vm.loadPriorYearFindings()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
+                                            <div class="col-xs-12">
+                                                <ul class="multi-select-list-group col-xs-12 no-padding">
+                                                    <li class="list-item-container row"
+                                                        ng-repeat="p in vm.formdata.priorYearFindings">
+                                                        <div class="list-item col-xs-12 padding-left-0">
+                                                            <span class="col-xs-10">{{p.policyName}}</span>
+                                                            <span class="col-xs-2">
+                                                                <a class="pull-right delete"
+                                                                    ng-click="vm.removeItem('policies', $index)"> remove
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="no-result no-padding"
+                                                        ng-if="!vm.formdata.policies.length">
+                                                        <i class="fa fa-info-circle">
+                                                        </i>
+                                                        no prior year findings selected
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>
+                                                Clone Audit
+                                                <a ng-click="vm.cloneAudit()" class="btn btn-link">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group"
