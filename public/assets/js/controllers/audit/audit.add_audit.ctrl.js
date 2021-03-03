@@ -66,6 +66,22 @@
       vm.formdata.dateOccuranceDtStr = vm.formdata.dateOccurance;
       vm.formdata.dueDtStr = vm.formdata.dueDate;
 
+      /**
+       * Validate milestone data
+       */
+      var milestoneStartDate = moment(
+        vm.formdata.milestones[0].control_Effective_Startdate
+      );
+      var milestoneEndDate = moment(
+        vm.formdata.milestones[0].control_Effective_Enddate
+      );
+      vm.formdata.milestones[0].control_Effective_Startdate = milestoneStartDate.isValid()
+        ? milestoneStartDate.format(dtype)
+        : '';
+      vm.formdata.milestones[0].control_Effective_Enddate = milestoneEndDate.isValid()
+        ? milestoneEndDate.format(dtype)
+        : '';
+
       if (vm.formdata.stakeholdersVM != null) {
         vm.formdata.stakeholders = [];
         vm.formdata.stakeholdersVM.forEach(function (data, i) {
@@ -88,9 +104,10 @@
         .finally(function () {
           var audit_id = '';
           var confirmation = '';
+          console.log('~~~~ submitting', vm.formdata);
           AuditService.AddAudits(vm.formdata)
             .then(function (res) {
-              console.log('res', res);
+              console.log('add audit res', res);
               audit_id = res.data.id;
               if (audit_id) {
                 vm.isAuditSaved = true;

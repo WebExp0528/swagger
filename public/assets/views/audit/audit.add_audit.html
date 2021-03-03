@@ -349,7 +349,7 @@
                                 </div>
                             </uib-tab>
 
-                            <uib-tab index="3" heading="Milestones">
+                            <uib-tab index="3" heading="Plan Audit">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
                                         <div class="form-group"
@@ -357,7 +357,7 @@
                                             <label> Milestone Name </label>
                                             <input type="text" name="milestone_name"
                                                 ng-model="vm.formdata.milestones[0].milestone_name"
-                                                placeholder="Milestone Name" class="form-control" required>
+                                                placeholder="Milestone Name" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
@@ -366,7 +366,7 @@
                                             <label> Milestone Description </label>
                                             <input type="text" name="milestone_desc"
                                                 ng-model="vm.formdata.milestones[0].milestone_desc"
-                                                placeholder="Milestone Description" class="form-control" required>
+                                                placeholder="Milestone Description" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
@@ -374,7 +374,7 @@
                                             ng-class="{ 'has-error' : vm.Form.addAudit.milestones[0].budget.$invalid && (!vm.Form.addAudit.milestones[0].budget.$pristine || vm.Form.addAudit.milestones[0].budget.$touched || vm.Form.addAudit.milestones[0].budget.$submitted) }">
                                             <label> Budget </label>
                                             <input type="text" name="budget" ng-model="vm.formdata.milestones[0].budget"
-                                                placeholder="Budget" class="form-control" required>
+                                                placeholder="Budget" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
@@ -383,7 +383,7 @@
                                             <label> Related Audit Phase </label>
                                             <input type="text" name="relatedtoAuditPhase"
                                                 ng-model="vm.formdata.milestones[0].relatedtoAuditPhase"
-                                                placeholder="Related Audit Phase" class="form-control" required>
+                                                placeholder="Related Audit Phase" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-md-6">
@@ -393,7 +393,7 @@
                                             <datepicker date-format="MM-dd-yyyy">
                                                 <input type="text" name="control_Effective_Startdate."
                                                     ng-model="vm.formdata.milestones[0].control_Effective_Startdate"
-                                                    placeholder="Start Date" class="form-control" required>
+                                                    placeholder="Start Date" class="form-control">
                                             </datepicker>
                                         </div>
                                     </div>
@@ -404,7 +404,7 @@
                                             <datepicker date-format="MM-dd-yyyy">
                                                 <input type="text" name="control_Effective_Enddate."
                                                     ng-model="vm.formdata.milestones[0].control_Effective_Enddate"
-                                                    placeholder="Start Date" class="form-control" required>
+                                                    placeholder="Start Date" class="form-control">
                                             </datepicker>
                                         </div>
                                     </div>

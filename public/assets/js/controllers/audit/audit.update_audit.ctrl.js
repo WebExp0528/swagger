@@ -182,12 +182,29 @@
 
     vm.submitAction = function () {
       $rootScope.app.Mask = true;
+      $scope.addNewMilestone = false;
       if (vm.Form.addAudit.$invalid) return false;
       var dtype = 'YYYY-MM-DD';
       var d1 = moment(vm.formdata.dateOccurance);
       var d2 = moment(vm.formdata.dueDate);
       vm.formdata.dateOccurance = d1.isValid() ? d1.format(dtype) : '';
       vm.formdata.dueDate = d2.isValid() ? d2.format(dtype) : '';
+      console.log('~~~ formdata', vm.formdata);
+      vm.formdata.milestones = vm.formdata.milestones.map((milestone) => {
+        var milestoneStartDate = moment(milestone.control_Effective_Startdate);
+        var milestoneEndDate = moment(milestone.control_Effective_Enddate);
+        milestone.control_Effective_Startdate = milestoneStartDate.isValid()
+          ? milestoneStartDate.format(dtype)
+          : '';
+        milestone.control_Effective_Enddate = milestoneEndDate.isValid()
+          ? milestoneEndDate.format(dtype)
+          : '';
+        return milestone;
+      });
+      /**
+       * Validate milestone data
+       */
+
       if (vm.formdata.stakeholdersVM != null) {
         vm.formdata.stakeholders = [];
         vm.formdata.stakeholdersVM.forEach(function (data, i) {
@@ -198,6 +215,9 @@
       var fileModel = vm.formdata.auditFileModel;
       var d = new Date();
       var idd = 'Aud' + d.getTime();
+
+      console.log('`~~~ submitting', vm.formdata);
+
       AuditService.FileUpload(idd, fileModel)
         .then(function (res) {
           if (res.status === 200) {
@@ -367,6 +387,62 @@
 
     vm.removeItem = function (type, idx) {
       vm.formdata[type].splice(idx, 1);
+    };
+
+    /**
+     * Save milestone
+     *
+     * @param {*} data
+     * @param {*} id
+     */
+    $scope.saveMilestone = function (data, id) {
+      //$scope.user not updated yet
+      // angular.extend(data, {id: id});
+      // return $http.post('/saveUser', data);
+      console.log('~~~ saving milestone', data);
+    };
+
+    /**
+     * Remove milestone
+     * @param {*} index
+     */
+    $scope.removeMilestone = function (index) {
+      console.log('~~~ removing milestone', index);
+      vm.formdata.milestones.splice(index, 1);
+    };
+
+    /**
+     * Chanaged tab
+     * @param {*} index
+     */
+    $scope.changeTab = function (index) {
+      $scope.tab = index;
+      console.log('~~~ changed tab', index);
+    };
+
+    // add user
+    // $scope.addUser = function() {
+    //   $scope.inserted = {
+    //     id: $scope.users.length+1,
+    //     name: '',
+    //     status: null,
+    //     group: null
+    //   };
+    //   $scope.users.push($scope.inserted);
+    // };
+
+    $scope.opened = {};
+
+    $scope.open = function ($event, elementOpened) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened[elementOpened] = !$scope.opened[elementOpened];
+    };
+
+    $scope.createNewMilestone = function ($event) {
+      $scope.addNewMilestone = true;
+      vm.formdata.milestones[vm.formdata.milestones.length] = {};
     };
   }
 })();
