@@ -458,24 +458,18 @@
     };
 
     /**
-     * Chanaged tab
+     * Changed tab
+     *
      * @param {*} index
      */
     $scope.changeTab = function (index) {
       $scope.tab = index;
     };
 
-    // add user
-    // $scope.addUser = function() {
-    //   $scope.inserted = {
-    //     id: $scope.users.length+1,
-    //     name: '',
-    //     status: null,
-    //     group: null
-    //   };
-    //   $scope.users.push($scope.inserted);
-    // };
-
+    /**
+     * Save edit status of milestones table
+     *
+     */
     $scope.opened = {};
 
     $scope.open = function ($event, elementOpened) {
@@ -488,6 +482,10 @@
     $scope.createNewMilestone = function ($event) {
       $scope.addNewMilestone = true;
       vm.formdata.milestones[vm.formdata.milestones.length] = {};
+    };
+
+    $scope.generateReport = function () {
+      AuditService.GenerateSummaryReport(vm.formdata);
     };
   }
 })();

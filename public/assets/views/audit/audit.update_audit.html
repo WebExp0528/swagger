@@ -404,11 +404,29 @@
                                                 placeholder="Audit Management Response" class="form-control"></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.overallRiskScore.$invalid && (!vm.Form.addAudit.overallRiskScore.$pristine || vm.Form.addAudit.overallRiskScore.$touched || vm.Form.addAudit.overallRiskScore.$submitted) }">
+                                            <label>Overall Risk Score</label>
+                                            <textarea type="text" name="overallRiskScore" ng-autosize
+                                                ng-model="vm.formdata.overallRiskScore" placeholder="Overall Risk Score"
+                                                class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group"
+                                            ng-class="{ 'has-error' : vm.Form.addAudit.overallRiskRating.$invalid && (!vm.Form.addAudit.overallRiskRating.$pristine || vm.Form.addAudit.overallRiskRating.$touched || vm.Form.addAudit.overallRiskRating.$submitted) }">
+                                            <label>Overall Risk Rating</label>
+                                            <textarea type="text" name="auditManagementResponse" ng-autosize
+                                                ng-model="vm.formdata.overallRiskRating"
+                                                placeholder="Overall Risk Rating" class="form-control"></textarea>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-12 col-md-6" style="padding: 28px 15px;">
                                         <div class="form-group">
-                                            <a class="btn btn-md btn-dark-blue btn-squared">
+                                            <a class="btn btn-md btn-dark-blue btn-squared" ng-click="generateReport()">
                                                 <i class="ti-plus"></i>
-                                                Create a report
+                                                Generate Report
                                             </a>
                                         </div>
                                     </div>
