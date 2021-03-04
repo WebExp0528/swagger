@@ -404,6 +404,14 @@
                                                 placeholder="Audit Management Response" class="form-control"></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <a class="btn btn-xs btn-dark-blue btn-squared">
+                                                <i class="ti-plus"></i>
+                                                Create a report
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </uib-tab>
 
@@ -607,8 +615,10 @@
                                     <h5> Audit Step </h5>
                                     <div class="panel-tools">
                                         <a class="btn btn-xs btn-dark-blue btn-squared"
-                                            ui-sref="app.audit.add_topic({ audit_id: vm.audit_id })"><i
-                                                class="ti-plus"></i> Create New Audit Step</a>
+                                            ui-sref="app.audit.add_topic({ audit_id: vm.audit_id })">
+                                            <i class="ti-plus"></i>
+                                            Create New Audit Step
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="panel-body">
