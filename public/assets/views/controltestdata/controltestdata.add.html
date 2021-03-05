@@ -14,52 +14,76 @@
             <div class="panel-body">
                 <form name="vm.ControlTestDataForm" ng-submit="vm.submitAction()" role="form">
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.description.$invalid && (!vm.ControlTestDataForm.description.$pristine || vm.ControlTestDataForm.description.$touched || vm.ControlTestDataForm.description.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.name.$invalid && (!vm.ControlTestDataForm.name.$pristine || vm.ControlTestDataForm.name.$touched || vm.ControlTestDataForm.name.$submitted) }">
+                            <label> Name </label>
+                            <textarea type="text" name="name" ng-model="vm.formdata.name" ng-autosize placeholder="Name"
+                                class="form-control" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.description.$invalid && (!vm.ControlTestDataForm.description.$pristine || vm.ControlTestDataForm.description.$touched || vm.ControlTestDataForm.description.$submitted) }">
                             <label> Description </label>
-                            <textarea type="text" name="username" ng-model="vm.formdata.description" ng-autosize placeholder="Description" class="form-control" required></textarea>
+                            <textarea type="text" name="username" ng-model="vm.formdata.description" ng-autosize
+                                placeholder="Description" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel1.$invalid && (!vm.ControlTestDataForm.controlTypeLevel1.$pristine || vm.ControlTestDataForm.controlTypeLevel1.$touched || vm.ControlTestDataForm.controlTypeLevel1.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel1.$invalid && (!vm.ControlTestDataForm.controlTypeLevel1.$pristine || vm.ControlTestDataForm.controlTypeLevel1.$touched || vm.ControlTestDataForm.controlTypeLevel1.$submitted) }">
                             <label> Control Type Level 1 </label>
-                            <input type="text" name="controlTypeLevel1" ng-model="vm.formdata.controlTypeLevel1" placeholder="Control Type Level 1" class="form-control" required>
+                            <input type="text" name="controlTypeLevel1" ng-model="vm.formdata.controlTypeLevel1"
+                                placeholder="Control Type Level 1" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel2.$invalid && (!vm.ControlTestDataForm.controlTypeLevel2.$pristine || vm.ControlTestDataForm.controlTypeLevel2.$touched || vm.ControlTestDataForm.controlTypeLevel2.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel2.$invalid && (!vm.ControlTestDataForm.controlTypeLevel2.$pristine || vm.ControlTestDataForm.controlTypeLevel2.$touched || vm.ControlTestDataForm.controlTypeLevel2.$submitted) }">
                             <label> Control Type Level 2 </label>
-                            <input type="text" name="controlTypeLevel2" ng-model="vm.formdata.controlTypeLevel2" placeholder="Control Type Level 2" class="form-control" required>
+                            <input type="text" name="controlTypeLevel2" ng-model="vm.formdata.controlTypeLevel2"
+                                placeholder="Control Type Level 2" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.design.$invalid && (!vm.ControlTestDataForm.design.$pristine || vm.ControlTestDataForm.design.$touched || vm.ControlTestDataForm.design.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.design.$invalid && (!vm.ControlTestDataForm.design.$pristine || vm.ControlTestDataForm.design.$touched || vm.ControlTestDataForm.design.$submitted) }">
                             <label> Design </label>
-                            <input type="text" name="design" ng-model="vm.formdata.design" placeholder="Design" class="form-control" required>
+                            <input type="text" name="design" ng-model="vm.formdata.design" placeholder="Design"
+                                class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.performance.$invalid && (!vm.ControlTestDataForm.performance.$pristine || vm.ControlTestDataForm.performance.$touched || vm.ControlTestDataForm.performance.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.performance.$invalid && (!vm.ControlTestDataForm.performance.$pristine || vm.ControlTestDataForm.performance.$touched || vm.ControlTestDataForm.performance.$submitted) }">
                             <label> Performance </label>
-                            <input type="text" name="performance" ng-model="vm.formdata.performance" placeholder="Performance" class="form-control" required>
+                            <input type="text" name="performance" ng-model="vm.formdata.performance"
+                                placeholder="Performance" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.justification.$invalid && (!vm.ControlTestDataForm.justification.$pristine || vm.ControlTestDataForm.justification.$touched || vm.ControlTestDataForm.justification.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.justification.$invalid && (!vm.ControlTestDataForm.justification.$pristine || vm.ControlTestDataForm.justification.$touched || vm.ControlTestDataForm.justification.$submitted) }">
                             <label> Justification </label>
-                            <textarea type="text" name="justification" ng-model="vm.formdata.justification" ng-autosize placeholder="Justification" class="form-control" required></textarea>
+                            <textarea type="text" name="justification" ng-model="vm.formdata.justification" ng-autosize
+                                placeholder="Justification" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group" ng-class="{ 'has-error' : vm.ControlTestDataForm.accountability.$invalid && (!vm.ControlTestDataForm.accountability.$pristine || vm.ControlTestDataForm.accountability.$touched || vm.ControlTestDataForm.accountability.$submitted) }">
+                        <div class="form-group"
+                            ng-class="{ 'has-error' : vm.ControlTestDataForm.accountability.$invalid && (!vm.ControlTestDataForm.accountability.$pristine || vm.ControlTestDataForm.accountability.$touched || vm.ControlTestDataForm.accountability.$submitted) }">
                             <label> Accountability </label>
-                            <textarea type="text" name="accountability" ng-model="vm.formdata.accountability" ng-autosize placeholder="Accountability" class="form-control" required></textarea>
+                            <textarea type="text" name="accountability" ng-model="vm.formdata.accountability"
+                                ng-autosize placeholder="Accountability" class="form-control" required></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <hr class="hrule4"/>
+                        <hr class="hrule4" />
                         <div class="col-xs-12 text-center">
-                            <button class="btn btn-squared btn-dark-blue" type="submit"><i class="fa fa-save"></i>Save</button>
-                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i class="fa fa-times"></i> Cancel</a>
+                            <button class="btn btn-squared btn-dark-blue" type="submit"><i
+                                    class="fa fa-save"></i>Save</button>
+                            <a class="btn btn-squared btn-dark-blue" ng-click="vm.cancelAction()"><i
+                                    class="fa fa-times"></i> Cancel</a>
                         </div>
                     </div>
                 </form>
