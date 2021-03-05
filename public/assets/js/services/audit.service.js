@@ -2,6 +2,59 @@
  * Created by Precision on 03/01/2017.
  */
 
+const borders = {
+  top: {
+    style: docx.BorderStyle.NIL,
+    size: 0,
+    color: '00000000',
+  },
+  bottom: {
+    style: docx.BorderStyle.NIL,
+    size: 0,
+    color: '00000000',
+  },
+  left: {
+    style: docx.BorderStyle.NIL,
+    size: 0,
+    color: '00000000',
+  },
+  right: {
+    style: docx.BorderStyle.NIL,
+    size: 0,
+    color: '00000000',
+  },
+};
+
+const margins = {
+  top: 0,
+  bottom: 300,
+  left: 0,
+  right: 0,
+};
+
+function toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      callback(reader.result);
+    };
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+}
+
+function createSectionTitle(sectionName) {
+  return new docx.Paragraph({
+    text: sectionName,
+    heading: docx.HeadingLevel.HEADING_2,
+    alignment: docx.AlignmentType.CENTER,
+    style: 'sectionHeader',
+  });
+}
+
 app.service('AuditService', function (APIHandler) {
   /* ----------------------------- Audit API Calls ---------------------------- */
 
@@ -250,179 +303,287 @@ app.service('AuditService', function (APIHandler) {
       overallRiskScore = '',
       overallRiskRating = '',
     } = data;
+    const now = new Date();
 
-    const doc = new docx.Document({
-      creator: 'Ansri',
-      description: 'Audit Report',
-      title: 'Audit Report',
-    });
-
-    doc.addSection({
-      properties: {},
-      children: [
-        new docx.Paragraph({
-          text: 'BACKGROUND AND SCOPE',
-          heading: docx.HeadingLevel.HEADING_1,
-        }),
-        new docx.Paragraph({
-          text: auditBackground,
-        }),
-        new docx.Paragraph({
-          text: auditScope,
-        }),
-        new docx.Paragraph({
-          text: auditObjectives,
-        }),
-        new docx.Paragraph({
-          text: 'RATING AND CONCLUSIONS',
-          heading: docx.HeadingLevel.HEADING_1,
-        }),
-        new docx.Paragraph({
-          text: `Rating = ${0}`,
-        }),
-        new docx.Paragraph({
-          text:
-            'In our opinion, the present system of controls being exercised in regard to the management of the Bank’s investment portfolio is satisfactory although one area of improvement was noted surrounding vendor internal controls reviews.',
-        }),
-        new docx.Paragraph({
-          text: 'FINDINGS AND RECOMMENDATIONS',
-          heading: docx.HeadingLevel.HEADING_1,
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: `Third-Party Internal Controls Review (Low):`,
-              underline: {
-                type: docx.UnderlineType.DOUBLE,
-                color: '990011',
+    toDataURL('/assets/img/summary_report_logo.jpg', function (imageData) {
+      const document = new docx.Document({
+        styles: {
+          paragraphStyles: [
+            {
+              id: 'sectionHeader',
+              quickFormat: true,
+              run: {
+                underline: {},
+                bold: true,
               },
-            }),
-            new docx.TextRun({
-              text: `A vendor management “internal control review” over the bank’s investment software was not clearly identified. The Finance department uses the third-party COCC Investment Portfolio system for the Bank’s investment accounting software. The Operational Risk department is responsible for obtaining vendor information, performing an internal control review and requesting the appropriate bank management sign off on the review to ensure they are aware of their third-party risks. Per review of the internal controls review for COCC, this review did not specifically indicate internal controls related to the investment software. Per inquiry with management, Finance does not receive an internal control review over their investment software to review and sign off on.`,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: `Recommendation:`,
-              underline: {
-                type: docx.UnderlineType.DOUBLE,
-                color: '990011',
+            },
+            {
+              id: 'underline',
+              quickFormat: true,
+              run: {
+                underline: {},
               },
-            }),
-            new docx.TextRun({
-              text: auditRecommendations,
-            }),
+            },
           ],
-        }),
-        new docx.Paragraph({
-          children: [
-            new docx.TextRun({
-              text: `Management Response:`,
-              italics: true,
-            }),
-            new docx.TextRun({
-              text: auditManagementResponse,
-              italics: true,
-            }),
-          ],
-        }),
-        new docx.Paragraph({
-          text: 'Overall Risk Score',
-          heading: docx.HeadingLevel.HEADING_1,
-        }),
-        new docx.Paragraph({
-          text: overallRiskScore,
-        }),
-        new docx.Paragraph({
-          text: 'Overall Risk Rating',
-          heading: docx.HeadingLevel.HEADING_1,
-        }),
-        new docx.Paragraph({
-          text: overallRiskRating,
-        }),
-        // new docx.Paragraph({
-        //   text: 'Test Audit Name', //TODO: Add audit name
-        // }),
-        // new docx.Paragraph({
-        //   text: 'Test Company Address', //TODO: Add company address
-        // }),
-        // new docx.Paragraph({
-        //   text: 'AUDIT TYPE: INTERNAL AUDIT\nISSUANCE DATE:  [INSERT DATE]', //TODO: Add issuance date
-        // }),
-        // new docx.TableOfContents('Summary', {
-        //   hyperlink: true,
-        //   headingStyleRange: '1-3',
-        //   stylesWithLevels: [new docx.StyleLevel('MySpectacularStyle', 1)],
-        // }),
-        // new docx.Paragraph({
-        //   text: 'AUDIT ISSUANCE LETTER',
-        //   heading: docx.HeadingLevel.HEADING_1,
-        //   pageBreakBefore: true,
-        // }),
-        // new docx.Paragraph({
-        //   children: [
-        //     new docx.TextRun({
-        //       text: `Issuance Date:  [Insert Date}`, //TODO: ADD
-        //       underline: {
-        //         type: docx.UnderlineType.DOUBLE,
-        //         color: '990011',
-        //       },
-        //     }),
-        //   ],
-        // }),
-        // new docx.Paragraph({
-        //   text: 'Report Distribution',
-        //   heading: docx.HeadingLevel.HEADING_2,
-        // }),
-        // new docx.Paragraph({
-        //   text: 'Action Item Owners',
-        //   heading: docx.HeadingLevel.HEADING_3,
-        //   border: {
-        //     bottom: {
-        //       color: 'auto',
-        //       space: 1,
-        //       value: 'single',
-        //       size: 6,
-        //     },
-        //   },
-        // }),
-        // new docx.Paragraph({
-        //   children: [
-        //     //TODO:
-        //     new docx.TextRun(
-        //       'The Internal Audit, number [Insert Audit Number], is being released for general distribution as of this date.  The objective(s) and scope of this engagement is noted in the Audit Objective and Scope section of this report.  A summary of the audit procedures performed is noted in the Audit Details and Observations section of this report.  '
-        //     ),
-        //   ],
-        // }),
-        // new docx.Paragraph({
-        //   children: [
-        //     new docx.TextRun(
-        //       'Responses have been obtained from the applicable owner for each recommendation developed from our examination.  All findings, recommendations, and management responses (in their entirety) have been incorporated in the Findings and Recommendations section of this report.'
-        //     ),
-        //   ],
-        // }),
-        // new docx.Paragraph({
-        //   children: [
-        //     //TODO:
-        //     new docx.TextRun(
-        //       'A follow up review of management’s implementation of actions in response to the recommendations will be performed [Insert Date].'
-        //     ),
-        //   ],
-        // }),
-        // new docx.Paragraph({
-        //   children: [
-        //     new docx.TextRun(
-        //       'Internal Audit notes that sufficient and appropriate audit procedures have been conducted and evidence gathered to support the accuracy of the conclusions reached and contained in this report.  The conclusions were based on a comparison of the situations, as they existed at the time against audit criteria.  The conclusions are only applicable for the process examined.  The evidence gathered meets professional audit standards and is sufficient to provide senior management with proof of the conclusions derived from the internal audit.'
-        //     ),
-        //   ],
-        // }),
-      ],
-    });
+        },
+      });
 
-    docx.Packer.toBlob(doc).then((blob) => {
-      saveAs(blob, 'Audit Report.docx');
+      const image = docx.Media.addImage(document, imageData, 300, 80, {
+        floating: {
+          horizontalPosition: {
+            relative: docx.HorizontalPositionRelativeFrom.LEFT_MARGIN,
+            align: docx.HorizontalPositionAlign.LEFT,
+            offset: 1014400,
+          },
+          verticalPosition: {
+            relative: docx.VerticalPositionRelativeFrom.TOP_MARGIN,
+            align: docx.VerticalPositionAlign.TOP,
+            offset: 1014400,
+          },
+          margins: {
+            top: 201440,
+            bottom: 201440,
+          },
+        },
+      });
+
+      document.addSection({
+        children: [
+          new docx.Table({
+            borders,
+            rows: [
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    margins: {
+                      bottom: 1500,
+                    },
+                    children: [new docx.Paragraph(image)],
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new docx.Table({
+            borders,
+            rows: [
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    width: {
+                      size: 2000,
+                      type: docx.WidthType.DXA,
+                    },
+                    margins,
+                    children: [new docx.Paragraph('To:')],
+                  }),
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    children: [
+                      new docx.Paragraph('Audit and Risk Committee'),
+                      new docx.Paragraph('Donna Charette '),
+                      new docx.Paragraph('Jeff Reinke'),
+                    ],
+                  }),
+                ],
+              }),
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    width: {
+                      size: 2000,
+                      type: docx.WidthType.DXA,
+                    },
+                    margins,
+                    children: [new docx.Paragraph('From:')],
+                  }),
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    children: [
+                      new docx.Paragraph('Trisha Leary'),
+                      new docx.Paragraph('Kelly Van Buren'),
+                    ],
+                  }),
+                ],
+              }),
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    width: {
+                      size: 2000,
+                      type: docx.WidthType.DXA,
+                    },
+                    children: [new docx.Paragraph('Date:')],
+                  }),
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    children: [new docx.Paragraph(now.toDateString())],
+                  }),
+                ],
+              }),
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    width: {
+                      size: 2000,
+                      type: docx.WidthType.DXA,
+                    },
+                    children: [new docx.Paragraph('Subject:          ')],
+                  }),
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    children: [
+                      new docx.Paragraph('Internal Audit - Investments '),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+            width: {
+              size: 50,
+              type: docx.WidthType.PERCENTAGE,
+            },
+          }),
+          createSectionTitle('BACKGROUND AND SCOPE'),
+          new docx.Paragraph({
+            text: auditBackground,
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+            },
+          }),
+          new docx.Paragraph({
+            text: auditScope,
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+              after: 200,
+            },
+          }),
+          createSectionTitle('RATING AND CONCLUSIONS'),
+          new docx.Paragraph({
+            text: `Rating = ${0}`,
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+            },
+            style: 'underline',
+          }),
+          new docx.Paragraph({
+            text: `In our opinion, the present system of controls being exercised in regard to the management of the Bank’s investment portfolio is satisfactory although one area of improvement was noted surrounding vendor internal controls reviews.`,
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+              after: 200,
+            },
+          }),
+          createSectionTitle('FINDINGS AND RECOMMENDATIONS'),
+          new docx.Paragraph({
+            children: [
+              new docx.TextRun({
+                text: 'Third-Party Internal Controls Review (Low): ',
+                bold: true,
+                italic: true,
+                underline: {
+                  type: docx.UnderlineType.SINGLE,
+                  color: '000000',
+                },
+              }),
+              new docx.TextRun({
+                text: auditObjectives,
+              }),
+            ],
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+            },
+          }),
+          new docx.Paragraph({
+            children: [
+              new docx.TextRun({
+                text: 'Recommendation: ',
+                bold: true,
+                italic: true,
+                underline: {
+                  type: docx.UnderlineType.SINGLE,
+                  color: '000000',
+                },
+              }),
+              new docx.TextRun({
+                text: auditRecommendations,
+              }),
+            ],
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+            },
+          }),
+          new docx.Paragraph({
+            children: [
+              new docx.TextRun({
+                text: 'Management Response: ',
+                bold: true,
+                italics: true,
+                underline: {
+                  type: docx.UnderlineType.SINGLE,
+                  color: '000000',
+                },
+              }),
+              new docx.TextRun({
+                text: auditManagementResponse,
+                italics: true,
+              }),
+            ],
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+              after: 300,
+            },
+          }),
+          new docx.Table({
+            borders,
+            rows: [
+              new docx.TableRow({
+                children: [
+                  new docx.TableCell({
+                    borders,
+                    width: {
+                      size: 500,
+                      type: docx.WidthType.DXA,
+                    },
+                    margins,
+                    children: [new docx.Paragraph('cc')],
+                  }),
+                  new docx.TableCell({
+                    borders,
+                    margins,
+                    children: [
+                      new docx.Paragraph('Thomas Senecal'),
+                      new docx.Paragraph('Brian Canina'),
+                      new docx.Paragraph('Jackie Charron'),
+                    ],
+                  }),
+                ],
+              }),
+            ],
+          }),
+        ],
+      });
+
+      docx.Packer.toBlob(document).then((blob) => {
+        saveAs(blob, 'Audit Report.docx');
+      });
     });
   };
 });
