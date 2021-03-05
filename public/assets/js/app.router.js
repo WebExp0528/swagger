@@ -1393,7 +1393,7 @@ app.config([
       .state('app.audit.main', {
         url: '',
         templateUrl: 'assets/views/audit/audit.main.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditMainCtrl',
         controllerAs: 'vm',
@@ -1402,7 +1402,7 @@ app.config([
       .state('app.audit.add_audit', {
         url: '/audit.add_audit',
         templateUrl: 'assets/views/audit/audit.add_audit.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditAdd_AuditCtrl',
         controllerAs: 'vm',
@@ -1411,7 +1411,7 @@ app.config([
       .state('app.audit.update_audit', {
         url: '/update/:audit_id',
         templateUrl: 'assets/views/audit/audit.update_audit.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditUpdate_AuditCtrl',
         controllerAs: 'vm',
