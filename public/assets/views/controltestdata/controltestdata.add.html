@@ -13,14 +13,7 @@
         <div class="panel panel-white col-md-6  col-md-offset-3">
             <div class="panel-body">
                 <form name="vm.ControlTestDataForm" ng-submit="vm.submitAction()" role="form">
-                    <div class="row">
-                        <div class="form-group"
-                            ng-class="{ 'has-error' : vm.ControlTestDataForm.name.$invalid && (!vm.ControlTestDataForm.name.$pristine || vm.ControlTestDataForm.name.$touched || vm.ControlTestDataForm.name.$submitted) }">
-                            <label> Name </label>
-                            <input type="text" name="name" ng-model="vm.formdata.name" ng-autosize placeholder="Name"
-                                class="form-control" required />
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="form-group"
                             ng-class="{ 'has-error' : vm.ControlTestDataForm.description.$invalid && (!vm.ControlTestDataForm.description.$pristine || vm.ControlTestDataForm.description.$touched || vm.ControlTestDataForm.description.$submitted) }">
@@ -32,25 +25,25 @@
                     <div class="row">
                         <div class="form-group"
                             ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel1.$invalid && (!vm.ControlTestDataForm.controlTypeLevel1.$pristine || vm.ControlTestDataForm.controlTypeLevel1.$touched || vm.ControlTestDataForm.controlTypeLevel1.$submitted) }">
-                            <label> Control Type Level 1 </label>
+                            <label> Operating Effectiveness </label>
                             <input type="text" name="controlTypeLevel1" ng-model="vm.formdata.controlTypeLevel1"
-                                placeholder="Control Type Level 1" class="form-control" required>
+                                placeholder="Operating Effectiveness" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group"
                             ng-class="{ 'has-error' : vm.ControlTestDataForm.controlTypeLevel2.$invalid && (!vm.ControlTestDataForm.controlTypeLevel2.$pristine || vm.ControlTestDataForm.controlTypeLevel2.$touched || vm.ControlTestDataForm.controlTypeLevel2.$submitted) }">
-                            <label> Control Type Level 2 </label>
+                            <label> Accountability </label>
                             <input type="text" name="controlTypeLevel2" ng-model="vm.formdata.controlTypeLevel2"
-                                placeholder="Control Type Level 2" class="form-control" required>
+                                placeholder="Accountability" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group"
                             ng-class="{ 'has-error' : vm.ControlTestDataForm.design.$invalid && (!vm.ControlTestDataForm.design.$pristine || vm.ControlTestDataForm.design.$touched || vm.ControlTestDataForm.design.$submitted) }">
-                            <label> Design </label>
-                            <input type="text" name="design" ng-model="vm.formdata.design" placeholder="Design"
-                                class="form-control" required>
+                            <label> Design Effectiveness </label>
+                            <input type="text" name="design" ng-model="vm.formdata.design"
+                                placeholder="Design Effectiveness" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">

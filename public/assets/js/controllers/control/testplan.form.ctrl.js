@@ -102,6 +102,7 @@
         { deptId: $scope.VM.department[0].deptId },
         true
       );
+
       $scope.VM.department[0] = tmpdept[0];
 
       var fileModel = $scope.VM.testplanFileModel;
@@ -386,6 +387,18 @@
      */
     $scope.removeTestData = function (index) {
       $scope.VM.controlTestData.splice(index, 1);
+    };
+
+    /**
+     * Add new test data
+     */
+    $scope.createNewTestData = function () {
+      if ($scope.VM.controlTestData && $scope.VM.controlTestData.length) {
+        $scope.VM.controlTestData[$scope.VM.controlTestData.length] = {};
+      } else {
+        $scope.VM.controlTestData = [{}];
+      }
+      console.log('~~~ creaetd new test plan data', $scope.VM.controlTestData);
     };
   }
 })();

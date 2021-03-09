@@ -5,7 +5,6 @@
     '$state',
     '$stateParams',
     'ControlService',
-    'ControlTestDataService',
     'OPRiskService',
     'Utils',
     '$filter',
@@ -93,7 +92,11 @@
         { deptId: $scope.VM.department[0].deptId },
         true
       );
-      $scope.VM.department[0] = tmpdept[0];
+      if ($scope.VM.department && $scope.VM.department.length) {
+        $scope.VM.department[0] = tmpdept[0];
+      } else {
+        $scope.VM.department = [tmpdept];
+      }
 
       var fileModel = $scope.VM.testplanFileModel;
       var d = new Date();
@@ -351,7 +354,7 @@
       $scope.VM.nextDueDate = d2.isValid() ? d2.format(dtype) : '';
       $scope.VM.testDueDateStr = $scope.VM.testDueDate;
       $scope.VM.nextDueDateStr = $scope.VM.nextDueDate;
-      console.log('~~~~~ test plan dat', data);
+
       $rootScope.app.Mask = false;
     });
 
@@ -391,6 +394,18 @@
      */
     $scope.removeTestData = function (index) {
       $scope.VM.controlTestData.splice(index, 1);
+    };
+
+    /**
+     * Add new test data
+     */
+    $scope.createNewTestData = function () {
+      if ($scope.VM.controlTestData && $scope.VM.controlTestData.length) {
+        $scope.VM.controlTestData[$scope.VM.controlTestData.length] = {};
+      } else {
+        $scope.VM.controlTestData = [{}];
+      }
+      console.log('~~~ creaetd new test plan data', $scope.VM.controlTestData);
     };
   }
 })();

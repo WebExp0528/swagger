@@ -43,12 +43,6 @@
                                 <tr class="sortable-headers">
                                     <!-- <th><input type="checkbox"></th> -->
                                     <th>
-                                        <a ng-class="{'text-azure': vm.Grid1.Column==='name' }"
-                                            ng-click="vm.Grid1.SortMe('name')">
-                                            <i class="fa {{vm.Grid1.GetIco('name')}}"></i> Name
-                                        </a>
-                                    </th>
-                                    <th>
                                         <a ng-class="{'text-azure': vm.Grid1.Column==='description' }"
                                             ng-click="vm.Grid1.SortMe('description')">
                                             <i class="fa {{vm.Grid1.GetIco('description')}}"></i> Description
@@ -57,21 +51,20 @@
                                     <th>
                                         <a ng-class="{'text-azure': vm.Grid1.Column==='controlTypeLevel1' }"
                                             ng-click="vm.Grid1.SortMe('controlTypeLevel1')">
-                                            <i class="fa {{vm.Grid1.GetIco('controlTypeLevel1')}}"></i> Control Type
-                                            Level 1
+                                            <i class="fa {{vm.Grid1.GetIco('controlTypeLevel1')}}"></i> Operating
+                                            Effectiveness
                                         </a>
                                     </th>
                                     <th>
                                         <a ng-class="{'text-azure': vm.Grid1.Column==='controlTypeLevel2' }"
                                             ng-click="vm.Grid1.SortMe('controlTypeLevel2')">
-                                            <i class="fa {{vm.Grid1.GetIco('controlTypeLevel2')}}"></i> Control Type
-                                            Level 2
+                                            <i class="fa {{vm.Grid1.GetIco('controlTypeLevel2')}}"></i> Accountability
                                         </a>
                                     </th>
                                     <th>
                                         <a ng-class="{'text-azure': vm.Grid1.Column==='design' }"
                                             ng-click="vm.Grid1.SortMe('design')">
-                                            <i class="fa {{vm.Grid1.GetIco('design')}}"></i> Design
+                                            <i class="fa {{vm.Grid1.GetIco('design')}}"></i> Design Effectiveness
                                         </a>
                                     </th>
                                     <th>
@@ -101,7 +94,7 @@
                                 <tr
                                     ng-repeat="r in vm.Grid1.Data | orderBy: vm.Grid1.Column:vm.Grid1.IsAsc | filter: vm.Grid1.Filter |  limitTo : vm.Grid1.PerPage : (vm.Grid1.CurrPage -1) * vm.Grid1.PerPage">
                                     <!-- <th><input type="checkbox"></th> -->
-                                    <td>{{r.name}}</td>
+
                                     <td>{{r.description}}</td>
                                     <td>{{r.controlTypeLevel1}}</td>
                                     <td>{{r.controlTypeLevel2}}</td>
