@@ -45,16 +45,16 @@ app.post('/node/createExcel', function (req, res, next) {
   console.log(data);
   var fileName = guid.raw();
   data.filename = fileName;
-  excel_generator(xlsDirectory, data, function (err, location) {
-    if (!err) {
+  excel_generator(xlsDirectory, data)
+    .then((location) => {
+      console.log(`Created excel file[${fileName}] in path[${location}]`);
       res.status(200);
       res.end(fileName);
-      console.log(fileName);
-    } else {
+    })
+    .catch((err) => {
       res.status(500);
-      res.end('Cannot fulfill the request. We are so sorry.');
-    }
-  });
+      res.end(`Cannot create Excel. We are so sorry. err=> ${err.toString()}`);
+    });
 });
 
 /* Download Excel File and Delete temp file */

@@ -150,17 +150,47 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Include Controls
+                                        <a ng-click="addTestData()" class="btn btn-link">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </label>
+                                    <div class="col-xs-12">
+                                        <ul class="multi-select-list-group col-xs-12 padding-left-0">
+                                            <li class="list-item-container row" ng-repeat="con in VM.controlTestData">
+                                                <div class="list-item col-xs-12 padding-left-0">
+                                                    <span class="col-sm-4"> {{con.description}} </span>
+                                                    <span class="col-sm-6"> {{con.modifiedOn | date}} </span>
+                                                    <span class="col-sm-2">
+                                                        <a class="text-right delete"
+                                                            ng-click="removeItem('controlTestData', $index)"> remove
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li class="no-result padding-left-0" ng-if="!VM.controlTestData.length">
+                                                <i class="fa fa-info-circle"></i> no test plan selected
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr class="hrule4" />
                         <div class="col-xs-12 text-right">
                             <a type="button" ng-click="downloadExcel()" class="btn btn-squared btn-dark-blue"
                                 ng-disabled="!VM.controlDataModel.length"><i class="fa fa-download"></i> Download Test
-                                Plan</a>
+                                Plan
+                            </a>
                             <button class="btn btn-squared btn-dark-blue" ng-disabled="Form.TestPlan.$invalid"
                                 type="submit"><i class="fa fa-save"></i> Save</button>
                             <!--<button class="btn btn-squared btn-dark-blue" type="reset"><i class="fa fa-refresh"></i> Reset</button>-->
                             <a class="btn btn-squared btn-dark-blue" type="button" ng-click="cancelAction()"><i
-                                    class="fa fa-times"></i> Cancel</a>
+                                    class="fa fa-times"></i> Cancel
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -173,78 +203,65 @@
         <div class="col-md-12">
             <div class="panel panel-white no-radius">
                 <div class="panel-heading">
-                    Test Plan Data
-                </div>
-                <div class="panel-tools">
-                    <a class="btn btn-xs btn-dark-blue btn-squared" ng-click="createNewTestData()">
-                        <i class="ti-plus"></i>
-                        Create New Test Data
-                    </a>
+                    Controls and Test Data
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped table-responsive col-xs-12">
                         <thead>
                             <tr class="sortable-headers">
-                                <th>Name </th>
-                                <th>Description</th>
-                                <th>Control Type Level 1</th>
-                                <th>Control Type Level 2 </th>
-                                <th>Design</th>
-                                <th>Performance</th>
-                                <th>Justification</th>
-                                <th>Accountability</th>
+                                <th>Control Name</th>
+                                <th>Control Description</th>
+                                <th>Control Frequency</th>
+                                <th>Control Type</th>
+                                <th>Design Effectiveness</th>
+                                <th>Operating Effectiveness</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="r in VM.controlTestData">
-                                <td>
-                                    <span editable-text="r.name" e-name="name" e-form="rowform">
-                                        {{ r.name || 'empty' }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span editable-text="r.description" e-name="description" e-form="rowform">
-                                        {{ r.description || 'empty' }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span editable-text="r.controlTypeLevel1" e-name="controlTypeLevel1"
-                                        e-form="rowform">
-                                        {{ r.controlTypeLevel1 || 'empty' }}
-                                    </span>
-                                </td>
-                                <td>
+                            <tr
+                                ng-repeat="x in [].constructor(VM.controlDataModel.length<VM.controlTestData.length?VM.controlTestData.length:VM.controlDataModel.length) track by $index">
 
-                                    <span editable-text="r.controlTypeLevel2" e-name="controlTypeLevel2"
+                                <td>
+                                    <span editable-text="VM.controlDataModel[$index].controlName" e-name="controlName"
                                         e-form="rowform">
-                                        {{ r.controlTypeLevel2 || 'empty' }}
+                                        {{ VM.controlDataModel[$index].controlName || 'empty' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span editable-text="r.design" e-name="design" e-form="rowform">
-                                        {{ r.design || 'empty' }}
+                                    <span editable-text="VM.controlDataModel[$index].controlDescription"
+                                        e-name="controlDescription" e-form="rowform">
+                                        {{ VM.controlDataModel[$index].controlDescription || 'empty' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span editable-text="r.performance" e-name="performance" e-form="rowform">
-                                        {{ r.performance || 'empty' }}
+                                    <span editable-text="VM.controlDataModel[$index].controlFrequency"
+                                        e-name="controlFrequency" e-form="rowform">
+                                        {{ VM.controlDataModel[$index].controlFrequency || 'empty' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span editable-text="r.justification" e-name="justification" e-form="rowform">
-                                        {{ r.justification || 'empty' }}
+                                    <span editable-text="VM.controlDataModel[$index].controlType" e-name="controlType"
+                                        e-form="rowform">
+                                        {{ VM.controlDataModel[$index].controlType || 'empty' }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span editable-text="VM.controlTestData[$index].design" e-name="design"
+                                        e-form="rowform">
+                                        {{ VM.controlTestData[$index].design || 'empty' }}
                                     </span>
                                 </td>
                                 <td>
-                                    <span editable-text="r.accountability" e-name="accountability" e-form="rowform">
-                                        {{ r.accountability || 'empty' }}
+                                    <span editable-text="VM.controlTestData[$index].design" e-name="design"
+                                        e-form="rowform">
+                                        {{ VM.controlTestData[$index].controlTypeLevel1 || 'empty' }}
                                     </span>
                                 </td>
                                 <td style="white-space: nowrap">
-                                    <form editable-form name="rowform" onbeforesave="saveTestData($data, r.id)"
-                                        ng-show="rowform.$visible" class="form-buttons form-inline"
-                                        shown="inserted == r">
+                                    <form editable-form name="rowform" onbeforesave="saveTestData($data, $index)"
+                                        ng-show="rowform.$visible" class="form-buttons form-inline">
                                         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                                             save
                                         </button>

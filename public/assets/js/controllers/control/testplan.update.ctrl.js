@@ -8,6 +8,7 @@
     'OPRiskService',
     'Utils',
     '$filter',
+    'ControlTestDataService',
   ];
   app.controller('TestPlanUpdateCtrl', TestPlanUpdateController);
 
@@ -19,7 +20,8 @@
     ControlService,
     OPRiskService,
     Utils,
-    $filter
+    $filter,
+    ControlTestDataService
   ) {
     $scope.mainTitle = $state.current.title;
     $scope.mainDesc = 'Update Control Test Plan';
@@ -156,6 +158,7 @@
       var data = {};
       data.heights = [];
       data.sheetName = 'Control Test Plan';
+      data.filename = 'output.xlsx';
       data.body = [];
       var testPlan_data = [
         [
@@ -406,6 +409,53 @@
         $scope.VM.controlTestData = [{}];
       }
       console.log('~~~ creaetd new test plan data', $scope.VM.controlTestData);
+    };
+
+    $scope.addTestData = function () {
+      var headers = [
+          'Description',
+          'Operating Effectiveness',
+          'Accountability',
+          'Design Effectiveness',
+          'Performance',
+          'Justification',
+        ],
+        cols = [
+          'description',
+          'controlTypeLevel1',
+          'accountability',
+          'design',
+          'performance',
+          'justification',
+        ];
+
+      $rootScope.app.Mask = true;
+      ControlTestDataService.Get().then(function (data) {
+        data.forEach(function (c, i) {
+          c.Selected = false;
+
+          var tmpRow = $filter('filter')($scope.VM.controlTestData, {
+            id: c.id,
+          });
+          if (tmpRow.length > 0) {
+            c.Selected = true;
+          }
+
+          c.modifiedOn = Utils.createDate(c.modifiedOn);
+        });
+
+        var controlTestData = Utils.CreateSelectListView(
+          'Select Controls',
+          data,
+          headers,
+          cols
+        );
+        controlTestData.result.then(function (list) {
+          $scope.isEdit = true;
+          $scope.VM.controlTestData = list;
+        });
+        $rootScope.app.Mask = false;
+      });
     };
   }
 })();

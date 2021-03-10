@@ -55,7 +55,7 @@ app.run([
       },
       IsAuthenticated: false,
       APIPrefix: 'https://sraclone.aasricontrols.com/api/2/',
-      NodeApi: 'http://sraclone.aasricontrols.com/node',
+      NodeApi: 'http://localhost:3000/node',
       Debug: true,
       Mask: true,
       MaskLabel: null,

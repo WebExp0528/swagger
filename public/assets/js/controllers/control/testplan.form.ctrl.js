@@ -7,6 +7,7 @@
     'Utils',
     'ControlService',
     '$filter',
+    'ControlTestDataService',
   ];
   app.controller('TestPlanFormCtrl', TestPlanFormController);
 
@@ -17,7 +18,8 @@
     OPRiskService,
     Utils,
     ControlService,
-    $filter
+    $filter,
+    ControlTestDataService
   ) {
     $scope.mainTitle = $state.current.title;
     $scope.mainDesc = 'Add Control Test Plan';
@@ -145,6 +147,7 @@
       var data = {};
       data.heights = [];
       data.sheetName = 'Control Test Plan';
+      data.filename = 'output.xlsx';
       data.body = [];
       var testPlan_data = [
         [
@@ -370,15 +373,26 @@
      * @param {*} data
      * @param {*} id
      */
-    $scope.saveTestData = function (data, id) {
-      //$scope.user not updated yet
-      // angular.extend(data, {id: id});
-      // return $http.post('/saveUser', data);
-      console.log('~~~ saving milestone', data);
-      var index = $scope.VM.controlTestData.indexOf(
-        $scope.VM.controlTestData.find((el) => el.id == id)
-      );
-      $scope.VM.controlTestData[index] = data;
+    $scope.saveTestData = function (data, index) {
+      const {
+        controlName,
+        controlDescription,
+        controlFrequency,
+        controlType,
+        design,
+        controlTypeLevel1,
+      } = data;
+      console.log('~~~~~ data', data, index);
+
+      $scope.VM.controlDataModel[index]['controlName'] = controlName;
+      $scope.VM.controlDataModel[index][
+        'controlDescription'
+      ] = controlDescription;
+      $scope.VM.controlDataModel[index]['controlFrequency'] = controlFrequency;
+      $scope.VM.controlDataModel[index]['controlType'] = controlType;
+
+      $scope.VM.controlTestData[index]['design'] = design;
+      $scope.VM.controlTestData[index]['controlTypeLevel1'] = controlTypeLevel1;
     };
 
     /**
@@ -387,6 +401,7 @@
      */
     $scope.removeTestData = function (index) {
       $scope.VM.controlTestData.splice(index, 1);
+      $scope.VM.controlDataModel.splice(index, 1);
     };
 
     /**
@@ -399,6 +414,45 @@
         $scope.VM.controlTestData = [{}];
       }
       console.log('~~~ creaetd new test plan data', $scope.VM.controlTestData);
+    };
+
+    $scope.addTestData = function () {
+      $scope.VM.controlTestData = [];
+      var headers = [
+          'Description',
+          'Operating Effectiveness',
+          'Accountability',
+          'Design Effectiveness',
+          'Performance',
+          'Justification',
+        ],
+        cols = [
+          'description',
+          'controlTypeLevel1',
+          'accountability',
+          'design',
+          'performance',
+          'justification',
+        ];
+
+      $rootScope.app.Mask = true;
+      ControlTestDataService.Get().then(function (data) {
+        data.forEach(function (c, i) {
+          c.Selected = false;
+          c.modifiedOn = Utils.createDate(c.modifiedOn);
+        });
+        var controlTestDataModel = Utils.CreateSelectListView(
+          'Select Test Data',
+          data,
+          headers,
+          cols
+        );
+        controlModal.result.then(function (list) {
+          $scope.isEdit = true;
+          $scope.VM.controlTestData = $scope.VM.controlTestData.concat(list);
+        });
+        $rootScope.app.Mask = false;
+      });
     };
   }
 })();
