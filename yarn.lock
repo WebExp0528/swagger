@@ -509,6 +509,16 @@ msexcel-builder-colorfix@0.0.3:
     fs-extra "~0.5.0"
     xmlbuilder ">=0.4.2"
 
+"msexcel-builder-colorfix@https://github.com/rodmp/msexcel-builder.git":
+  version "0.0.3"
+  resolved "https://github.com/rodmp/msexcel-builder.git#46f2dd35ec4bda479ed64d717c36ed4c4a56a439"
+  dependencies:
+    archiver "0.21.0"
+    async "~0.2.6"
+    easy-zip "~0.0.4"
+    fs-extra "~0.5.0"
+    xmlbuilder ">=0.4.2"
+
 ncp@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/ncp/-/ncp-0.2.7.tgz#46fac2b7dda2560a4cb7e628677bd5f64eac5be1"

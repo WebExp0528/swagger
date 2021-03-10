@@ -3,14 +3,11 @@ var excelbuilder = require('msexcel-builder-colorfix');
 const excelGenerator = (path, data) => {
   return new Promise((resolve, reject) => {
     try {
-      console.log('~~~~~ creating', data.filename);
       // Create a new workbook file in current working-path
-      var workbook = excelbuilder.createWorkbook(path, 'output.xlsx');
-      console.log('~~~~~ created workbook', data.filename, workbook);
+      var workbook = excelbuilder.createWorkbook(path, data.filename);
 
       // Create a new worksheet with 30 columns and 30 rows
       var sheet = workbook.createSheet(data.sheetName, data.cols, data.rows);
-      console.log('~~~~~ created sheet', workbook);
 
       function setCell(cell) {
         if (cell.merge) {
