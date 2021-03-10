@@ -53,7 +53,7 @@
 
                 for(var i in data){
                     var tp = data[i];
-                    if(tp.department == null) continue;
+                    if(tp.department[0] == null) continue;
                     if(tp.department.length < 1) continue;
 
                     tp.deptName = tp.department[0].deptName;

@@ -494,195 +494,178 @@ app.config([
       /*
          ---- RISK Routes ----
          */
-      .state('app.risk', {
-        url: '/risk',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.profile', {
-        url: '/profile',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.profile.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.profile.html',
-        title: 'Risk Profile Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskProfileCtrl',
-        resolve: loadSequence('RiskProfileCtrl', 'uniqueIds'),
-      })
-      .state('app.risk.profile.form', {
-        url: '/manage',
-        templateUrl: 'assets/views/risk/risk.profile.form.html',
-        title: 'Risk Profile Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskProfileFormCtrl',
-        resolve: loadSequence('RiskProfileFormCtrl'),
-      })
-      .state('app.risk.profile.update', {
-        url: '/:id/update',
-        templateUrl: 'assets/views/risk/risk.profile.form.html',
-        title: 'Risk Profile Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskProfileUpdateCtrl',
-        resolve: loadSequence('RiskProfileUpdateCtrl'),
-      })
-      .state('app.risk.profile.addcontroltestdata', {
-        url: '/addcontroltestdata/:pid',
-        templateUrl: 'assets/views/risk/risk.controltestdata.form.html',
-        title: 'Risk Profile Control Test Data Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskControlTestDataFormCtrl',
-        resolve: loadSequence('RiskControlTestDataFormCtrl'),
-      })
-      .state('app.risk.profile.updatecontroltestdata', {
-        url: '/updatecontroltestdata/:controlTestDataId',
-        templateUrl: 'assets/views/risk/risk.controltestdata.form.html',
-        title: 'Risk Profile Control Test Data Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskControlTestDataUpdateCtrl',
-        resolve: loadSequence('RiskControlTestDataUpdateCtrl'),
-      })
-      .state('app.risk.profile.addaction', {
-        url: '/addaction/:pid',
-        templateUrl: 'assets/views/risk/risk.action.form.html',
-        title: 'Risk Profile Action Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskProfileActionFormCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskProfileActionFormCtrl'),
-      })
-      .state('app.risk.profile.updateaction', {
-        url: '/updateaction/:id',
-        templateUrl: 'assets/views/risk/risk.action.form.html',
-        title: 'Risk Profile Action Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskProfileActionUpdateCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskProfileActionUpdateCtrl'),
-      })
-      .state('app.risk.assessment', {
-        url: '/assessment',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.assessment.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.assessment.html',
-        title: 'Risk Control Self Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskAssessmentCtrl',
-        resolve: loadSequence('RiskAssessmentCtrl'),
-      })
-      .state('app.risk.assessment.form', {
-        url: '/manage',
-        templateUrl: 'assets/views/risk/risk.assessment.form.html',
-        title: 'Risk Control Self Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskAssessmentFormCtrl',
-        resolve: loadSequence('RiskAssessmentFormCtrl'),
-      })
-      .state('app.risk.assessment.update', {
-        url: '/:id/update',
-        templateUrl: 'assets/views/risk/risk.assessment.form.html',
-        title: 'Risk Control Self Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskAssessmentUpdateCtrl',
-        resolve: loadSequence('RiskAssessmentUpdateCtrl'),
-      })
-      .state('app.risk.assessment.iso27000', {
-        url: '/iso27000',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.assessment.create', {
-        url:
-          '/assessmentgencreate/:asId/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
-        templateUrl: 'assets/views/risk/risk.assessment.create.html',
-        title: 'Risk Control Self Assessment',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskAssessmentCreateCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskAssessmentCreateCtrl'),
-      })
-      .state('app.risk.assessment.iso27000.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.assessment.iso27000.html',
-        title: 'ISO 27000 Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskISO27000AssessmentCtrl',
-        resolve: loadSequence('RiskISO27000AssessmentCtrl'),
-      })
-      .state('app.risk.assessment.iso27000.create', {
-        url:
-          '/assessmentgencreate/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
-        templateUrl: 'assets/views/risk/risk.assessment.iso27000.create.html',
-        title: 'ISO 27000 Assessment',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskISO27000AssessmentCreateCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskISO27000AssessmentCreateCtrl'),
-      })
-      .state('app.risk.assessment.nydfs', {
-        url: '/nydfs',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.assessment.nydfs.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.assessment.nydfs.html',
-        title: 'NYDFS Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskNYDFSAssessmentCtrl',
-        resolve: loadSequence('RiskNYDFSAssessmentCtrl'),
-      })
-      .state('app.risk.assessment.nydfs.create', {
-        url:
-          '/assessmentgencreate/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
-        templateUrl: 'assets/views/risk/risk.assessment.nydfs.create.html',
-        title: 'NYDFS Assessment',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskNYDFSAssessmentCreateCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskNYDFSAssessmentCreateCtrl'),
-      })
-      .state('app.risk.assessment.gdpr', {
-        url: '/gdpr',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.assessment.gdpr.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.assessment.gdpr.html',
-        title: 'GDPR Assessment Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskGDPRAssessmentCtrl',
-        resolve: loadSequence('RiskGDPRAssessmentCtrl'),
-      })
-      .state('app.risk.assessment.gdpr.create', {
-        url:
-          '/assessmentgencreate/:asId/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
-        templateUrl: 'assets/views/risk/risk.assessment.gdpr.create.html',
-        title: 'GDPR Assessment',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskGDPRAssessmentCreateCtrl',
-        controllerAs: 'vm',
-        resolve: loadSequence('RiskGDPRAssessmentCreateCtrl'),
-      })
-      .state('app.risk.rcm', {
-        url: '/rcm',
-        template: '<div ui-view class="fade-in-up"></div>',
-        abstract: true,
-      })
-      .state('app.risk.rcm.main', {
-        url: '',
-        templateUrl: 'assets/views/risk/risk.rcm.html',
-        title: 'Risk Profile Management',
-        icon: 'ti-layout-media-left-alt',
-        controller: 'RiskRCMCtrl',
-        resolve: loadSequence('RiskRCMCtrl'),
-      })
+        .state('app.risk', {
+            url: '/risk',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.profile', {
+            url: '/profile',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.profile.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.profile.html",
+            title: 'Risk Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileCtrl',
+            resolve: loadSequence('RiskProfileCtrl', 'uniqueIds')
+        }).state('app.risk.profile.form', {
+            url: '/manage',
+            templateUrl: "assets/views/risk/risk.profile.form.html",
+            title: 'Risk Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileFormCtrl',
+            resolve: loadSequence('RiskProfileFormCtrl')
+        }).state('app.risk.profile.update', {
+            url: '/:id/update',
+            templateUrl: "assets/views/risk/risk.profile.form.html",
+            title: 'Risk Profile Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileUpdateCtrl',
+            resolve: loadSequence('RiskProfileUpdateCtrl')
+        }).state('app.risk.profile.addcontroltestdata', {
+            url: '/addcontroltestdata/:pid',
+            templateUrl: "assets/views/risk/risk.controltestdata.form.html",
+            title: 'Risk Profile Control Test Data Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskControlTestDataFormCtrl',
+            resolve: loadSequence('RiskControlTestDataFormCtrl')
+        }).state('app.risk.profile.updatecontroltestdata', {
+            url: '/updatecontroltestdata/:controlTestDataId',
+            templateUrl: "assets/views/risk/risk.controltestdata.form.html",
+            title: 'Risk Profile Control Test Data Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskControlTestDataUpdateCtrl',
+            resolve: loadSequence('RiskControlTestDataUpdateCtrl')
+        }).state('app.risk.profile.addaction', {
+            url: '/addaction/:pid',
+            templateUrl: "assets/views/risk/risk.action.form.html",
+            title: 'Risk Profile Action Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileActionFormCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskProfileActionFormCtrl')
+        }).state('app.risk.profile.updateaction', {
+            url: '/updateaction/:id',
+            templateUrl: "assets/views/risk/risk.action.form.html",
+            title: 'Risk Profile Action Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileActionUpdateCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskProfileActionUpdateCtrl')
+        }).state('app.risk.assessment', {
+            url: '/assessment',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.assessment.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.assessment.html",
+            title: 'Risk Control Self Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskAssessmentCtrl',
+            resolve: loadSequence('RiskAssessmentCtrl')
+        }).state('app.risk.assessment.form', {
+            url: '/manage',
+            templateUrl: "assets/views/risk/risk.assessment.form.html",
+            title: 'Risk Control Self Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskAssessmentFormCtrl',
+            resolve: loadSequence('RiskAssessmentFormCtrl')
+        }).state('app.risk.assessment.update', {
+            url: '/:id/update',
+            templateUrl: "assets/views/risk/risk.assessment.form.html",
+            title: 'Risk Control Self Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskAssessmentUpdateCtrl',
+            resolve: loadSequence('RiskAssessmentUpdateCtrl')
+        }).state('app.risk.matrix', {
+            url: '/matrix',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.matrix.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.matrix.html",
+            title: 'Risk Control Matrix',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskProfileCtrl',
+            resolve: loadSequence('RiskProfileCtrl', 'uniqueIds')
+        }).state('app.risk.assessment.iso27000', {
+            url: '/iso27000',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.assessment.create', {
+            url: '/assessmentgencreate/:asId/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
+            templateUrl: 'assets/views/risk/risk.assessment.create.html',
+            title: 'Risk Control Self Assessment',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskAssessmentCreateCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskAssessmentCreateCtrl')
+        }).state('app.risk.assessment.iso27000.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.assessment.iso27000.html",
+            title: 'ISO 27000 Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskISO27000AssessmentCtrl',
+            resolve: loadSequence('RiskISO27000AssessmentCtrl')
+        }).state('app.risk.assessment.iso27000.create', {
+            url: '/assessmentgencreate/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
+            templateUrl: 'assets/views/risk/risk.assessment.iso27000.create.html',
+            title: 'ISO 27000 Assessment',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskISO27000AssessmentCreateCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskISO27000AssessmentCreateCtrl')
+        }).state('app.risk.assessment.nydfs', {
+            url: '/nydfs',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.assessment.nydfs.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.assessment.nydfs.html",
+            title: 'NYDFS Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskNYDFSAssessmentCtrl',
+            resolve: loadSequence('RiskNYDFSAssessmentCtrl')
+        }).state('app.risk.assessment.nydfs.create', {
+            url: '/assessmentgencreate/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
+            templateUrl: 'assets/views/risk/risk.assessment.nydfs.create.html',
+            title: 'NYDFS Assessment',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskNYDFSAssessmentCreateCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskNYDFSAssessmentCreateCtrl')
+        }).state('app.risk.assessment.gdpr', {
+            url: '/gdpr',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.assessment.gdpr.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.assessment.gdpr.html",
+            title: 'GDPR Assessment Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskGDPRAssessmentCtrl',
+            resolve: loadSequence('RiskGDPRAssessmentCtrl')
+        }).state('app.risk.assessment.gdpr.create', {
+            url: '/assessmentgencreate/:asId/:assessName/:assessmentBy/:approver/:approvedDate/:due_date/:riskType/:docType/:period',
+            templateUrl: 'assets/views/risk/risk.assessment.gdpr.create.html',
+            title: 'GDPR Assessment',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskGDPRAssessmentCreateCtrl',
+            controllerAs: 'vm',
+            resolve: loadSequence('RiskGDPRAssessmentCreateCtrl')
+        }).state('app.risk.rcm', {
+            url: '/rcm',
+            template: '<div ui-view class="fade-in-up"></div>',
+            abstract: true
+        }).state('app.risk.rcm.main', {
+            url: '',
+            templateUrl: "assets/views/risk/risk.rcm.html",
+            title: 'Risk Profile Management',
+            icon: 'ti-layout-media-left-alt',
+            controller: 'RiskRCMCtrl',
+            resolve: loadSequence('RiskRCMCtrl')
+        })
 
       /*
          ---- CONTROL Routes ----
@@ -1393,7 +1376,7 @@ app.config([
       .state('app.audit.main', {
         url: '',
         templateUrl: 'assets/views/audit/audit.main.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditMainCtrl',
         controllerAs: 'vm',
@@ -1402,7 +1385,7 @@ app.config([
       .state('app.audit.add_audit', {
         url: '/audit.add_audit',
         templateUrl: 'assets/views/audit/audit.add_audit.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditAdd_AuditCtrl',
         controllerAs: 'vm',
@@ -1411,7 +1394,7 @@ app.config([
       .state('app.audit.update_audit', {
         url: '/update/:audit_id',
         templateUrl: 'assets/views/audit/audit.update_audit.html',
-        title: 'Audit Management',
+        title: 'AUDIT UNIVERSE',
         icon: 'ti-layout-media-left-alt',
         controller: 'AuditUpdate_AuditCtrl',
         controllerAs: 'vm',

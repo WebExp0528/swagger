@@ -39,10 +39,10 @@
 		<div class="col-md-12">
 			<div class="panel panel-white no-radius">
 				<div class="panel-heading">
-					<h5>Risk Profiles</h5>
+					<h5>Risks</h5>
 					<div class="panel-tools">
 						<a class="btn btn-xs btn-dark-blue btn-squared" ng-click="downloadExcel()"><i class="ti-download"></i> Download</a>
-						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.risk.profile.form">Create New Risk Profile</a>
+						<a class="btn btn-xs btn-dark-blue btn-squared" ui-sref="app.risk.profile.form">Create New Risk</a>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -64,7 +64,9 @@
 							<thead>
 								<tr class="sortable-headers">
 									<th><input type="checkbox" ng-model="all_check" ng-click="selectAll()"></th>
-									<th><a ng-class="{'text-azure': Grid1.CurrCol==='riskDescription' }" ng-click="Grid1.SortMe('riskDescription')"><i class="fa {{Grid1.GetIco('riskDesc')}}"></i> Risk Description </a></th>
+									<th><a ng-class="{'text-azure': Grid1.CurrCol==='riskName' }" ng-click="Grid1.SortMe('riskName')"><i class="fa {{Grid1.GetIco('riskName')}}"></i> Name </a></th>
+									<th><a ng-class="{'text-azure': Grid1.CurrCol==='department' }" ng-click="Grid1.SortMe('department')"><i class="fa {{Grid1.GetIco('department')}}"></i> Department </a></th> 
+									<!--  <th><a ng-class="{'text-azure': Grid1.CurrCol==='riskDescription' }" ng-click="Grid1.SortMe('riskDescription')"><i class="fa {{Grid1.GetIco('riskDesc')}}"></i> Risk Description </a></th> -->
 									<!-- <th><a ng-class="{'text-azure': Grid1.CurrCol==='riskID' }" ng-click="Grid1.SortMe('riskID')"><i class="fa {{Grid1.GetIco('riskID')}}"></i> ID </a></th> -->
 									<!-- <th><a ng-class="{'text-azure': Grid1.CurrCol==='riskType' }" ng-click="Grid1.SortMe('riskType')"><i class="fa {{Grid1.GetIco('riskType')}}"></i> Type </a></th> -->
 									<th><a ng-class="{'text-azure': Grid1.CurrCol==='riskCategory' }" ng-click="Grid1.SortMe('riskCatgeory')"><i class="fa {{Grid1.GetIco('riskCateogry')}}"></i> Category </a></th>
@@ -87,7 +89,9 @@
 							<tbody>
 								<tr ng-repeat="r in Grid1.Data | orderBy: Grid1.Column:Grid1.IsAsc | filter: Grid1.Filter |  limitTo : Grid1.PerPage : (Grid1.CurrPage -1) * Grid1.PerPage | uniqueIds : 'riskId'">
 									<th><input type="checkbox" ng-model="r.checked"></th>
-									<td>{{r.riskDescription}}</td>
+									<td>{{r.riskName}}</td> 
+									<td>{{r.department}}</td>
+									<!--  <td>{{r.riskDescription}}</td> -->
 									<!-- <td>{{r.riskId}}</td> -->
 									<!-- <td>{{r.riskType}}</td> -->
 									<td>{{r.riskCategory}}</td>

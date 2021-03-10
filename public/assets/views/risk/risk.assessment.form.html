@@ -128,6 +128,45 @@
 		                            <input type="text" name="classification" ng-model="VM.classification" placeholder="Classification" class="form-control" required>
 		                        </div>
 		                    </div>
+		                    <!--  New fields added on Feb-27-2021  -->
+		                     <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Impact </label>
+                                        <input type="text" name="impact" ng-model="VM.impact"  placeholder="Impact" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Likelihood </label>
+                                        <input type="text" name="likelihood" ng-model="VM.likelihood"  placeholder="Likelihood" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Inherent Risk </label>
+                                        <input type="text" name="inherentRisk" ng-model="VM.inherentRisk"  placeholder="Inherent Risk" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Residual Risk </label>
+                                        <input type="text" name="residualRisk" ng-model="VM.residualRisk" placeholder="Residual Risk" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Overall Inherent Risk </label>
+                                        <input type="text" name="overallInherentRisk" ng-model="VM.overallInherentRisk" placeholder="Overall Inherent Risk" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group">
+                                        <label> Risk Rating </label>
+                                        <input type="text" name="riskRating" ng-model="VM.riskRating" placeholder="Risk Rating" class="form-control">
+                                    </div>
+                                </div>
+		                    
+		                    <!-- ends  -->
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group"
                                      ng-class="{ 'has-error' : Form.Rcsa.periodList.$invalid && (!Form.Rcsa.periodList.$pristine || Form.Rcsa.periodList.$touched || Form.Rcsa.periodList.$submitted) }">

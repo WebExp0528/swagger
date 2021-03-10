@@ -44,52 +44,6 @@
 		</ul>
 	</li>
 	
-	<li ng-class="{'active open':$state.includes('app.control')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-panel"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Control Data Management </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.control.repo') }">
-				<a ui-sref="app.control.repo.main">
-					<span class="title"> Repository  </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.controltestdata') }">
-				<a ui-sref="app.controltestdata.main">
-					<span class="title"> Test Data </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.testplan') }">
-				<a ui-sref="app.control.testplan.main">
-					<span class="title"> Test Plan </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.testresult') }">
-				<a ui-sref="app.control.testresult.main">
-					<span class="title"> Test Result </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.dashboard') }">
-				<a ui-sref="app.control.dashboard">
-					<span class="title"> Dashboard </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.mapping') }">
-				<a ui-sref="app.control.mapping">
-					<span class="title"> Mapping </span>
-				</a>
-			</li>
-		</ul>
-	</li>
-
-
 	<li ui-sref-active="active">
 		<a ui-sref="app.audit.main">
 			<div class="item-content">
@@ -98,23 +52,88 @@
 				</div>
 				<div class="item-inner">
 					<span class="title"> Audit </span>
-				</div>
+			        </div>
 			</div>
 		</a>
-	</li>
-	
-	<li ng-class="{'active open':$state.includes('app.mitigate')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-export"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Monitoring </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
+        </li>
+	<li ui-sref-active="active">
+                <a ui-sref="app.bpm.main">
+                        <div class="item-content">
+                                <div class="item-media">
+                                        <i class="ti-flag-alt"></i>
+                                </div>
+                                <div class="item-inner">
+                                        <span class="title"> Business Process </span>
+                                </div>
+                        </div>
+                </a>
+          </li>
+          <a href="javascript:void(0)">
+                        <div class="item-content">
+                                <div class="item-media">
+                                        <i class="ti-harddrives"></i>
+                                </div>
+                                <div class="item-inner">
+                                        <span class="title"> Risk </span><i class="icon-arrow"></i>
+                                </div>
+                        </div>
+                </a>
+                <ul class="sub-menu">
+                        
+						<li ng-class="{'active': $state.includes('app.risk.profile') }">
+                                <a ui-sref="app.risk.profile.main">
+                                        <span class="title"> Risk Profile  </span>
+                                </a>
+                        </li>
+						 <li  ng-class="{'active': $state.includes('app.risk.assessment') }">
+                                <a ui-sref="app.risk.assessment.main">
+                                        <span class="title"> Risk Control Self Assessment </span>
+                                </a>
+                        </li>
+								
+                       <li ng-class="{'active': $state.includes('app.risk.matrix') }">
+                                <a ui-sref="app.risk.matrix.main">
+                                        <span class="title"> Risk Control Matrix  </span>
+                                </a>
+                        </li>
+                        <li  ng-class="{'active': $state.includes('app.risk.rcm') }">
+                                <a ui-sref="app.risk.rcm.main">
+                                        <span class="title"> Risk Control Dashboards </span>
+                                </a>
+                        </li>
+						
+                </ul>
+                <a href="javascript:void(0)">
+                        <div class="item-content">
+                                <div class="item-media">
+                                        <i class="ti-harddrives"></i>
+                                </div>
+                                <div class="item-inner">
+                                        <span class="title"> Controls </span><i class="icon-arrow"></i>
+                                </div>
+                        </div>
+                </a>
 		<ul class="sub-menu">
+			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.control.repo') }">
+				<a ui-sref="app.control.repo.main">
+					<span class="title"> Control Repository  </span>
+				</a>
+			</li>
+			<li ng-class="{'active': $state.includes('app.controltestdata') }">
+				<a ui-sref="app.controltestdata.main">
+					<span class="title"> Control Test Data </span>
+				</a>
+			</li>
+			<li ng-class="{'active': $state.includes('app.control.testplan') }">
+				<a ui-sref="app.control.testplan.main">
+					<span class="title"> Control Test Plan </span>
+				</a>
+			</li>
+			<li ng-class="{'active': $state.includes('app.control.testresult') }">
+				<a ui-sref="app.control.testresult.main">
+					<span class="title"> Control Test Result </span>
+				</a>
+			</li>
 			<li ui-sref-active="active">
 				<a ui-sref="app.mitigate.remediations">
 					<span class="title"> Remediations  </span>
@@ -126,56 +145,7 @@
 				</a>
 			</li>
 		</ul>
-	</li>
-
-	<li ui-sref-active="active">
-		<a ui-sref="app.bpm.main">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-flag-alt"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Business Process </span>
-				</div>
-			</div>
-		</a>
-	</li>
-<!--
-	<li ng-class="{'active open':$state.includes('app.bcp')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-panel"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Business Continuity </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.bcp.emcontacts') }">
-				<a ui-sref="app.bcp.emcontacts.main">
-					<span class="title"> Emergency Contacts </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.bcp.siteloc') }">
-				<a ui-sref="app.bcp.siteloc.main">
-					<span class="title"> Site Locations </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.bcp.dr') }">
-				<a ui-sref="app.bcp.dr.main">
-					<span class="title"> Disaster Recovery </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.bcp.firmpolicy') }">
-				<a ui-sref="app.bcp.firmpolicy.main">
-					<span class="title"> Firm Policy </span>
-				</a>
-			</li>
-		</ul>
-	</li>
--->
+         </li>
 	<li ng-class="{'active open':$state.includes('app.itrisk')}">
 		<a href="javascript:void(0)">
 			<div class="item-content">
@@ -200,7 +170,32 @@
 			</li>
 		</ul>
 	</li>
-<!--
+	
+	<li ng-class="{'active open':$state.includes('app.oprisk')}">
+		<a href="javascript:void(0)">
+			<div class="item-content">
+				<div class="item-media">
+					<i class="ti-harddrives"></i>
+				</div>
+				<div class="item-inner">
+					<span class="title"> Loss Data Event Management </span><i class="icon-arrow"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="sub-menu">
+			<li ng-class="{'active': $state.includes('app.oprisk.incident') }">
+				<a ui-sref="app.oprisk.incident.main">
+					<span class="title"> Loss Data Event  </span>
+				</a>
+			</li>
+			<li ng-class="{'active': $state.includes('app.oprisk.assessment') }">
+				<a ui-sref="app.oprisk.assessment.main">
+					<span class="title"> Loss Data Event Assessment  </span>
+				</a>
+			</li>
+		</ul>
+	</li>
+	
 	<li ng-class="{'active open':$state.includes('app.compliance')}">
 		<a href="javascript:void(0)">
 			<div class="item-content">
@@ -271,22 +266,6 @@
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active open':$state.includes('app.compliance.volcker') }">
-				<a href="javascript:void(0)">
-					<div class="item-content">
-						<div class="item-inner-submenu">
-							<span class="title"> Volcker </span><i class="icon-arrow"></i>
-						</div>
-					</div>
-				</a>
-				<ul class="sub-menu">
-					<li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.volckertp') }">
-						<a ui-sref="app.compliance.volckertp.main">
-							<span class="title"> Volcker Assessment </span>
-						</a>
-					</li>
-				</ul>
-			</li>
 			<li ng-class="{'active open':$state.includes('app.compliance.soc') }">
 				<a href="javascript:void(0)">
 					<div class="item-content">
@@ -305,87 +284,7 @@
 			</li>
 		</ul>
 	</li>
-	-->
 	
-	<!--<li ng-class="{'active open':$state.includes('app.measure')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-ruler-alt"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Measure </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.measure.pentest') }">
-				<a ui-sref="app.measure.pentest.main">
-					<span class="title"> Penetration Testing  </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.measure.vulner') }">
-				<a ui-sref="app.measure.vulner.main">
-					<span class="title"> Vulnerability</span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	
-	<li ng-class="{'active open':$state.includes('app.mitigate')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-export"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Mitigation </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active">
-				<a ui-sref="app.mitigate.remediations">
-					<span class="title"> Remediations  </span>
-				</a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="app.mitigate.findings">
-					<span class="title"> Actions Findings </span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	
-	<li ng-class="{'active open':$state.includes('app.monitor')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-desktop"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Monitoring </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active">
-				<a ui-sref="app.monitor.continuous">
-					<span class="title"> Continuous  </span>
-				</a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="app.monitor.network">
-					<span class="title"> Network </span>
-				</a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="app.monitor.firewall">
-					<span class="title"> Firewall </span>
-				</a>
-			</li>
-		</ul>
-	</li>-->
 
 	<li ui-sref-active="active">
 		<a ui-sref="app.glossary">
