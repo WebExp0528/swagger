@@ -46,6 +46,7 @@
       riskProfileModel: [],
       controlTestPlanModel: [],
       milestones: [{}],
+      auditRiskScores: [],
       rcsaid: [],
     };
 

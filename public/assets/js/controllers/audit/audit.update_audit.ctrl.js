@@ -86,6 +86,10 @@
         vm.formdata.milestones = vm.formdata.milestones
           ? vm.formdata.milestones
           : [];
+        vm.formdata.auditRiskScore = vm.formdata.auditRiskScore
+          ? vm.formdata.auditRiskScore
+          : [];
+
         vm.formdata.rcsaid = vm.formdata.rcsaid ? vm.formdata.rcsaid : [];
 
         return AuditService.GetTopicByAudit(audit_id);
@@ -486,6 +490,33 @@
 
     $scope.generateReport = function () {
       AuditService.GenerateSummaryReport(vm.formdata);
+    };
+
+    /**
+     * Save RiskScore
+     *
+     * @param {*} data
+     * @param {*} id
+     */
+    $scope.saveRiskScore = function (data, id) {
+      console.log('~~~ saving milestone', data);
+      var index = vm.formdata.auditRiskScore.indexOf(
+        vm.formdata.auditRiskScore.find((el) => el.id == id)
+      );
+      vm.formdata.auditRiskScore[index] = data;
+    };
+
+    /**
+     * Remove RiskScore
+     * @param {*} index
+     */
+    $scope.removeRiskScore = function (index) {
+      vm.formdata.auditRiskScore.splice(index, 1);
+    };
+
+    $scope.createNewRiskScore = function ($event) {
+      $scope.addNewRiskScore = true;
+      vm.formdata.auditRiskScore[vm.formdata.auditRiskScore.length] = {};
     };
   }
 })();
