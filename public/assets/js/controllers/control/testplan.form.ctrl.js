@@ -63,6 +63,12 @@
           'controlOwner',
         ];
 
+      //:TODO: show control name
+
+      // category
+
+      // source
+
       $rootScope.app.Mask = true;
       OPRiskService.GetControlData().then(function (data) {
         data.forEach(function (c, i) {
@@ -382,17 +388,21 @@
         design,
         controlTypeLevel1,
       } = data;
-      console.log('~~~~~ data', data, index);
+      var tempDataModel = {
+        ...$scope.VM.controlDataModel[index],
+        controlName,
+        controlDescription,
+        controlFrequency,
+        controlType,
+      };
+      $scope.VM.controlDataModel[index] = tempDataModel;
 
-      $scope.VM.controlDataModel[index]['controlName'] = controlName;
-      $scope.VM.controlDataModel[index][
-        'controlDescription'
-      ] = controlDescription;
-      $scope.VM.controlDataModel[index]['controlFrequency'] = controlFrequency;
-      $scope.VM.controlDataModel[index]['controlType'] = controlType;
-
-      $scope.VM.controlTestData[index]['design'] = design;
-      $scope.VM.controlTestData[index]['controlTypeLevel1'] = controlTypeLevel1;
+      var tmpTestData = {
+        ...$scope.VM.controlTestData[index],
+        design,
+        controlTypeLevel1,
+      };
+      $scope.VM.controlTestData[index] = tmpTestData;
     };
 
     /**

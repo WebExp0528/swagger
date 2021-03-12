@@ -4,302 +4,310 @@
 <!-- end: SEARCH FORM -->
 <!-- start: MAIN NAVIGATION MENU -->
 <ul class="main-navigation-menu">
-	<li ui-sref-active="active">
-		<a ui-sref="app.dashboard.main">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-bar-chart"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Dashboard </span>
-				</div>
-			</div>
-		</a>
-	</li>
+    <li ui-sref-active="active">
+        <a ui-sref="app.dashboard.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-bar-chart"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Dashboard </span>
+                </div>
+            </div>
+        </a>
+    </li>
 
-	<li ui-sref-active="active">
+    <li ui-sref-active="active">
 
-	<li ng-class="{'active open':$state.includes('app.polproc')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-panel"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Policy and Procedure Management </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu" style="display: block;">
-			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.polproc.policydocs') }" class="active" style="">
-				<a ui-sref="app.polproc.policydocs.main" href="#!/polproc/policydocs">
-					<span class="title"> Policy and Procedure Management </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.polproc.policy') }" class="" style="">
-				<a ui-sref="app.polproc.policy.main" href="#!/polproc/policy">
-					<span class="title"> Policy Documents </span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	
-	<li ui-sref-active="active">
-		<a ui-sref="app.audit.main">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-zoom-in"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Audit </span>
-			        </div>
-			</div>
-		</a>
-        </li>
-	<li ui-sref-active="active">
-                <a ui-sref="app.bpm.main">
-                        <div class="item-content">
-                                <div class="item-media">
-                                        <i class="ti-flag-alt"></i>
-                                </div>
-                                <div class="item-inner">
-                                        <span class="title"> Business Process </span>
-                                </div>
-                        </div>
+    <li ng-class="{'active open':$state.includes('app.polproc')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-panel"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Policy and Procedure Management </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu" style="display: block;">
+            <li ui-sref-active="active" ng-class="{'active': $state.includes('app.polproc.policydocs') }" class="active"
+                style="">
+                <a ui-sref="app.polproc.policydocs.main" href="#!/polproc/policydocs">
+                    <span class="title"> Policy and Procedure Management </span>
                 </a>
-          </li>
-          <a href="javascript:void(0)">
-                        <div class="item-content">
-                                <div class="item-media">
-                                        <i class="ti-harddrives"></i>
-                                </div>
-                                <div class="item-inner">
-                                        <span class="title"> Risk </span><i class="icon-arrow"></i>
-                                </div>
+            </li>
+            <li ng-class="{'active': $state.includes('app.polproc.policy') }" class="" style="">
+                <a ui-sref="app.polproc.policy.main" href="#!/polproc/policy">
+                    <span class="title"> Policy Documents </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.audit.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-zoom-in"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Audit </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li ui-sref-active="active">
+        <a ui-sref="app.bpm.main">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-flag-alt"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Business Process </span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <a href="javascript:void(0)">
+        <div class="item-content">
+            <div class="item-media">
+                <i class="ti-harddrives"></i>
+            </div>
+            <div class="item-inner">
+                <span class="title"> Risk </span><i class="icon-arrow"></i>
+            </div>
+        </div>
+    </a>
+    <ul class="sub-menu">
+
+        <li ng-class="{'active': $state.includes('app.risk.profile') }">
+            <a ui-sref="app.risk.profile.main">
+                <span class="title"> Risk Data </span>
+            </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.risk.assessment') }">
+            <a ui-sref="app.risk.assessment.main">
+                <span class="title"> Risk Control Self Assessment </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active': $state.includes('app.risk.matrix') }">
+            <a ui-sref="app.risk.matrix.main">
+                <span class="title"> Risk Control Profile </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active': $state.includes('app.risk.controlMatrices.main') }">
+            <a ui-sref="app.risk.controlMatrices.main">
+                <span class="title"> Risk Control Matrices </span>
+            </a>
+        </li>
+
+        <li ng-class="{'active': $state.includes('app.risk.rcm') }">
+            <a ui-sref="app.risk.rcm.main">
+                <span class="title"> Risk Control Dashboards </span>
+            </a>
+        </li>
+
+    </ul>
+    <a href="javascript:void(0)">
+        <div class="item-content">
+            <div class="item-media">
+                <i class="ti-harddrives"></i>
+            </div>
+            <div class="item-inner">
+                <span class="title"> Controls </span><i class="icon-arrow"></i>
+            </div>
+        </div>
+    </a>
+    <ul class="sub-menu">
+        <li ui-sref-active="active" ng-class="{'active': $state.includes('app.control.repo') }">
+            <a ui-sref="app.control.repo.main">
+                <span class="title"> Control Repository </span>
+            </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.controltestdata') }">
+            <a ui-sref="app.controltestdata.main">
+                <span class="title"> Control Test Data </span>
+            </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.control.testplan') }">
+            <a ui-sref="app.control.testplan.main">
+                <span class="title"> Control Test Plan </span>
+            </a>
+        </li>
+        <li ng-class="{'active': $state.includes('app.control.testresult') }">
+            <a ui-sref="app.control.testresult.main">
+                <span class="title"> Control Test Result </span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.mitigate.remediations">
+                <span class="title"> Remediations </span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="app.mitigate.findings">
+                <span class="title"> Actions Findings </span>
+            </a>
+        </li>
+    </ul>
+    </li>
+    <li ng-class="{'active open':$state.includes('app.itrisk')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-harddrives"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> IT Risk </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active': $state.includes('app.itrisk.incident') }">
+                <a ui-sref="app.itrisk.incident.main">
+                    <span class="title"> IT Risk Incident </span>
+                </a>
+            </li>
+            <li ng-class="{'active': $state.includes('app.itrisk.assessment') }">
+                <a ui-sref="app.itrisk.assessment.main">
+                    <span class="title"> IT Risk Assessment </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('app.oprisk')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-harddrives"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Loss Data Event Management </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active': $state.includes('app.oprisk.incident') }">
+                <a ui-sref="app.oprisk.incident.main">
+                    <span class="title"> Loss Data Event </span>
+                </a>
+            </li>
+            <li ng-class="{'active': $state.includes('app.oprisk.assessment') }">
+                <a ui-sref="app.oprisk.assessment.main">
+                    <span class="title"> Loss Data Event Assessment </span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li ng-class="{'active open':$state.includes('app.compliance')}">
+        <a href="javascript:void(0)">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-check-box"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Compliance </span><i class="icon-arrow"></i>
+                </div>
+            </div>
+        </a>
+        <ul class="sub-menu">
+            <li ng-class="{'active open':$state.includes('app.compliance.sox') }">
+                <a href="javascript:void(0)">
+                    <div class="item-content">
+                        <div class="item-inner-submenu">
+                            <span class="title"> SOX </span><i class="icon-arrow"></i>
                         </div>
+                    </div>
                 </a>
                 <ul class="sub-menu">
-                        
-						<li ng-class="{'active': $state.includes('app.risk.profile') }">
-                                <a ui-sref="app.risk.profile.main">
-                                        <span class="title"> Risk Profile  </span>
-                                </a>
-                        </li>
-						 <li  ng-class="{'active': $state.includes('app.risk.assessment') }">
-                                <a ui-sref="app.risk.assessment.main">
-                                        <span class="title"> Risk Control Self Assessment </span>
-                                </a>
-                        </li>
-								
-                       <li ng-class="{'active': $state.includes('app.risk.matrix') }">
-                                <a ui-sref="app.risk.matrix.main">
-                                        <span class="title"> Risk Control Matrix  </span>
-                                </a>
-                        </li>
-                        <li  ng-class="{'active': $state.includes('app.risk.rcm') }">
-                                <a ui-sref="app.risk.rcm.main">
-                                        <span class="title"> Risk Control Dashboards </span>
-                                </a>
-                        </li>
-						
+                    <li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.soxtp') }">
+                        <a ui-sref="app.compliance.soxtp.main">
+                            <span class="title"> SOX Test Plan </span>
+                        </a>
+                    </li>
+                    <li ng-class="{'active': $state.includes('app.compliance.soxrcm') }">
+                        <a ui-sref="app.compliance.soxrcm.main">
+                            <span class="title"> SOX Risk Control Matrix</span>
+                        </a>
+                    </li>
+                    <li ng-class="{'active': $state.includes('app.compliance.soxpra') }">
+                        <a ui-sref="app.compliance.soxpra.main">
+                            <span class="title"> SOX Process Risk Analysis</span>
+                        </a>
+                    </li>
                 </ul>
+            </li>
+            <li ng-class="{'active open':$state.includes('app.compliance.pcidss') }">
                 <a href="javascript:void(0)">
-                        <div class="item-content">
-                                <div class="item-media">
-                                        <i class="ti-harddrives"></i>
-                                </div>
-                                <div class="item-inner">
-                                        <span class="title"> Controls </span><i class="icon-arrow"></i>
-                                </div>
+                    <div class="item-content">
+                        <div class="item-inner-submenu">
+                            <span class="title"> PCIDSS </span><i class="icon-arrow"></i>
                         </div>
+                    </div>
                 </a>
-		<ul class="sub-menu">
-			<li ui-sref-active="active" ng-class="{'active': $state.includes('app.control.repo') }">
-				<a ui-sref="app.control.repo.main">
-					<span class="title"> Control Repository  </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.controltestdata') }">
-				<a ui-sref="app.controltestdata.main">
-					<span class="title"> Control Test Data </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.testplan') }">
-				<a ui-sref="app.control.testplan.main">
-					<span class="title"> Control Test Plan </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.control.testresult') }">
-				<a ui-sref="app.control.testresult.main">
-					<span class="title"> Control Test Result </span>
-				</a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="app.mitigate.remediations">
-					<span class="title"> Remediations  </span>
-				</a>
-			</li>
-			<li ui-sref-active="active">
-				<a ui-sref="app.mitigate.findings">
-					<span class="title"> Actions Findings </span>
-				</a>
-			</li>
-		</ul>
-         </li>
-	<li ng-class="{'active open':$state.includes('app.itrisk')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-harddrives"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> IT Risk </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ng-class="{'active': $state.includes('app.itrisk.incident') }">
-				<a ui-sref="app.itrisk.incident.main">
-					<span class="title"> IT Risk Incident  </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.itrisk.assessment') }">
-				<a ui-sref="app.itrisk.assessment.main">
-					<span class="title"> IT Risk Assessment </span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	
-	<li ng-class="{'active open':$state.includes('app.oprisk')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-harddrives"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Loss Data Event Management </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ng-class="{'active': $state.includes('app.oprisk.incident') }">
-				<a ui-sref="app.oprisk.incident.main">
-					<span class="title"> Loss Data Event  </span>
-				</a>
-			</li>
-			<li ng-class="{'active': $state.includes('app.oprisk.assessment') }">
-				<a ui-sref="app.oprisk.assessment.main">
-					<span class="title"> Loss Data Event Assessment  </span>
-				</a>
-			</li>
-		</ul>
-	</li>
-	
-	<li ng-class="{'active open':$state.includes('app.compliance')}">
-		<a href="javascript:void(0)">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-check-box"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Compliance </span><i class="icon-arrow"></i>
-				</div>
-			</div>
-		</a>
-		<ul class="sub-menu">
-			<li ng-class="{'active open':$state.includes('app.compliance.sox') }">
-				<a href="javascript:void(0)">
-					<div class="item-content">
-						<div class="item-inner-submenu">
-							<span class="title"> SOX </span><i class="icon-arrow"></i>
-						</div>
-					</div>
-				</a>
-				<ul class="sub-menu">
-					<li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.soxtp') }">
-						<a ui-sref="app.compliance.soxtp.main">
-							<span class="title"> SOX Test Plan </span>
-						</a>
-					</li>
-					<li ng-class="{'active': $state.includes('app.compliance.soxrcm') }">
-						<a ui-sref="app.compliance.soxrcm.main">
-							<span class="title"> SOX Risk Control Matrix</span>
-						</a>
-					</li>
-					<li ng-class="{'active': $state.includes('app.compliance.soxpra') }">
-						<a ui-sref="app.compliance.soxpra.main">
-							<span class="title"> SOX Process Risk Analysis</span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li ng-class="{'active open':$state.includes('app.compliance.pcidss') }">
-				<a href="javascript:void(0)">
-					<div class="item-content">
-						<div class="item-inner-submenu">
-							<span class="title"> PCIDSS </span><i class="icon-arrow"></i>
-						</div>
-					</div>
-				</a>
-				<ul class="sub-menu">
-					<li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.pcidss') }">
-						<a ui-sref="app.compliance.pcidss.main">
-							<span class="title"> PCIDSS </span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li ng-class="{'active open':$state.includes('app.compliance.amlkyc') }">
-				<a href="javascript:void(0)">
-					<div class="item-content">
-						<div class="item-inner-submenu">
-							<span class="title"> AML/KYC </span><i class="icon-arrow"></i>
-						</div>
-					</div>
-				</a>
-				<ul class="sub-menu">
-					<li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.amlkyctp') }">
-						<a ui-sref="app.compliance.amlkyctp.main">
-							<span class="title"> AML/KYC Assessment </span>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li ng-class="{'active open':$state.includes('app.compliance.soc') }">
-				<a href="javascript:void(0)">
-					<div class="item-content">
-						<div class="item-inner-submenu">
-							<span class="title"> SOC </span><i class="icon-arrow"></i>
-						</div>
-					</div>
-				</a>
-				<ul class="sub-menu">
-					<li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.soctp') }">
-						<a ui-sref="app.compliance.soctp.main">
-							<span class="title"> SOC Assessment </span>
-						</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	
+                <ul class="sub-menu">
+                    <li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.pcidss') }">
+                        <a ui-sref="app.compliance.pcidss.main">
+                            <span class="title"> PCIDSS </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{'active open':$state.includes('app.compliance.amlkyc') }">
+                <a href="javascript:void(0)">
+                    <div class="item-content">
+                        <div class="item-inner-submenu">
+                            <span class="title"> AML/KYC </span><i class="icon-arrow"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.amlkyctp') }">
+                        <a ui-sref="app.compliance.amlkyctp.main">
+                            <span class="title"> AML/KYC Assessment </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{'active open':$state.includes('app.compliance.soc') }">
+                <a href="javascript:void(0)">
+                    <div class="item-content">
+                        <div class="item-inner-submenu">
+                            <span class="title"> SOC </span><i class="icon-arrow"></i>
+                        </div>
+                    </div>
+                </a>
+                <ul class="sub-menu">
+                    <li ui-sref-active="active" ng-class="{'active': $state.includes('app.compliance.soctp') }">
+                        <a ui-sref="app.compliance.soctp.main">
+                            <span class="title"> SOC Assessment </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
 
-	<li ui-sref-active="active">
-		<a ui-sref="app.glossary">
-			<div class="item-content">
-				<div class="item-media">
-					<i class="ti-list"></i>
-				</div>
-				<div class="item-inner">
-					<span class="title"> Glossary </span>
-				</div>
-			</div>
-		</a>
-	</li>
-	
-	<!-- <li ui-sref-active="active">
+
+    <li ui-sref-active="active">
+        <a ui-sref="app.glossary">
+            <div class="item-content">
+                <div class="item-media">
+                    <i class="ti-list"></i>
+                </div>
+                <div class="item-inner">
+                    <span class="title"> Glossary </span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <!-- <li ui-sref-active="active">
 		<a ui-sref="app.contact">
 			<div class="item-content">
 				<div class="item-media">
@@ -311,6 +319,6 @@
 			</div>
 		</a>
 	</li> -->
-	
+
 </ul>
 <!-- end: MAIN NAVIGATION MENU -->

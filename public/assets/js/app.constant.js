@@ -107,6 +107,13 @@ app.constant('JS_REQUIRES', {
 
     //Risk related Controllers
     'RiskProfileCtrl': 'assets/js/controllers/risk/risk.profile.ctrl.js',
+    'RiskControlMatricesCtrl':
+      'assets/js/controllers/risk/risk.controlMatrices.ctrl.js',
+    'RiskControlMatricesFormCtrl':
+      'assets/js/controllers/risk/risk.controlMatrices.form.ctrl.js',
+    'RiskControlMatricesUpdateCtrl':
+      'assets/js/controllers/risk/risk.controlMatrices.update.ctrl.js',
+
     'RiskProfileFormCtrl':
       'assets/js/controllers/risk/risk.profile.form.ctrl.js',
     'RiskProfileUpdateCtrl':

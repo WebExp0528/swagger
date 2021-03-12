@@ -380,15 +380,31 @@
      * @param {*} data
      * @param {*} id
      */
-    $scope.saveTestData = function (data, id) {
-      //$scope.user not updated yet
-      // angular.extend(data, {id: id});
-      // return $http.post('/saveUser', data);
-      console.log('~~~ saving milestone', data);
-      var index = $scope.VM.controlTestData.indexOf(
-        $scope.VM.controlTestData.find((el) => el.id == id)
-      );
-      $scope.VM.controlTestData[index] = data;
+    $scope.saveTestData = function (data, index) {
+      const {
+        controlName,
+        controlDescription,
+        controlFrequency,
+        controlType,
+        design,
+        controlTypeLevel1,
+      } = data;
+
+      var tempDataModel = {
+        ...$scope.VM.controlDataModel[index],
+        controlName,
+        controlDescription,
+        controlFrequency,
+        controlType,
+      };
+      $scope.VM.controlDataModel[index] = tempDataModel;
+
+      var tmpTestData = {
+        ...$scope.VM.controlTestData[index],
+        design,
+        controlTypeLevel1,
+      };
+      $scope.VM.controlTestData[index] = tmpTestData;
     };
 
     /**
@@ -397,6 +413,7 @@
      */
     $scope.removeTestData = function (index) {
       $scope.VM.controlTestData.splice(index, 1);
+      $scope.VM.controlDataModel.splice(index, 1);
     };
 
     /**
