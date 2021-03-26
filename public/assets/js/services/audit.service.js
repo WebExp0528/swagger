@@ -473,7 +473,7 @@ app.service('AuditService', function (APIHandler) {
           }),
           createSectionTitle('RATING AND CONCLUSIONS'),
           new docx.Paragraph({
-            text: `Rating = ${0}`,
+            text: `Rating = ${overallRiskRating}`,
             alignment: docx.AlignmentType.LEFT,
             spacing: {
               before: 200,
@@ -527,6 +527,28 @@ app.service('AuditService', function (APIHandler) {
             alignment: docx.AlignmentType.LEFT,
             spacing: {
               before: 200,
+            },
+          }),
+          new docx.Paragraph({
+            children: [
+              new docx.TextRun({
+                text: 'Overall Risk Score: ',
+                bold: true,
+                italics: true,
+                underline: {
+                  type: docx.UnderlineType.SINGLE,
+                  color: '000000',
+                },
+              }),
+              new docx.TextRun({
+                text: overallRiskScore,
+                italics: true,
+              }),
+            ],
+            alignment: docx.AlignmentType.LEFT,
+            spacing: {
+              before: 200,
+              after: 300,
             },
           }),
           new docx.Paragraph({
